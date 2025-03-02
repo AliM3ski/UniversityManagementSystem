@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.SubjectManagementController" spacing="10" alignment="CENTER">
+
+    <!-- Table for displaying subjects -->
+    <TableView fx:id="subjectTable">
+        <columns>
+            <TableColumn fx:id="codeColumn" text="Subject Code" />
+            <TableColumn fx:id="nameColumn" text="Subject Name" />
+        </columns>
+    </TableView>
+
+    <!-- Input fields for adding/editing subjects -->
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="codeInput" promptText="Subject Code" />
+        <TextField fx:id="nameInput" promptText="Subject Name" />
+        <Button text="Add" onAction="#addSubject" />
+        <Button text="Edit" onAction="#editSubject" />
+        <Button text="Delete" onAction="#deleteSubject" />
+    </HBox>
+
+    <!-- Search bar -->
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="searchInput" promptText="Search by Code" />
+        <Button text="Search" onAction="#searchSubject" />
+    </HBox>
+</VBox>

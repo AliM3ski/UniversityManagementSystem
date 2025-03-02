@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.HelloController">
+   <children>
+      <Text layoutX="46.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " textAlignment="CENTER" AnchorPane.bottomAnchor="321.8" AnchorPane.leftAnchor="45.60000000000002" AnchorPane.rightAnchor="390.078125" AnchorPane.topAnchor="39.484375">
+         <font>
+            <Font name="MS UI Gothic" size="39.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login to Continue" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="442.58592987060547" AnchorPane.topAnchor="78.0" />
+      <Button layoutX="248.0" layoutY="268.0" maxHeight="50.0" maxWidth="104.0" minHeight="35.0" minWidth="54.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="39.0" prefWidth="104.0" scaleShape="false" text="LOGIN" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="248.0" AnchorPane.topAnchor="268.0">
+         <font>
+            <Font name="Malgun Gothic Bold" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="usernameField" layoutX="53.0" layoutY="129.0" prefHeight="26.0" prefWidth="50.0" promptText="Username/Email" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="67.20000000000005" AnchorPane.topAnchor="129.0" />
+      <PasswordField fx:id="passwordField" layoutX="53.0" layoutY="187.0" prefHeight="26.0" prefWidth="50.0" promptText="Password" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="187.0" />
+   </children>
+</AnchorPane>

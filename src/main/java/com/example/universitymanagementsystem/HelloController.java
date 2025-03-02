@@ -33,7 +33,7 @@ public class HelloController {
         // Example validation
         if (username.equals("admin") && password.equals("password")) {
             // Successful login, open SubjectManagement.fxml
-            openSubjectManagement(event);
+            openDashBoard(event);
         } else {
             showAlert("Login Failed", "Invalid username or password.");
         }
@@ -47,8 +47,8 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    private void openSubjectManagement(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SubjectManagement.fxml"));
+    private void openDashBoard(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
         Parent root = loader.load();
 
         // Get the current stage from the event source
@@ -56,7 +56,7 @@ public class HelloController {
 
         // Set the new scene
         stage.setScene(new Scene(root));
-        stage.setTitle("Subject Management");
+        stage.setTitle("DashBoard");
         stage.show();
     }
 }

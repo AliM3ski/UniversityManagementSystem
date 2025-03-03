@@ -42,6 +42,7 @@ public class StudentManagementController {
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         levelColumn.setCellValueFactory(cellData -> cellData.getValue().academicLevelProperty());
 
+        academicLevelBox.getItems().addAll("Undergraduate", "Graduate", "PhD");
         studentTable.setItems(studentList);
     }
 }

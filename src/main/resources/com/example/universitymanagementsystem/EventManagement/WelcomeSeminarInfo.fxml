@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.WelcomeSeminarInfoController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.EventManagement.WelcomeSeminarInfoController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="48.0" layoutX="334.0" layoutY="232.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#942708" height="48.0" layoutX="32.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
       <ImageView fitHeight="98.0" fitWidth="190.0" layoutX="41.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Images/1.png" />
+            <Image url="@../../../../Images/1.png" />
          </image>
       </ImageView>
       <Text fill="#1a1a1a" layoutX="21.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Later Today" wrappingWidth="199.3148193359375">

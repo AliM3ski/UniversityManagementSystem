@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0"
             xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.universitymanagementsystem.ResearchWorkshopController"
+            fx:controller="com.example.universitymanagementsystem.EventManagement.ResearchWorkshopController"
             style="-fx-background-color: #F5F5F5;">
 
     <children>

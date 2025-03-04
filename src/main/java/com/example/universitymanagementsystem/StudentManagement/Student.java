@@ -1,4 +1,4 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.StudentManagement;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

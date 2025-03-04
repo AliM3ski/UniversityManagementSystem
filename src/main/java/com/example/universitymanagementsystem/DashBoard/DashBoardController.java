@@ -1,4 +1,4 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.DashBoard;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ public class DashBoardController {
 
     @FXML
     public void launchSubjectManagement(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SubjectManagement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/SubjectManagement/SubjectManagement.fxml"));
         Parent root = loader.load();
 
         // Get the current stage from the event source
@@ -32,7 +32,7 @@ public class DashBoardController {
     }
     @FXML
     public void launchEventManagement(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EventManagement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/EventManagement.fxml"));
         Parent root = loader.load();
 
         // Get the current stage from the event source
@@ -46,7 +46,7 @@ public class DashBoardController {
 
     @FXML
     public void signOut(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/Login/Login.fxml"));
         Parent root = loader.load();
 
         // Get the current stage from the event source

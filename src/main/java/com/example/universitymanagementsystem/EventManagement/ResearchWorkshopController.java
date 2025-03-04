@@ -1,4 +1,4 @@
-package com.example.universitymanagementsystem;  // Package declaration (update if necessary)
+package com.example.universitymanagementsystem.EventManagement;  // Package declaration (update if necessary)
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

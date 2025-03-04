@@ -1,4 +1,4 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.SubjectManagement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -107,7 +107,8 @@ public class SubjectManagementController {
     }
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
+
         Parent root = loader.load();
 
         // Get the current stage from the event source

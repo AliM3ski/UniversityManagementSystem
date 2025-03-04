@@ -1,10 +1,8 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.StudentManagement;
 
 //Import Statement
 import javafx.collections.FXCollections;
-import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.collections.ObservableList;
 

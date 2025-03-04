@@ -1,26 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane onMouseClicked="#signOut" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.DashBoardController">
-   <children>
-      <Text layoutX="26.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to The Dashboard">
-         <font>
-            <Font name="Malgun Gothic Bold" size="24.0" />
-         </font>
-      </Text>
-      <MenuButton alignment="CENTER_RIGHT" layoutX="470.0" layoutY="34.0" mnemonicParsing="false" popupSide="LEFT" text="MenuButton">
-        <items>
-          <MenuItem mnemonicParsing="false" text="DashBoard" />
-          <MenuItem mnemonicParsing="false" onAction="#launchSubjectManagement" text="Subject Management" />
-            <MenuItem mnemonicParsing="false" onAction="#launchEventManagement" text="Event Management" />
-        </items>
-      </MenuButton>
-      <Button layoutX="382.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#signOut" text="Sign Out" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.universitymanagementsystem.DashBoardController"
+            style="-fx-background-color: linear-gradient(to bottom, #74ABE2, #5563DE);
+           -fx-background-image: url('pattern.png');
+           -fx-background-repeat: repeat;
+           -fx-background-size: contain;">
+
+    <children>
+        <!-- Main Content Box -->
+        <BorderPane layoutX="50.0" layoutY="50.0" prefWidth="500.0" prefHeight="300.0"
+                    style="-fx-background-color: white;
+                   -fx-border-color: #333;
+                   -fx-border-width: 2px;
+                   -fx-border-radius: 10px;
+                   -fx-background-radius: 10px;
+                   -fx-padding: 20px;
+                   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 3, 3);">
+
+            <center>
+                <!-- Main Content -->
+                <VBox spacing="20.0" alignment="TOP_CENTER">
+
+                    <!-- Header -->
+                    <Text text="Welcome to The Dashboard" fill="#333333">
+                        <font>
+                            <Font name="Arial Bold" size="28.0" />
+                        </font>
+                    </Text>
+
+                    <!-- Menu and Logout Buttons -->
+                    <HBox spacing="10.0" alignment="CENTER">
+                        <Button text="Sign Out" onMouseClicked="#signOut"
+                                style="-fx-background-color: #d9534f;
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-background-radius: 10;
+                                   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" />
+
+                        <MenuButton text="Menu"
+                                    style="-fx-background-color: #0275d8;
+                                   -fx-text-fill: white;
+                                   -fx-font-size: 14px;
+                                   -fx-background-radius: 10;
+                                   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);">
+                            <items>
+                                <MenuItem text="Dashboard" />
+                                <MenuItem text="Subject Management" onAction="#launchSubjectManagement" />
+                            </items>
+                        </MenuButton>
+                    </HBox>
+
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>

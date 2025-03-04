@@ -19,6 +19,7 @@
           <MenuItem mnemonicParsing="false" text="DashBoard" />
           <MenuItem mnemonicParsing="false" onAction="#launchSubjectManagement" text="Subject Management" />
             <MenuItem mnemonicParsing="false" onAction="#launchEventManagement" text="Event Management" />
+            <MenuItem mnemonicParsing="false" onAction="#launchStudentManagement" text="Student Management" />
         </items>
       </MenuButton>
       <Button layoutX="382.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#signOut" text="Sign Out" />

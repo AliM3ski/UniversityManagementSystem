@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.universitymanagementsystem.WelcomeSeminarInfoController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.WelcomeSeminarInfoController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="48.0" layoutX="334.0" layoutY="232.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#942708" height="48.0" layoutX="32.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
+      <ImageView fitHeight="98.0" fitWidth="190.0" layoutX="41.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/1.png" />
+         </image>
+      </ImageView>
+      <Text fill="#1a1a1a" layoutX="21.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Later Today" wrappingWidth="199.3148193359375">
+         <font>
+            <Font name="Dubai Regular" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="9.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UOFG WELCOME SESSION !" textAlignment="CENTER" wrappingWidth="282.79997253417974">
+         <font>
+            <Font name="Impact" size="23.0" />
+         </font>
+      </Text>
+      <Text layoutX="292.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Seminar Info" />
+      <Text layoutX="256.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orientation Week! Explore, connect and kickstart your university career" wrappingWidth="397.6471862792969">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Button defaultButton="true" layoutX="455.0" layoutY="160.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="REGISTER" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
+      <Text layoutX="26.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="📅 9/1/2025" textAlignment="CENTER" wrappingWidth="130.28277587890636">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date and Time">
+         <font>
+            <Font name="Verdana" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="26.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 9/1/2025" textAlignment="CENTER" wrappingWidth="130.28277587890636">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auditorium" textAlignment="CENTER" wrappingWidth="130.28277587890636">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="35.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" textAlignment="CENTER" wrappingWidth="102.91360473632812">
+         <font>
+            <Font name="Verdana" size="13.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffd538" height="56.0" layoutX="334.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#942708" height="48.0" layoutX="338.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
+   </children>
 </AnchorPane>

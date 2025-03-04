@@ -35,7 +35,9 @@
                             <items>
                                 <MenuItem text="Dashboard" />
                                 <MenuItem onAction="#launchSubjectManagement" text="Subject Management" />
-                        <MenuItem onAction="#launchEventManagement" text="EventManagement" />
+                                <MenuItem onAction="#launchEventManagement" text="Event Management" />
+                                <MenuItem onAction="#launchCourseManagement" text="Course Management" />
+
                             </items>
                         </MenuButton>
                     </HBox>

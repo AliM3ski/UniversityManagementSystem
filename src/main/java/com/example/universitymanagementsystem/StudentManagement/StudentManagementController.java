@@ -2,7 +2,9 @@ package com.example.universitymanagementsystem.StudentManagement;
 
 //Import Statement
 import javafx.collections.FXCollections;
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.collections.ObservableList;
 
@@ -32,9 +34,10 @@ public class StudentManagementController {
     private
     ComboBox<String> academicLevelBox;
     // List to store students dynamically
-    private ObservableList<Student> studentList = FXCollections.observableArrayList();
-
+    private ObservableList<Student> studentList = FXCollections.observableArrayList();;
+// Initalize the student information to be saved
     public void initialize(){
+
         idColumn.setCellValueFactory(cellData -> cellData.getValue().studentIdProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());

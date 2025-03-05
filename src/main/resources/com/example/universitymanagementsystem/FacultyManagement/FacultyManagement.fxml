@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720" prefWidth="1465" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
+
+    <top>
+        <HBox alignment="CENTER" spacing="10">
+            <Button onAction="#goBack" text="Back" />
+            <TextField fx:id="nameInput" prefWidth="150" maxWidth="200" promptText="Enter Name" />
+            <TextField fx:id="emailInput" prefWidth="200" maxWidth="250" promptText="Enter Email" />
+            <TextField fx:id="degreeInput" prefWidth="150" maxWidth="200" promptText="Enter Degree" />
+            <TextField fx:id="researchInput" prefWidth="200" maxWidth="250" promptText="Enter Research Interests" />
+            <TextField fx:id="coursesInput" prefWidth="200" maxWidth="250" promptText="Enter Courses" />
+            <TextField fx:id="officeInput" prefWidth="150" maxWidth="200" promptText="Enter Office Location" />
+            <TextField fx:id="phoneNumberInput" prefWidth="150" maxWidth="200" promptText="Enter Phone Number" />
+            <TextField fx:id="departmentInput" prefWidth="150" maxWidth="200" promptText="Enter Department" />
+            <DatePicker fx:id="joinDateInput" />
+            <Button onAction="#addFaculty" text="Add Faculty" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox prefHeight="600" prefWidth="1280">
+            <TableView fx:id="facultyTable" prefHeight="600" prefWidth="1280" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="nameColumn" prefWidth="140" text="Name" />
+                    <TableColumn fx:id="emailColumn" prefWidth="180" text="Email" />
+                    <TableColumn fx:id="degreeColumn" prefWidth="140" text="Degree" />
+                    <TableColumn fx:id="researchColumn" prefWidth="180" text="Research Interests" />
+                    <TableColumn fx:id="coursesColumn" prefWidth="180" text="Courses Offered" />
+                    <TableColumn fx:id="officeColumn" prefWidth="140" text="Office Location" />
+                    <TableColumn fx:id="phoneNumberColumn" prefWidth="140" text="Phone Number" />
+                    <TableColumn fx:id="departmentColumn" prefWidth="140" text="Department" />
+                    <TableColumn fx:id="joinDateColumn" prefWidth="140" text="Join Date" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

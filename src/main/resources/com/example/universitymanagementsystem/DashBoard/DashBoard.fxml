@@ -37,6 +37,7 @@
                                 <MenuItem onAction="#launchSubjectManagement" text="Subject Management" />
                                 <MenuItem onAction="#launchEventManagement" text="Event Management" />
                                 <MenuItem onAction="#launchCourseManagement" text="Course Management" />
+                                <MenuItem onAction="#launchStudentManagement" text="Student Management" />
 
                             </items>
                         </MenuButton>

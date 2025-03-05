@@ -71,4 +71,18 @@ public class DashBoardController {
         stage.setTitle("Login");
         stage.show();
     }
+
+    @FXML
+    public void launchFacultyManagement(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/FacultyManagement/FacultyManagement.fxml"));
+        Parent root = loader.load();
+
+        // Get the current stage from the event source
+        Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+
+        // Set the new scene
+        stage.setScene(new Scene(root));
+        stage.setTitle("FacultyManagement");
+        stage.show();
+    }
 }

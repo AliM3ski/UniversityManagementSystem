@@ -11,17 +11,17 @@
 <VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.CourseManagement.CourseManagementController">
     <AnchorPane>
         <children>
-            <Button layoutX="337.0" layoutY="14.0" onAction="#backToDashBoard" onMouseClicked="#backToDashBoard" text="Back To DashBoard" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0" />
+            <Button layoutX="337.0" layoutY="14.0" onMouseClicked="#backToDashBoard" text="Back To DashBoard" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0" />
         </children>
     </AnchorPane>
 
     <TableView fx:id="courseTable">
         <columns>
-            <TableColumn fx:id="nameColumn" text="Course Name" />
-            <TableColumn fx:id="subjectColumn" text="Subject" />
-            <TableColumn fx:id="scheduleColumn" text="Schedule" />
-            <TableColumn fx:id="capacityColumn" text="Capacity" />
-            <TableColumn fx:id="facultyColumn" text="Faculty" />
+            <TableColumn fx:id="nameColumn" prefWidth="152.5714132785797" text="Course Name" />
+            <TableColumn fx:id="subjectColumn" prefWidth="192.0" text="Subject" />
+            <TableColumn fx:id="scheduleColumn" prefWidth="211.4285888671875" text="Schedule" />
+            <TableColumn fx:id="capacityColumn" prefWidth="197.71429443359375" text="Capacity" />
+            <TableColumn fx:id="facultyColumn" prefWidth="189.71435546875" text="Faculty" />
         </columns>
     </TableView>
 

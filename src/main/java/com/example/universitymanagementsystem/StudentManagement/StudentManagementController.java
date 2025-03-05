@@ -35,7 +35,7 @@ public class StudentManagementController {
     ComboBox<String> academicLevelBox;
     // List to store students dynamically
     private ObservableList<Student> studentList = FXCollections.observableArrayList();;
-
+// Initalize the student information to be saved
     public void initialize(){
 
         idColumn.setCellValueFactory(cellData -> cellData.getValue().studentIdProperty());

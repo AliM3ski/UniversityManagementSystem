@@ -80,6 +80,21 @@ public class CourseManagementController {
             addCourseButton.setVisible(true);
             editCourseButton.setVisible(true);
             deleteCourseButton.setVisible(true);
+
+            // Enable or show text fields for admins
+            nameInput.setDisable(false);
+            subjectInput.setDisable(false);
+            scheduleInput.setDisable(false);
+            capacityInput.setDisable(false);
+            facultyInput.setDisable(false);
+            nameInput.setVisible(true);
+            subjectInput.setVisible(true);
+            scheduleInput.setVisible(true);
+            capacityInput.setVisible(true);
+            facultyInput.setVisible(true);
+
+
+
         } else {
             System.out.println("User is not an admin.");
             // Disable or hide buttons for non-admins
@@ -89,6 +104,18 @@ public class CourseManagementController {
             addCourseButton.setVisible(false);
             editCourseButton.setVisible(false);
             deleteCourseButton.setVisible(false);
+
+            // Disable or hide text fields for admins
+            nameInput.setDisable(true);
+            subjectInput.setDisable(true);
+            scheduleInput.setDisable(true);
+            capacityInput.setDisable(true);
+            facultyInput.setDisable(true);
+            nameInput.setVisible(false);
+            subjectInput.setVisible(false);
+            scheduleInput.setVisible(false);
+            capacityInput.setVisible(false);
+            facultyInput.setVisible(false);
         }
     }
 

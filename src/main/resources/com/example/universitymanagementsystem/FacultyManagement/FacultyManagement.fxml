@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,21 +9,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720" prefWidth="1465" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
+
+<BorderPane prefHeight="720" prefWidth="1465" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
 
     <top>
         <HBox alignment="CENTER" spacing="10">
-            <Button onAction="#goBack" text="Back" />
-            <TextField fx:id="nameInput" prefWidth="150" maxWidth="200" promptText="Enter Name" />
-            <TextField fx:id="emailInput" prefWidth="200" maxWidth="250" promptText="Enter Email" />
-            <TextField fx:id="degreeInput" prefWidth="150" maxWidth="200" promptText="Enter Degree" />
-            <TextField fx:id="researchInput" prefWidth="200" maxWidth="250" promptText="Enter Research Interests" />
-            <TextField fx:id="coursesInput" prefWidth="200" maxWidth="250" promptText="Enter Courses" />
-            <TextField fx:id="officeInput" prefWidth="150" maxWidth="200" promptText="Enter Office Location" />
-            <TextField fx:id="phoneNumberInput" prefWidth="150" maxWidth="200" promptText="Enter Phone Number" />
-            <TextField fx:id="departmentInput" prefWidth="150" maxWidth="200" promptText="Enter Department" />
+            <Button onMouseClicked="#backToDashBoard" text="Back" />
+            <TextField fx:id="nameInput" maxWidth="200" prefWidth="150" promptText="Enter Name" />
+            <TextField fx:id="emailInput" maxWidth="250" prefWidth="200" promptText="Enter Email" />
+            <TextField fx:id="degreeInput" maxWidth="200" prefWidth="150" promptText="Enter Degree" />
+            <TextField fx:id="researchInput" maxWidth="250" prefWidth="200" promptText="Enter Research Interests" />
+            <TextField fx:id="coursesInput" maxWidth="250" prefWidth="200" promptText="Enter Courses" />
+            <TextField fx:id="officeInput" maxWidth="200" prefWidth="150" promptText="Enter Office Location" />
+            <TextField fx:id="phoneNumberInput" maxWidth="200" prefWidth="150" promptText="Enter Phone Number" />
+            <TextField fx:id="departmentInput" maxWidth="200" prefWidth="150" promptText="Enter Department" />
             <DatePicker fx:id="joinDateInput" />
-            <Button onAction="#addFaculty" text="Add Faculty" />
+            <Button fx:id="add" onAction="#addFaculty" text="Add Faculty" />
         </HBox>
     </top>
 

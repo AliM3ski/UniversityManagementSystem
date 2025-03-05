@@ -32,7 +32,7 @@ public class ResearchWorkshopController {
     private void goBack() {
         try {
             // Load the Events page (Ensure "Events.fxml" exists in the resources folder)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Events.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/EventManagement.fxml"));
             Parent root = loader.load();
 
             // Get the current stage (window) using the button as reference

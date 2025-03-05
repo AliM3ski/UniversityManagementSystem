@@ -1,6 +1,7 @@
 package com.example.universitymanagementsystem.DashBoard;
 
 import com.example.universitymanagementsystem.CourseManagement.CourseManagementController;
+import com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -93,6 +94,26 @@ public class DashBoardController {
     }
 
     @FXML
+    public void launchFacultyManagement(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/FacultyManagement/FacultyManagement.fxml"));
+        Parent root = loader.load();
+
+        // Get the controller and set the isAdmin value
+        FacultyManagementController facultyManagementController = loader.getController();
+        facultyManagementController.setIsAdmin(isAdmin);
+
+
+
+        // Get the current stage from the event source
+        Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+
+        // Set the new scene
+        stage.setScene(new Scene(root));
+        stage.setTitle("FacultyManagement");
+        stage.show();
+    }
+
+    @FXML
     public void signOut(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/Login/Login.fxml"));
         Parent root = loader.load();
@@ -106,17 +127,5 @@ public class DashBoardController {
         stage.show();
     }
 
-    @FXML
-    public void launchFacultyManagement(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/FacultyManagement/FacultyManagement.fxml"));
-        Parent root = loader.load();
 
-        // Get the current stage from the event source
-        Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-
-        // Set the new scene
-        stage.setScene(new Scene(root));
-        stage.setTitle("FacultyManagement");
-        stage.show();
-    }
 }

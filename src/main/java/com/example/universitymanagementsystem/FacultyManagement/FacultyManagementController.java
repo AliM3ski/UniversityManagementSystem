@@ -12,8 +12,11 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
+import javafx.scene.input.MouseEvent;
 
 public class FacultyManagementController {
+
+    private boolean isAdmin;
 
     @FXML
     private TableView<FacultyManagement> facultyTable;
@@ -25,8 +28,79 @@ public class FacultyManagementController {
     private TextField nameInput, emailInput, degreeInput, researchInput, coursesInput, officeInput, phoneNumberInput, departmentInput;
     @FXML
     private DatePicker joinDateInput;
+    @FXML
+    private Button add;
 
     private final ObservableList<FacultyManagement> facultyList = FXCollections.observableArrayList();
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+        checkAdminStatus(); // Update button visibility based on admin status
+    }
+
+    private void checkAdminStatus() {
+        if (isAdmin) {
+            System.out.println("User is an admin.");
+            // Enable or show buttons for admins
+
+
+            // Enable or show text fields for admins
+            nameInput.setDisable(false);
+            emailInput.setDisable(false);
+            degreeInput.setDisable(false);
+            researchInput.setDisable(false);
+            coursesInput.setDisable(false);
+            officeInput.setDisable(false);
+            phoneNumberInput.setDisable(false);
+            departmentInput.setDisable(false);
+            joinDateInput.setDisable(false);
+            add.setDisable(false);
+
+
+            nameInput.setVisible(true);
+            emailInput.setVisible(true);
+            degreeInput.setVisible(true);
+            researchInput.setVisible(true);
+            coursesInput.setVisible(true);
+            officeInput.setVisible(true);
+            phoneNumberInput.setVisible(true);
+            departmentInput.setVisible(true);
+            joinDateInput.setVisible(true);
+            add.setVisible(true);
+
+
+        } else {
+            System.out.println("User is not an admin.");
+            // Disable or hide buttons for non-admins
+
+
+            // Disable or hide text fields for non-admins
+            nameInput.setDisable(true);
+            emailInput.setDisable(true);
+            degreeInput.setDisable(true);
+            researchInput.setDisable(true);
+            coursesInput.setDisable(true);
+            officeInput.setDisable(true);
+            phoneNumberInput.setDisable(true);
+            departmentInput.setDisable(true);
+            joinDateInput.setDisable(true);
+            add.setDisable(true);
+
+
+            nameInput.setVisible(false);
+            emailInput.setVisible(false);
+            degreeInput.setVisible(false);
+            researchInput.setVisible(false);
+            coursesInput.setVisible(false);
+            officeInput.setVisible(false);
+            phoneNumberInput.setVisible(false);
+            departmentInput.setVisible(false);
+            joinDateInput.setVisible(false);
+            add.setVisible(false);
+
+        }
+    }
+
 
     @FXML
     public void initialize() {
@@ -91,15 +165,20 @@ public class FacultyManagementController {
     }
 
     @FXML
-    private void goBack(ActionEvent event) {
-        try {
-            // Load the previous scene (Replace "MainMenu.fxml" with your actual main scene FXML)
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/universitymanagementsystem/DashBoard.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void backToDashBoard(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
+
+        Parent root = loader.load();
+
+        // Get the current stage from the event source
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Set the new scene
+        stage.setScene(new Scene(root));
+        stage.setTitle("Dashboard");
+        stage.show();
     }
+
+
+
 }

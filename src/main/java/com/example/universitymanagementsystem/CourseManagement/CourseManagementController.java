@@ -15,6 +15,18 @@ import java.io.IOException;
 
 public class CourseManagementController {
 
+
+    private boolean isAdmin;
+
+    @FXML
+    private Button addCourseButton;
+
+    @FXML
+    private Button editCourseButton;
+
+    @FXML
+    private Button deleteCourseButton;
+
     @FXML
     private TableView<Course> courseTable;
 
@@ -52,6 +64,60 @@ public class CourseManagementController {
     private TextField searchInput;
 
     private ObservableList<Course> courses = FXCollections.observableArrayList();
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+        checkAdminStatus(); // Update button visibility based on admin status
+    }
+
+    private void checkAdminStatus() {
+        if (isAdmin) {
+            System.out.println("User is an admin.");
+            // Enable or show buttons for admins
+            addCourseButton.setDisable(false);
+            editCourseButton.setDisable(false);
+            deleteCourseButton.setDisable(false);
+            addCourseButton.setVisible(true);
+            editCourseButton.setVisible(true);
+            deleteCourseButton.setVisible(true);
+
+            // Enable or show text fields for admins
+            nameInput.setDisable(false);
+            subjectInput.setDisable(false);
+            scheduleInput.setDisable(false);
+            capacityInput.setDisable(false);
+            facultyInput.setDisable(false);
+            nameInput.setVisible(true);
+            subjectInput.setVisible(true);
+            scheduleInput.setVisible(true);
+            capacityInput.setVisible(true);
+            facultyInput.setVisible(true);
+
+
+
+        } else {
+            System.out.println("User is not an admin.");
+            // Disable or hide buttons for non-admins
+            addCourseButton.setDisable(true);
+            editCourseButton.setDisable(true);
+            deleteCourseButton.setDisable(true);
+            addCourseButton.setVisible(false);
+            editCourseButton.setVisible(false);
+            deleteCourseButton.setVisible(false);
+
+            // Disable or hide text fields for admins
+            nameInput.setDisable(true);
+            subjectInput.setDisable(true);
+            scheduleInput.setDisable(true);
+            capacityInput.setDisable(true);
+            facultyInput.setDisable(true);
+            nameInput.setVisible(false);
+            subjectInput.setVisible(false);
+            scheduleInput.setVisible(false);
+            capacityInput.setVisible(false);
+            facultyInput.setVisible(false);
+        }
+    }
 
     @FXML
     public void initialize() {

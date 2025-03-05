@@ -7,6 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import java.time.LocalDate;
 
 public class FacultyManagement {
+    //Properties
     private final StringProperty name;
     private final StringProperty email;
     private final StringProperty degree;
@@ -21,7 +22,7 @@ public class FacultyManagement {
     public FacultyManagement(String name, String email, String degree, String researchInterests,
                              String coursesOffered, String officeLocation, String phoneNumber,
                              String department, LocalDate joinDate) {
-        this.name = new SimpleStringProperty(name);
+        this.name = new SimpleStringProperty(name); //intialize properties with provided values e.g. name  "John' Doe"
         this.email = new SimpleStringProperty(email);
         this.degree = new SimpleStringProperty(degree);
         this.researchInterests = new SimpleStringProperty(researchInterests);
@@ -33,9 +34,9 @@ public class FacultyManagement {
     }
 
     // Getters, Setters, and Property methods
-    public String getName() { return name.get(); }
-    public void setName(String name) { this.name.set(name); }
-    public StringProperty nameProperty() { return name; }
+    public String getName() { return name.get(); }  //Retrieves the value name
+    public void setName(String name) { this.name.set(name); } //Updates the value of name
+    public StringProperty nameProperty() { return name; } //Returns the object itself,
 
     public String getEmail() { return email.get(); }
     public void setEmail(String email) { this.email.set(email); }
@@ -69,7 +70,7 @@ public class FacultyManagement {
     public void setJoinDate(LocalDate joinDate) { this.joinDate.set(joinDate); }
     public ObjectProperty<LocalDate> joinDateProperty() { return joinDate; }
 
-    // toString method for easier debugging and display
+    // toString method for easier debugging and display, provides a string representation of the faculty management object for debugging/logging
     @Override
     public String toString() {
         return "Faculty{" +

@@ -30,6 +30,8 @@ public class FacultyManagementController {
     private DatePicker joinDateInput;
     @FXML
     private Button add;
+    public Button editButton;
+    public Button deleteButton;
 
     private final ObservableList<FacultyManagement> facultyList = FXCollections.observableArrayList();
 
@@ -55,6 +57,8 @@ public class FacultyManagementController {
             departmentInput.setDisable(false);
             joinDateInput.setDisable(false);
             add.setDisable(false);
+            editButton.setDisable(false);
+            deleteButton.setDisable(false);
 
 
             nameInput.setVisible(true);
@@ -67,6 +71,8 @@ public class FacultyManagementController {
             departmentInput.setVisible(true);
             joinDateInput.setVisible(true);
             add.setVisible(true);
+            editButton.setVisible(true);
+            deleteButton.setVisible(true);
 
 
         } else {
@@ -85,6 +91,8 @@ public class FacultyManagementController {
             departmentInput.setDisable(true);
             joinDateInput.setDisable(true);
             add.setDisable(true);
+            editButton.setDisable(true);
+            deleteButton.setDisable(true);
 
 
             nameInput.setVisible(false);
@@ -97,6 +105,8 @@ public class FacultyManagementController {
             departmentInput.setVisible(false);
             joinDateInput.setVisible(false);
             add.setVisible(false);
+            editButton.setVisible(false);
+            deleteButton.setVisible(false);
 
         }
     }

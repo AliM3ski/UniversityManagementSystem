@@ -38,12 +38,13 @@
     <ComboBox fx:id="academicLevelBox" layoutX="150" layoutY="390" prefWidth="200"/>
 
     <!-- Profile Photo Upload Section -->
-    <Button text="Upload Photo" onAction="#uploadProfilePhoto" layoutX="50" layoutY="460"/>
+    <!--<Button text="Upload Photo" onAction="#uploadProfilePhoto" layoutX="50" layoutY="460"/>
     <ImageView fx:id="profileImageView" layoutX="50" layoutY="280" fitWidth="100" fitHeight="100"/>
-
+-->
     <!-- Generated Student ID Label -->
     <Label fx:id="generatedStudentID" layoutX="50" layoutY="500"/>
 
     <!-- Buttons Section -->
-    <Button text="Add Student" onAction="#addStudent" layoutX="50" layoutY="530" prefWidth="120"/>
+    <!--<Button text="Add Student" onAction="#addStudent" layoutX="50" layoutY="530" prefWidth="120"/>
+    -->
 </AnchorPane>

@@ -45,7 +45,7 @@ public class DashBoardController {
     }
     @FXML
     public void launchStudentManagement(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentManagement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/StudentManagement/StudentManagement.fxml"));
         Parent root = loader.load();
 
         // Get the current stage from the event source

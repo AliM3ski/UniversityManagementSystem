@@ -1,4 +1,4 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.StudentManagement;
 
 //Import Statement
 import javafx.collections.FXCollections;
@@ -34,9 +34,10 @@ public class StudentManagementController {
     private
     ComboBox<String> academicLevelBox;
     // List to store students dynamically
-    private ObservableList<Student> studentList = FXCollections.observableArrayList();
+    private ObservableList<Student> studentList = FXCollections.observableArrayList();;
 
     public void initialize(){
+
         idColumn.setCellValueFactory(cellData -> cellData.getValue().studentIdProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());

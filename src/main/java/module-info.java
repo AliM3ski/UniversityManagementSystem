@@ -22,4 +22,8 @@ module com.example.universitymanagementsystem {
     opens com.example.universitymanagementsystem.StudentManagement to javafx.fxml;
     exports com.example.universitymanagementsystem.SubjectManagement;
     opens com.example.universitymanagementsystem.SubjectManagement to javafx.fxml;
+    exports com.example.universitymanagementsystem.CourseManagement;
+    opens com.example.universitymanagementsystem.CourseManagement to javafx.fxml;
+    exports com.example.universitymanagementsystem.FacultyManagement;
+    opens com.example.universitymanagementsystem.FacultyManagement to javafx.fxml;
 }

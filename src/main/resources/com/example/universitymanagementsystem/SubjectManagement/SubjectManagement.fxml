@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.SubjectManagementController">
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.SubjectManagement.SubjectManagementController">
    <AnchorPane prefHeight="0.0" prefWidth="464.0">
       <children>
          <Button layoutX="337.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back To DashBoard" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0" />
@@ -27,9 +27,9 @@
     <HBox alignment="CENTER" spacing="10">
         <TextField fx:id="codeInput" promptText="Subject Code" />
         <TextField fx:id="nameInput" promptText="Subject Name" />
-        <Button onAction="#addSubject" text="Add" />
-        <Button onAction="#editSubject" text="Edit" />
-        <Button onAction="#deleteSubject" text="Delete" />
+        <Button fx:id= "addbutton"   onAction="#addSubject" text="Add" />
+        <Button fx:id= "editbutton" onAction="#editSubject" text="Edit" />
+        <Button fx:id= "deletebutton" onAction="#deleteSubject" text="Delete" />
     </HBox>
 
     <!-- Search bar -->

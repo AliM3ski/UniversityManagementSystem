@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #74ABE2, #5563DE);            -fx-background-image: url('pattern.png');            -fx-background-repeat: repeat;            -fx-background-size: contain;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.DashBoard.DashBoardController">
+
+    <children>
+        <!-- Main Content Box -->
+        <BorderPane layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: white;                    -fx-border-color: #333;                    -fx-border-width: 2px;                    -fx-border-radius: 10px;                    -fx-background-radius: 10px;                    -fx-padding: 20px;                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 3, 3);">
+
+            <center>
+                <!-- Main Content -->
+                <VBox alignment="TOP_CENTER" spacing="20.0">
+
+                    <!-- Header -->
+                    <Text fill="#333333" text="Welcome to The Dashboard">
+                        <font>
+                            <Font name="Arial Bold" size="28.0" />
+                        </font>
+                    </Text>
+
+                    <!-- Menu and Logout Buttons -->
+                    <HBox alignment="CENTER" spacing="10.0">
+                        <Button onMouseClicked="#signOut" style="-fx-background-color: #d9534f;                                    -fx-text-fill: white;                                    -fx-font-size: 14px;                                    -fx-background-radius: 10;                                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" text="Sign Out" />
+
+                        <MenuButton style="-fx-background-color: #0275d8;                                    -fx-text-fill: white;                                    -fx-font-size: 14px;                                    -fx-background-radius: 10;                                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" text="Menu">
+                            <items>
+                                <MenuItem text="Dashboard" />
+                                <MenuItem onAction="#launchSubjectManagement" text="Subject Management" />
+                                <MenuItem onAction="#launchEventManagement" text="Event Management" />
+                                <MenuItem onAction="#launchCourseManagement" text="Course Management" />
+                                <MenuItem onAction="#launchStudentManagement" text="Student Management" />
+                                <MenuItem onAction="#launchFacultyManagement" text="Faculty Management" />
+
+                            </items>
+                        </MenuButton>
+                    </HBox>
+
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

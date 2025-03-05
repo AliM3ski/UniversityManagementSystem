@@ -1,5 +1,6 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.Login;
 
+import com.example.universitymanagementsystem.DashBoard.DashBoardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import java.io.IOException;
 
-public class HelloController {
+public class LoginController {
 
     @FXML
     private TextField usernameField;
@@ -30,10 +31,16 @@ public class HelloController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        boolean isAdmin;
+
         // Example validation
         if (username.equals("admin") && password.equals("password")) {
-            // Successful login, open SubjectManagement.fxml
-            openDashBoard(event);
+            // user logged in as admin
+            isAdmin = true;
+            openDashBoard(event, isAdmin);
+        } else if (username.equals("user") && password.equals("password")) {
+            isAdmin = false;
+            openDashBoard(event, isAdmin);
         } else {
             showAlert("Login Failed", "Invalid username or password.");
         }
@@ -47,9 +54,15 @@ public class HelloController {
         alert.showAndWait();
     }
 
-    private void openDashBoard(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
+    private void openDashBoard(ActionEvent event, boolean isAdmin) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
         Parent root = loader.load();
+
+        // Get the controller and set the isAdmin value
+        DashBoardController dashBoardController = loader.getController();
+        dashBoardController.setIsAdmin(isAdmin);
+
+
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

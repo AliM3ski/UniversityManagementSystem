@@ -1,4 +1,4 @@
-package com.example.universitymanagementsystem;
+package com.example.universitymanagementsystem.Login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import java.io.IOException;
 
-public class HelloController {
+public class LoginController {
 
     @FXML
     private TextField usernameField;
@@ -48,7 +48,7 @@ public class HelloController {
     }
 
     private void openDashBoard(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
         Parent root = loader.load();
 
         // Get the current stage from the event source

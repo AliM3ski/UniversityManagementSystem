@@ -9,11 +9,18 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.CourseManagement.CourseManagementController">
+
     <AnchorPane>
         <children>
             <Button layoutX="337.0" layoutY="14.0" onMouseClicked="#backToDashBoard" text="Back To DashBoard" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0" />
         </children>
     </AnchorPane>
+
+    <!-- SEARCH BAR -->
+    <HBox spacing="10">
+        <TextField fx:id="searchInput" promptText="Search Course" />
+        <Button onAction="#searchCourse" text="Search" />
+    </HBox>
 
     <TableView fx:id="courseTable">
         <columns>
@@ -31,8 +38,8 @@
         <TextField fx:id="scheduleInput" promptText="Schedule" />
         <TextField fx:id="capacityInput" promptText="Capacity" />
         <TextField fx:id="facultyInput" promptText="Faculty" />
-        <Button onAction="#addCourse" text="Add" />
-        <Button onAction="#editCourse" text="Edit" />
-        <Button onAction="#deleteCourse" text="Delete" />
+        <Button fx:id="addCourseButton" onAction="#addCourse" text="Add" />
+        <Button fx:id="editCourseButton" onAction="#editCourse" text="Edit" />
+        <Button fx:id="deleteCourseButton" onAction="#deleteCourse" text="Delete" />
     </HBox>
 </VBox>

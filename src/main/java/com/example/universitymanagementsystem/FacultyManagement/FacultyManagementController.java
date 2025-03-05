@@ -179,6 +179,50 @@ public class FacultyManagementController {
         stage.show();
     }
 
+    @FXML
+    public void editFaculty(ActionEvent actionEvent) {
+        FacultyManagement selectedFaculty = facultyTable.getSelectionModel().getSelectedItem();
+        if (selectedFaculty != null) {
+            // Check each field and update only if it's changed
+            if (!nameInput.getText().isEmpty() && !nameInput.getText().equals(selectedFaculty.getName())) {
+                selectedFaculty.setName(nameInput.getText());
+            }
+            if (!emailInput.getText().isEmpty() && !emailInput.getText().equals(selectedFaculty.getEmail())) {
+                selectedFaculty.setEmail(emailInput.getText());
+            }
+            if (!degreeInput.getText().isEmpty() && !degreeInput.getText().equals(selectedFaculty.getDegree())) {
+                selectedFaculty.setDegree(degreeInput.getText());
+            }
+            if (!researchInput.getText().isEmpty() && !researchInput.getText().equals(selectedFaculty.getResearchInterests())) {
+                selectedFaculty.setResearchInterests(researchInput.getText());
+            }
+            if (!coursesInput.getText().isEmpty() && !coursesInput.getText().equals(selectedFaculty.getCoursesOffered())) {
+                selectedFaculty.setCoursesOffered(coursesInput.getText());
+            }
+            if (!officeInput.getText().isEmpty() && !officeInput.getText().equals(selectedFaculty.getOfficeLocation())) {
+                selectedFaculty.setOfficeLocation(officeInput.getText());
+            }
+            if (!phoneNumberInput.getText().isEmpty() && !phoneNumberInput.getText().equals(selectedFaculty.getPhoneNumber())) {
+                selectedFaculty.setPhoneNumber(phoneNumberInput.getText());
+            }
+            if (!departmentInput.getText().isEmpty() && !departmentInput.getText().equals(selectedFaculty.getDepartment())) {
+                selectedFaculty.setDepartment(departmentInput.getText());
+            }
+            if (joinDateInput.getValue() != null && !joinDateInput.getValue().equals(selectedFaculty.getJoinDate())) {
+                selectedFaculty.setJoinDate(joinDateInput.getValue());
+            }
+
+            facultyTable.refresh();  // Refresh the table to reflect changes
+            clearFields();  // Clear the input fields after editing
+        }
+    }
+
+    public void deleteFaculty(ActionEvent actionEvent) {
+        FacultyManagement selectedFaculty = facultyTable.getSelectionModel().getSelectedItem();
+        if (selectedFaculty != null) {
+            facultyTable.getItems().remove(selectedFaculty);
+        }
 
 
+    }
 }

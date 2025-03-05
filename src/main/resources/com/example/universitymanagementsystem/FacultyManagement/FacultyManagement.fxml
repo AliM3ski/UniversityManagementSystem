@@ -46,4 +46,12 @@
         </VBox>
     </center>
 
+    <!-- Added alignment and placed buttons properly inside a HBox -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="editButton" onAction="#editFaculty" text="Edit Faculty" />
+            <Button fx:id="deleteButton" onAction="#deleteFaculty" text="Delete Faculty" />
+        </HBox>
+    </bottom>
+
 </BorderPane>

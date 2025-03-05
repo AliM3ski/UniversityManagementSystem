@@ -17,6 +17,7 @@ public class FacultyManagement {
     private final StringProperty department;
     private final ObjectProperty<LocalDate> joinDate;
 
+    // Constructor
     public FacultyManagement(String name, String email, String degree, String researchInterests,
                              String coursesOffered, String officeLocation, String phoneNumber,
                              String department, LocalDate joinDate) {
@@ -28,7 +29,7 @@ public class FacultyManagement {
         this.officeLocation = new SimpleStringProperty(officeLocation);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.department = new SimpleStringProperty(department);
-        this.joinDate = new SimpleObjectProperty<>(joinDate);
+        this.joinDate = new SimpleObjectProperty<>(joinDate != null ? joinDate : LocalDate.now());  // Default to today's date if null
     }
 
     // Getters, Setters, and Property methods
@@ -67,4 +68,35 @@ public class FacultyManagement {
     public LocalDate getJoinDate() { return joinDate.get(); }
     public void setJoinDate(LocalDate joinDate) { this.joinDate.set(joinDate); }
     public ObjectProperty<LocalDate> joinDateProperty() { return joinDate; }
+
+    // toString method for easier debugging and display
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "name='" + name.get() + '\'' +
+                ", email='" + email.get() + '\'' +
+                ", degree='" + degree.get() + '\'' +
+                ", researchInterests='" + researchInterests.get() + '\'' +
+                ", coursesOffered='" + coursesOffered.get() + '\'' +
+                ", officeLocation='" + officeLocation.get() + '\'' +
+                ", phoneNumber='" + phoneNumber.get() + '\'' +
+                ", department='" + department.get() + '\'' +
+                ", joinDate=" + joinDate.get() +
+                '}';
+    }
+
+    // equals and hashCode methods based on name and email for proper comparison
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FacultyManagement that = (FacultyManagement) o;
+        return name.get().equals(that.name.get()) &&
+                email.get().equals(that.email.get());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * name.get().hashCode() + email.get().hashCode();
+    }
 }

@@ -3,6 +3,7 @@ package com.example.universitymanagementsystem.DashBoard;
 import com.example.universitymanagementsystem.CourseManagement.CourseManagementController;
 import com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController;
 import com.example.universitymanagementsystem.SubjectManagement.SubjectManagementController;
+import com.example.universitymanagementsystem.StudentManagement.StudentManagementController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,6 +71,9 @@ public class DashBoardController {
     public void launchStudentManagement(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/StudentManagement/StudentManagement.fxml"));
         Parent root = loader.load();
+
+        StudentManagementController studentManagementController = loader.getController();
+        studentManagementController.setIsAdmin(isAdmin);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();

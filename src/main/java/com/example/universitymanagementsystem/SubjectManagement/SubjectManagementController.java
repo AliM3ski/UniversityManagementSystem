@@ -11,6 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
+
+import java.io.IOException;
+import java.util.List;
+
+
 import java.io.IOException;
 
 public class SubjectManagementController {
@@ -85,8 +91,24 @@ public class SubjectManagementController {
 
         // Set/Display table data
         subjectTable.setItems(subjects);
+
+        // Call the loadSubjects method to load and display subjects in the TableView
+        loadSubjects();
     }
 
+    private void loadSubjects(){
+        // get the file path for the excel database
+        String filePath = "C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
+        // calls excelreader class to get the subjects from the excel file and store them in this subject list
+        List<Subject> subjectList = ExcelReader.readExcel(filePath);
+
+        // update the ObservableList with the new list of subjects
+        subjects.setAll(subjectList);
+
+        // Set the items of the TableView to display the list of subjects
+        subjectTable.setItems(subjects);
+
+    }
     @FXML
     private void addSubject() {
         // Get input values and trim all spaces

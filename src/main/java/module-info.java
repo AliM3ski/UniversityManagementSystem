@@ -1,6 +1,8 @@
 module com.example.universitymanagementsystem {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.apache.poi.ooxml;
+    requires java.compiler;
     /*requires javafx.web;
 
     requires org.controlsfx.controls;

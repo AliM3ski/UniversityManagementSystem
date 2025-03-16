@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 // Subject class definition
 // This class represents a subject with a unique code and name.
 // Uses JavaFX property binding mechanism to enable automatic updates in the UI.
-class Subject {
+public class Subject {
     // StringProperty allows JavaFX UI elements to listen for changes automatically.
     private final StringProperty code; // Property for subject code
     private final StringProperty name; // Property for subject name

@@ -23,6 +23,7 @@ public class DashBoardController {
 
     private boolean isAdmin;
 
+
     // Method to set the isAdmin value
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;

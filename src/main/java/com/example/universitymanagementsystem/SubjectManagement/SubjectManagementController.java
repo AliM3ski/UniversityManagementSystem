@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -88,22 +89,22 @@ public class SubjectManagementController {
         codeColumn.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
         // create column for subject names
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-
-        // Set/Display table data
-        subjectTable.setItems(subjects);
+        // this ensures that we do not keep loading from the excel file if we leave the subject management system and come back
 
         // Call the loadSubjects method to load and display subjects in the TableView
         loadSubjects();
+
     }
 
     private void loadSubjects(){
         // get the file path for the excel database
         String filePath = "C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
         // calls excelreader class to get the subjects from the excel file and store them in this subject list
-        List<Subject> subjectList = ExcelReader.readExcel(filePath);
+        ExcelReader.readExcelSubject(subjects, filePath);
 
-        // update the ObservableList with the new list of subjects
-        subjects.setAll(subjectList);
+        for (Subject subject : subjects) {
+            System.out.println("Subject Code: " + subject.getCode() + ", Subject Name: " + subject.getName());
+        }
 
         // Set the items of the TableView to display the list of subjects
         subjectTable.setItems(subjects);
@@ -133,6 +134,10 @@ public class SubjectManagementController {
 
         // Add new subject to the list
         subjects.add(new Subject(code, name));
+
+        // updates the excel database with new subject
+        ExcelWriter.writeToExcelSubject(subjects, "C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
+
 
         // Clear input fields after adding
         codeInput.clear();

@@ -2,6 +2,7 @@ package com.example.universitymanagementsystem.ExcelDatabase;
 
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 
+import javafx.collections.ObservableList;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -38,8 +39,7 @@ public class ExcelReader {
     // Reads an Excel (.xlsx) file and prints its content to the console.
     //@param filePath The path to the Excel file.
     // List used cause dynamic, and ordered
-    public static List<Subject> readExcel(String filePath) {
-        List<Subject> subjects = new ArrayList<>();
+    public static void readExcelSubject(ObservableList<Subject> subjects, String filePath) {
         try (
                 // Open the file as an input stream
                 FileInputStream fis = new FileInputStream(filePath);
@@ -73,7 +73,6 @@ public class ExcelReader {
             // prints details about an exception (error) that occurred in a program.
             e.printStackTrace();
         }
-        return subjects;
     }
 
 }

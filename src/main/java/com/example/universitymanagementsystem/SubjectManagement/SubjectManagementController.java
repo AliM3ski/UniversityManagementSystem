@@ -154,10 +154,13 @@ public class SubjectManagementController {
             showAlert("Error", "No subject selected.");
             return;
         }
-
+        // storing the current subject code before we update it
+        String oldSubjectCode = selected.getCode();
         // Update subject details
         selected.setCode(codeInput.getText().trim());
         selected.setName(nameInput.getText().trim());
+        ExcelWriter.editSubjectInExcel("C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", oldSubjectCode,selected);
+        System.out.println(selected.getCode() + " " + selected.getName());
 
         // Refresh table to reflect changes
         subjectTable.refresh();
@@ -171,6 +174,7 @@ public class SubjectManagementController {
         // Remove subject if selected, else show error
         if (selected != null) {
             subjects.remove(selected);
+            ExcelWriter.deleteSubjectFromExcel("C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selected.getCode());
         } else {
             showAlert("Error", "No subject selected.");
         }

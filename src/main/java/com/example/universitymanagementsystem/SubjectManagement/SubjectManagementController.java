@@ -136,7 +136,7 @@ public class SubjectManagementController {
         subjects.add(new Subject(code, name));
 
         // updates the excel database with new subject
-        ExcelWriter.writeToExcelSubject(subjects, "C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
+        ExcelWriter.writeToExcelSubject(subjects, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
 
 
         // Clear input fields after adding
@@ -159,7 +159,7 @@ public class SubjectManagementController {
         // Update subject details
         selected.setCode(codeInput.getText().trim());
         selected.setName(nameInput.getText().trim());
-        ExcelWriter.editSubjectInExcel("C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", oldSubjectCode,selected);
+        ExcelWriter.editSubjectInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", oldSubjectCode,selected);
         System.out.println(selected.getCode() + " " + selected.getName());
 
         // Refresh table to reflect changes
@@ -174,7 +174,7 @@ public class SubjectManagementController {
         // Remove subject if selected, else show error
         if (selected != null) {
             subjects.remove(selected);
-            ExcelWriter.deleteSubjectFromExcel("C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selected.getCode());
+            ExcelWriter.deleteSubjectFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selected.getCode());
         } else {
             showAlert("Error", "No subject selected.");
         }

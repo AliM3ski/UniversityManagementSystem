@@ -17,6 +17,23 @@ import javafx.fxml.Initializable;
 
 public class EventManagementController implements Initializable {
 
+    private boolean isAdmin;
+
+    @FXML
+    private Button manageEventsButton;
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+        checkAdminStatus();
+    }
+
+    private void checkAdminStatus() {
+        if (!isAdmin) {
+            manageEventsButton.setDisable(true);
+            manageEventsButton.setVisible(false);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize event data or UI elements

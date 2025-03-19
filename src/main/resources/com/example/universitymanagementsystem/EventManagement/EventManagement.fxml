@@ -87,6 +87,6 @@
          </font>
       </Text>
       <Button layoutX="603.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
-      <Button layoutX="450.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#openManageEvents" text="Manage Events" />
+      <Button fx:id="manageEventsButton" layoutX="450.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#openManageEvents" text="Manage Events" />
    </children>
 </AnchorPane>

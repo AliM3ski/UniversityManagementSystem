@@ -86,5 +86,6 @@
             <Font size="15.0" />
          </font>
       </Text>
+      <Button layoutX="603.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
    </children>
 </AnchorPane>

@@ -1,6 +1,8 @@
 package com.example.universitymanagementsystem.CourseManagement;
 
 import com.example.universitymanagementsystem.Users.User;
+import com.example.universitymanagementsystem.DashBoard.DashBoardController;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -171,35 +174,123 @@ public class CourseManagementController {
 
     @FXML
     private void addCourse() {
-        // Add course logic
+        String name = nameInput.getText().trim();
+        String subject = subjectInput.getText().trim();
+        String schedule = scheduleInput.getText().trim();
+        String faculty = facultyInput.getText().trim();
+        int capacity;
+        int courseCode;
+        String sectionNumber = sectionNumberInput.getText().trim();
+        String finalExamDateTime = finalExamDateTimeInput.getText().trim();
+        String location = locationInput.getText().trim();
+
+        try {
+            capacity = Integer.parseInt(capacityInput.getText().trim());
+            courseCode = Integer.parseInt(courseCodeInput.getText().trim()); // Validate course code
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Capacity and Course Code must be numbers.");
+            return;
+        }
+
+        if (name.isEmpty() || subject.isEmpty() || schedule.isEmpty() || faculty.isEmpty() ||
+                sectionNumber.isEmpty() || finalExamDateTime.isEmpty() || location.isEmpty()) {
+            showAlert("Error", "All fields are required.");
+            return;
+        }
+
+        courses.add(new Course(name, subject, schedule, capacity, faculty, courseCode, sectionNumber, finalExamDateTime, location));
+        clearInputs();
     }
 
     @FXML
     private void editCourse() {
-        // Edit course logic
+        Course selected = courseTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Error", "No course selected.");
+            return;
+        }
+
+        selected.setName(nameInput.getText().trim());
+        selected.setSubject(subjectInput.getText().trim());
+        selected.setSchedule(scheduleInput.getText().trim());
+        selected.setFaculty(facultyInput.getText().trim());
+
+        try {
+            selected.setCapacity(Integer.parseInt(capacityInput.getText().trim()));
+            selected.setCourseCode(Integer.parseInt(courseCodeInput.getText().trim())); // Update course code
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Capacity and Course Code must be numbers.");
+            return;
+        }
+
+        selected.setSectionNumber(sectionNumberInput.getText().trim()); // Update section number
+        selected.setFinalExamDateTime(finalExamDateTimeInput.getText().trim()); // Update final exam date/time
+        selected.setLocation(locationInput.getText().trim()); // Update location
+
+        courseTable.refresh();
     }
 
     @FXML
     private void deleteCourse() {
-        // Delete course logic
+        Course selected = courseTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            courses.remove(selected);
+        } else {
+            showAlert("Error", "No course selected.");
+        }
     }
 
     @FXML
     private void searchCourse() {
-        // Search course logic
+        String name = searchInput.getText().trim();
+        for (Course c : courses) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                courseTable.getSelectionModel().select(c);
+                return;
+            }
+        }
+        showAlert("Not Found", "No course found with this name.");
     }
+
+    private void clearInputs() {
+        nameInput.clear();
+        subjectInput.clear();
+        scheduleInput.clear();
+        capacityInput.clear();
+        facultyInput.clear();
+        courseCodeInput.clear(); // Clear new field
+        sectionNumberInput.clear(); // Clear new field
+        finalExamDateTimeInput.clear(); // Clear new field
+        locationInput.clear(); // Clear new field
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
 
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
-        Parent root = loader.load();
+        try {
+            System.out.println("Navigating back to Dashboard...");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
+            Parent root = loader.load();
 
-        // Get the current stage from the event source
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            DashBoardController dashboardController = loader.getController();
+            dashboardController.setUser(user);
 
-        // Set the new scene
-        stage.setScene(new Scene(root));
-        stage.setTitle("Dashboard");
-        stage.show();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+        } catch (Exception e) {
+            System.err.println("Error navigating back to Dashboard:");
+            e.printStackTrace();
+        }
     }
 }

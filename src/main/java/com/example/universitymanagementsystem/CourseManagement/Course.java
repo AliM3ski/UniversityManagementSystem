@@ -6,28 +6,29 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.property.IntegerProperty;
 
 // Course class definition
-class Course {
+public class Course {
     private final StringProperty name;
-    private final StringProperty subject;
-    private final StringProperty schedule;
-    private final IntegerProperty capacity;
-    private final StringProperty faculty;
     private final IntegerProperty courseCode; // New field
+    private final StringProperty subject;
     private final StringProperty sectionNumber; // New field
+    private final IntegerProperty capacity;
+    private final StringProperty schedule;
     private final StringProperty finalExamDateTime; // New field
     private final StringProperty location; // New field
+    private final StringProperty faculty;
 
-    public Course(String name, String subject, String schedule, int capacity, String faculty,
-                  int courseCode, String sectionNumber, String finalExamDateTime, String location) {
+    public Course(int courseCode,String name, String subject, String sectionNumber, int capacity, String schedule,
+                  String finalExamDateTime, String location, String faculty) {
+        this.courseCode = new SimpleIntegerProperty(courseCode); // Initialize new field
         this.name = new SimpleStringProperty(name);
         this.subject = new SimpleStringProperty(subject);
-        this.schedule = new SimpleStringProperty(schedule);
-        this.capacity = new SimpleIntegerProperty(capacity);
-        this.faculty = new SimpleStringProperty(faculty);
-        this.courseCode = new SimpleIntegerProperty(courseCode); // Initialize new field
         this.sectionNumber = new SimpleStringProperty(sectionNumber); // Initialize new field
+        this.capacity = new SimpleIntegerProperty(capacity);
+        this.schedule = new SimpleStringProperty(schedule);
         this.finalExamDateTime = new SimpleStringProperty(finalExamDateTime); // Initialize new field
         this.location = new SimpleStringProperty(location); // Initialize new field
+        this.faculty = new SimpleStringProperty(faculty);
+
     }
 
     // Getters & Property Methods for JavaFX TableView

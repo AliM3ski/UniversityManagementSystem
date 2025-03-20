@@ -1,8 +1,10 @@
 package com.example.universitymanagementsystem.CourseManagement;
 
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
 import com.example.universitymanagementsystem.Users.User;
 import com.example.universitymanagementsystem.DashBoard.DashBoardController;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -90,7 +92,7 @@ public class CourseManagementController {
     @FXML
     private TextField searchInput;
 
-    private ObservableList<Course> courses = FXCollections.observableArrayList();
+    public ObservableList<Course> courses = FXCollections.observableArrayList();
 
     // Method to set the user object
     public void setUser(User user) {
@@ -155,20 +157,29 @@ public class CourseManagementController {
         locationInput.setVisible(enable);
     }
 
+
     @FXML
     public void initialize() {
         // Initialize table columns
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        subjectColumn.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
-        scheduleColumn.setCellValueFactory(cellData -> cellData.getValue().scheduleProperty());
-        capacityColumn.setCellValueFactory(cellData -> cellData.getValue().capacityProperty().asObject());
-        facultyColumn.setCellValueFactory(cellData -> cellData.getValue().facultyProperty());
         courseCodeColumn.setCellValueFactory(cellData -> cellData.getValue().courseCodeProperty().asObject());
+        subjectColumn.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         sectionNumberColumn.setCellValueFactory(cellData -> cellData.getValue().sectionNumberProperty());
+        capacityColumn.setCellValueFactory(cellData -> cellData.getValue().capacityProperty().asObject());
+        scheduleColumn.setCellValueFactory(cellData -> cellData.getValue().scheduleProperty());
         finalExamDateTimeColumn.setCellValueFactory(cellData -> cellData.getValue().finalExamDateTimeProperty());
         locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
+        facultyColumn.setCellValueFactory(cellData -> cellData.getValue().facultyProperty());
+
 
         // Set table data
+        loadCourse();
+    }
+
+    // Load courses from the Excel database
+    private void loadCourse() {
+        String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
+        ExcelReader.readExcelCourse(courses, filePath);
         courseTable.setItems(courses);
     }
 
@@ -198,7 +209,7 @@ public class CourseManagementController {
             return;
         }
 
-        courses.add(new Course(name, subject, schedule, capacity, faculty, courseCode, sectionNumber, finalExamDateTime, location));
+        courses.add(new Course(courseCode, name, subject, sectionNumber, capacity, schedule, finalExamDateTime, location, faculty));
         clearInputs();
     }
 

@@ -1,5 +1,6 @@
 package com.example.universitymanagementsystem.ExcelDatabase;
 
+import com.example.universitymanagementsystem.CourseManagement.Course;
 import com.example.universitymanagementsystem.StudentManagement.Student;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 
@@ -11,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class ExcelReader {
     // method for finding the last non empty row in  excel file
@@ -75,6 +77,7 @@ public class ExcelReader {
             e.printStackTrace();
         }
     }
+
     public static void readExcelStudent(ObservableList<Student> studentList, String filePath) {
         try (
                 // Open the file as an input stream
@@ -121,4 +124,59 @@ public class ExcelReader {
         }
     }
 
+    public static void readExcelCourse(ObservableList<Course> courses, String filePath) {
+        try (
+                FileInputStream fis = new FileInputStream(filePath);
+                Workbook workbook = new XSSFWorkbook(fis)
+        ) {
+            Sheet sheet = workbook.getSheet("Courses");
+            int lastRow = findLastNonEmptyRow(sheet); // Get last non-empty row index
+
+            // reading from 1 to avoid reading headers
+            for (int i = 1; i <= lastRow; i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    Cell courseCodeCell = row.getCell(0);
+                    Cell nameCell = row.getCell(1);
+                    Cell subjectCodeCell = row.getCell(2);
+                    Cell sectionCell = row.getCell(3);
+                    Cell capacityCell = row.getCell(4);
+                    Cell timeCell = row.getCell(5);
+                    Cell examTimeCell = row.getCell(6);
+                    Cell locationCell = row.getCell(7);
+                    Cell teacherCell = row.getCell(8);
+
+
+
+                    if (courseCodeCell != null && nameCell != null && subjectCodeCell != null && sectionCell != null && capacityCell != null && timeCell != null && examTimeCell != null && locationCell != null && teacherCell != null) {
+                        int courseCode = (int) courseCodeCell.getNumericCellValue(); // Convert numeric to int
+                        String name = nameCell.getStringCellValue().trim();
+                        String subjectCode = subjectCodeCell.getStringCellValue().trim();
+                        String section = sectionCell.getStringCellValue().trim();
+                        int capacity = (int) capacityCell.getNumericCellValue(); // Convert numeric to int
+                        String time = timeCell.getStringCellValue().trim();
+                        String examTime;
+
+                        // Handle date format for Final Exam Date/Time
+                        if (examTimeCell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(examTimeCell)) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                            examTime = dateFormat.format(examTimeCell.getDateCellValue());
+                        } else {
+                            examTime = examTimeCell.getStringCellValue().trim();
+                        }
+
+                        String location = locationCell.getStringCellValue().trim();
+                        String teacher = teacherCell.getStringCellValue().trim();
+
+                        // Add subject to the list
+                        courses.add(new Course(courseCode, name, subjectCode, section, capacity, time, examTime, location, teacher));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+

@@ -1,5 +1,7 @@
 package com.example.universitymanagementsystem.FacultyManagement;
 
+import com.example.universitymanagementsystem.DashBoard.DashBoardController;
+import com.example.universitymanagementsystem.Users.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 
 public class FacultyManagementController {
 
-    private boolean isAdmin;
+    private User user; // User object to store user information
 
     @FXML
     private TableView<FacultyManagement> facultyTable;
@@ -35,82 +37,67 @@ public class FacultyManagementController {
 
     private final ObservableList<FacultyManagement> facultyList = FXCollections.observableArrayList();
 
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-        checkAdminStatus(); // Update button visibility based on admin status
+    // Method to set the user object
+    public void setUser(User user) {
+        this.user = user;
+        checkAdminStatus(); // Configure UI based on user type
     }
 
+    // Configures UI based on user type
     private void checkAdminStatus() {
-        if (isAdmin) {
-            System.out.println("User is an admin.");
-            // Enable or show buttons for admins
-
-
-            // Enable or show text fields for admins
-            nameInput.setDisable(false);
-            emailInput.setDisable(false);
-            degreeInput.setDisable(false);
-            researchInput.setDisable(false);
-            coursesInput.setDisable(false);
-            officeInput.setDisable(false);
-            phoneNumberInput.setDisable(false);
-            departmentInput.setDisable(false);
-            joinDateInput.setDisable(false);
-            add.setDisable(false);
-            editButton.setDisable(false);
-            deleteButton.setDisable(false);
-
-
-            nameInput.setVisible(true);
-            emailInput.setVisible(true);
-            degreeInput.setVisible(true);
-            researchInput.setVisible(true);
-            coursesInput.setVisible(true);
-            officeInput.setVisible(true);
-            phoneNumberInput.setVisible(true);
-            departmentInput.setVisible(true);
-            joinDateInput.setVisible(true);
-            add.setVisible(true);
-            editButton.setVisible(true);
-            deleteButton.setVisible(true);
-
-
-        } else {
-            System.out.println("User is not an admin.");
-            // Disable or hide buttons for non-admins
-
-
-            // Disable or hide text fields for non-admins
-            nameInput.setDisable(true);
-            emailInput.setDisable(true);
-            degreeInput.setDisable(true);
-            researchInput.setDisable(true);
-            coursesInput.setDisable(true);
-            officeInput.setDisable(true);
-            phoneNumberInput.setDisable(true);
-            departmentInput.setDisable(true);
-            joinDateInput.setDisable(true);
-            add.setDisable(true);
-            editButton.setDisable(true);
-            deleteButton.setDisable(true);
-
-
-            nameInput.setVisible(false);
-            emailInput.setVisible(false);
-            degreeInput.setVisible(false);
-            researchInput.setVisible(false);
-            coursesInput.setVisible(false);
-            officeInput.setVisible(false);
-            phoneNumberInput.setVisible(false);
-            departmentInput.setVisible(false);
-            joinDateInput.setVisible(false);
-            add.setVisible(false);
-            editButton.setVisible(false);
-            deleteButton.setVisible(false);
-
+        switch (user.getUserType()) {
+            case "Admin":
+                System.out.println("Admin can manage all faculty.");
+                enableInputFields(true);
+                add.setVisible(true);
+                editButton.setVisible(true);
+                deleteButton.setVisible(true);
+                break;
+            case "Faculty":
+                System.out.println("Faculty can view and edit their own details.");
+                enableInputFields(false);
+                add.setVisible(false);
+                editButton.setVisible(true);
+                deleteButton.setVisible(false);
+                break;
+            case "Student":
+                System.out.println("Student can only view faculty details.");
+                enableInputFields(false);
+                add.setVisible(false);
+                editButton.setVisible(false);
+                deleteButton.setVisible(false);
+                break;
         }
     }
 
+    // Helper method to enable or disable input fields
+    private void enableInputFields(boolean enable) {
+        nameInput.setDisable(!enable);
+        emailInput.setDisable(!enable);
+        degreeInput.setDisable(!enable);
+        researchInput.setDisable(!enable);
+        coursesInput.setDisable(!enable);
+        officeInput.setDisable(!enable);
+        phoneNumberInput.setDisable(!enable);
+        departmentInput.setDisable(!enable);
+        joinDateInput.setDisable(!enable);
+        add.setDisable(!enable);
+        editButton.setDisable(!enable);
+        deleteButton.setDisable(!enable);
+
+        nameInput.setVisible(enable);
+        emailInput.setVisible(enable);
+        degreeInput.setVisible(enable);
+        researchInput.setVisible(enable);
+        coursesInput.setVisible(enable);
+        officeInput.setVisible(enable);
+        phoneNumberInput.setVisible(enable);
+        departmentInput.setVisible(enable);
+        joinDateInput.setVisible(enable);
+        add.setVisible(enable);
+        editButton.setVisible(enable);
+        deleteButton.setVisible(enable);
+    }
 
     @FXML
     public void initialize() {
@@ -177,8 +164,11 @@ public class FacultyManagementController {
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
-
         Parent root = loader.load();
+
+        // Pass the user object back to the dashboard
+        DashBoardController dashboardController = loader.getController();
+        dashboardController.setUser(user);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -232,7 +222,5 @@ public class FacultyManagementController {
         if (selectedFaculty != null) {
             facultyTable.getItems().remove(selectedFaculty);
         }
-
-
     }
 }

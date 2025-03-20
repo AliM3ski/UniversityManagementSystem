@@ -1,5 +1,9 @@
 package com.example.universitymanagementsystem.SubjectManagement;
 
+import com.example.universitymanagementsystem.DashBoard.DashBoardController;
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
+import com.example.universitymanagementsystem.Users.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,22 +11,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control .*;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
-import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
-
-import java.io.IOException;
-import java.util.List;
-
 
 import java.io.IOException;
 
 public class SubjectManagementController {
 
-    private boolean isAdmin;
+    private User user; // User object to store user information
 
     @FXML
     private Button addbutton;
@@ -33,90 +30,89 @@ public class SubjectManagementController {
     @FXML
     private Button deletebutton;
 
-    // TableView to display subjects
     @FXML
     private TableView<Subject> subjectTable;
 
-    // TableColumn for subject code
     @FXML
     private TableColumn<Subject, String> codeColumn;
 
-    // TableColumn for subject name
     @FXML
     private TableColumn<Subject, String> nameColumn;
 
-    // TextField for subject code input
     @FXML
     private TextField codeInput;
 
-    // TextField for subject name input
     @FXML
     private TextField nameInput;
 
-    // TextField for searching a subject
     @FXML
     private TextField searchInput;
 
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-        checkAdminStatus(); // Update button visibility based on admin status
+    // Method to set the user object
+    public void setUser(User user) {
+        this.user = user;
+        checkAdminStatus(); // Configure UI based on user type
     }
-    // hides add, edit, and delete buttons when logged in as user
+
+    // Configures UI based on user type
     private void checkAdminStatus() {
-        if (!isAdmin) {
-            System.out.println("User is not an admin.");
-            codeInput.setDisable(true);
-            nameInput.setDisable(true);
-            addbutton.setDisable(true);
-            editbutton.setDisable(true);
-            deletebutton.setDisable(true);
-            codeInput.setVisible(false);
-            nameInput.setVisible(false);
-            addbutton.setVisible(false);
-            editbutton.setVisible(false);
-            deletebutton.setVisible(false);
+        switch (user.getUserType()) {
+            case "Admin":
+                System.out.println("Admin can manage all subjects.");
+                enableInputFields(true);
+                addbutton.setVisible(true);
+                editbutton.setVisible(true);
+                deletebutton.setVisible(true);
+                break;
+            case "Faculty":
+                System.out.println("Faculty can view and edit subjects.");
+                enableInputFields(false);
+                addbutton.setVisible(false);
+                editbutton.setVisible(true);
+                deletebutton.setVisible(false);
+                break;
+            case "Student":
+                System.out.println("Student can only view subjects.");
+                enableInputFields(false);
+                addbutton.setVisible(false);
+                editbutton.setVisible(false);
+                deletebutton.setVisible(false);
+                break;
         }
     }
 
+    // Helper method to enable or disable input fields
+    private void enableInputFields(boolean enable) {
+        codeInput.setDisable(!enable);
+        nameInput.setDisable(!enable);
+        codeInput.setVisible(enable);
+        nameInput.setVisible(enable);
+    }
+
     // List to store subjects dynamically
-    // ObservableList to store Subject objects dynamically and update the UI automatically.
-    // The FXCollections.observableArrayList() method initializes an empty ObservableList that can be dynamically updated.
     private ObservableList<Subject> subjects = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        // creates column for subject codes
+        // Initialize table columns
         codeColumn.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
-        // create column for subject names
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        // this ensures that we do not keep loading from the excel file if we leave the subject management system and come back
 
-        // Call the loadSubjects method to load and display subjects in the TableView
+        // Load subjects from the Excel database
         loadSubjects();
-
     }
 
-    private void loadSubjects(){
-        // get the file path for the excel database
+    private void loadSubjects() {
         String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
-        // calls excelreader class to get the subjects from the excel file and store them in this subject list
         ExcelReader.readExcelSubject(subjects, filePath);
-
-        for (Subject subject : subjects) {
-            System.out.println("Subject Code: " + subject.getCode() + ", Subject Name: " + subject.getName());
-        }
-
-        // Set the items of the TableView to display the list of subjects
         subjectTable.setItems(subjects);
-
     }
+
     @FXML
     private void addSubject() {
-        // Get input values and trim all spaces
         String code = codeInput.getText().trim();
         String name = nameInput.getText().trim();
 
-        // Validate that both fields are not empty
         if (code.isEmpty() || name.isEmpty()) {
             showAlert("Error", "Both fields are required.");
             return;
@@ -124,9 +120,7 @@ public class SubjectManagementController {
 
         // Ensure subject code is unique
         for (Subject s : subjects) {
-            // checks that subject code does not already exist
             if (s.getCode().equals(code)) {
-                // display pop up with error message
                 showAlert("Error", "Subject code must be unique.");
                 return;
             }
@@ -135,32 +129,32 @@ public class SubjectManagementController {
         // Add new subject to the list
         subjects.add(new Subject(code, name));
 
-        // updates the excel database with new subject
+        // Update the Excel file
         ExcelWriter.writeToExcelSubject(subjects, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
 
-
-        // Clear input fields after adding
+        // Clear input fields
         codeInput.clear();
         nameInput.clear();
     }
 
     @FXML
     private void editSubject() {
-        // Get the selected subject from the table
         Subject selected = subjectTable.getSelectionModel().getSelectedItem();
 
-        // Ensure a subject is selected
         if (selected == null) {
             showAlert("Error", "No subject selected.");
             return;
         }
-        // storing the current subject code before we update it
+
+        // Store old subject code before updating
         String oldSubjectCode = selected.getCode();
+
         // Update subject details
         selected.setCode(codeInput.getText().trim());
         selected.setName(nameInput.getText().trim());
-        ExcelWriter.editSubjectInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", oldSubjectCode,selected);
-        System.out.println(selected.getCode() + " " + selected.getName());
+
+        // Update the Excel file
+        ExcelWriter.editSubjectInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", oldSubjectCode, selected);
 
         // Refresh table to reflect changes
         subjectTable.refresh();
@@ -168,13 +162,11 @@ public class SubjectManagementController {
 
     @FXML
     private void deleteSubject() {
-        // Get selected subject
         Subject selected = subjectTable.getSelectionModel().getSelectedItem();
 
-        // Remove subject if selected, else show error
         if (selected != null) {
             subjects.remove(selected);
-            ExcelWriter.deleteSubjectFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selected.getCode());
+            ExcelWriter.deleteSubjectFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", selected.getCode());
         } else {
             showAlert("Error", "No subject selected.");
         }
@@ -182,10 +174,8 @@ public class SubjectManagementController {
 
     @FXML
     private void searchSubject() {
-        // Get search query
         String code = searchInput.getText().trim();
 
-        // Iterate over subjects to find a match
         for (Subject s : subjects) {
             if (s.getCode().equalsIgnoreCase(code)) {
                 subjectTable.getSelectionModel().select(s);
@@ -193,12 +183,11 @@ public class SubjectManagementController {
             }
         }
 
-        // Show alert if no subject is found
         showAlert("Not Found", "No subject found with this code.");
     }
-    // function for all the pop up alerts
+
+    // Helper method to show alerts
     private void showAlert(String title, String message) {
-        // Display alert messages to the user
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -208,14 +197,14 @@ public class SubjectManagementController {
 
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
-        // Load the Dashboard FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
         Parent root = loader.load();
 
-        // Get the current stage from the event source
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Pass the user object back to the dashboard
+        DashBoardController dashboardController = loader.getController();
+        dashboardController.setUser(user);
 
-        // Set the new scene
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Dashboard");
         stage.show();

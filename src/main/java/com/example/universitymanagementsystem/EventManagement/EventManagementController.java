@@ -1,7 +1,8 @@
 package com.example.universitymanagementsystem.EventManagement;
 
 // Imports necessary JavaFX libraries and other Java utilities
-import com.example.universitymanagementsystem.SubjectManagement.SubjectManagementController;
+import com.example.universitymanagementsystem.DashBoard.DashBoardController;
+import com.example.universitymanagementsystem.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,19 +20,19 @@ import javafx.fxml.Initializable;  // Interface for initializing controller clas
 // Controller class for managing the Event Management Page
 public class EventManagementController implements Initializable {
 
-    // Flag that tracks whether the user has admin privileges
-    private boolean isAdmin;
+    // User object to store user information
+    private User user;
 
     // FXML annotation binds the manageEventsButton with its corresponding UI element
     @FXML
     private Button manageEventsButton;
 
     /**
-     * Method to set the admin status
-     * @param isAdmin - Boolean indicating if the user has admin privileges
+     * Method to set the user object
+     * @param user - User object containing user information
      */
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setUser(User user) {
+        this.user = user;
         checkAdminStatus();  // Call the method to adjust UI for admin/non-admin
     }
 
@@ -40,9 +41,18 @@ public class EventManagementController implements Initializable {
      * If the user is not an admin, the "Manage Events" button is hidden and disabled.
      */
     private void checkAdminStatus() {
-        if (!isAdmin) {
-            manageEventsButton.setDisable(true); // Disables the button to prevent interaction
-            manageEventsButton.setVisible(false); // Hides the button from non-admin users
+        switch (user.getUserType()) {
+            case "Admin":
+                System.out.println("Admin can manage events.");
+                manageEventsButton.setDisable(false); // Enables the button for admins
+                manageEventsButton.setVisible(true); // Shows the button for admins
+                break;
+            case "Faculty":
+            case "Student":
+                System.out.println("User cannot manage events.");
+                manageEventsButton.setDisable(true); // Disables the button for non-admins
+                manageEventsButton.setVisible(false); // Hides the button for non-admins
+                break;
         }
     }
 
@@ -98,6 +108,10 @@ public class EventManagementController implements Initializable {
     public void backToDashBoard(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
         Parent root = loader.load();
+
+        // Pass the user object back to the dashboard
+        DashBoardController dashboardController = loader.getController();
+        dashboardController.setUser(user);
 
         // Retrieve the current stage and update it with the Dashboard scene
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

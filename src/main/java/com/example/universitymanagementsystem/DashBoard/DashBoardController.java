@@ -5,7 +5,7 @@ import com.example.universitymanagementsystem.FacultyManagement.FacultyManagemen
 import com.example.universitymanagementsystem.SubjectManagement.SubjectManagementController;
 import com.example.universitymanagementsystem.StudentManagement.StudentManagementController;
 import com.example.universitymanagementsystem.EventManagement.EventManagementController;
-
+import com.example.universitymanagementsystem.Users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,20 +23,26 @@ public class DashBoardController {
     @FXML
     private Button menubutton;
 
-    private boolean isAdmin;
+    private User user;
 
-
-    // Method to set the isAdmin value
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-        checkAdminStatus(); // Call a method to handle logic after setting isAdmin
+    // Method to set the user object
+    public void setUser(User user) {
+        this.user = user;
+        configureDashboard(); // Configure the dashboard based on the user type
     }
 
-    private void checkAdminStatus() {
-        if (isAdmin) {
-            System.out.println("User is an admin.");
-        } else {
-            System.out.println("User is not an admin.");
+    private void configureDashboard() {
+        // Configure dashboard based on user type
+        switch (user.getUserType()) {
+            case "Admin":
+                System.out.println("Admin dashboard");
+                break;
+            case "Faculty":
+                System.out.println("Faculty dashboard");
+                break;
+            case "Student":
+                System.out.println("Student dashboard");
+                break;
         }
     }
 
@@ -45,9 +51,9 @@ public class DashBoardController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/SubjectManagement/SubjectManagement.fxml"));
         Parent root = loader.load();
 
-        // Get the controller and set the isAdmin value
+        // Get the controller and set the user object
         SubjectManagementController subjectManagementController = loader.getController();
-        subjectManagementController.setIsAdmin(isAdmin);
+        subjectManagementController.setUser(user);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -57,14 +63,15 @@ public class DashBoardController {
         stage.setTitle("SubjectManagement");
         stage.show();
     }
+
     @FXML
     public void launchEventManagement(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/EventManagement.fxml"));
         Parent root = loader.load();
 
-        // Get the controller and set the isAdmin value
+        // Get the controller and set the user object
         EventManagementController eventManagementController = loader.getController();
-        eventManagementController.setIsAdmin(isAdmin);
+        eventManagementController.setUser(user);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -74,13 +81,15 @@ public class DashBoardController {
         stage.setTitle("EventManagement");
         stage.show();
     }
+
     @FXML
     public void launchStudentManagement(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/StudentManagement/StudentManagement.fxml"));
         Parent root = loader.load();
 
+        // Get the controller and set the user object
         StudentManagementController studentManagementController = loader.getController();
-        studentManagementController.setIsAdmin(isAdmin);
+        studentManagementController.setUser(user);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -96,9 +105,9 @@ public class DashBoardController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/CourseManagement/CourseManagement.fxml"));
         Parent root = loader.load();
 
-        // Get the controller and set the isAdmin value
+        // Get the controller and set the user object
         CourseManagementController courseManagementController = loader.getController();
-        courseManagementController.setIsAdmin(isAdmin);
+        courseManagementController.setUser(user);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -114,11 +123,9 @@ public class DashBoardController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/FacultyManagement/FacultyManagement.fxml"));
         Parent root = loader.load();
 
-        // Get the controller and set the isAdmin value
+        // Get the controller and set the user object
         FacultyManagementController facultyManagementController = loader.getController();
-        facultyManagementController.setIsAdmin(isAdmin);
-
-
+        facultyManagementController.setUser(user);
 
         // Get the current stage from the event source
         Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -142,6 +149,4 @@ public class DashBoardController {
         stage.setTitle("Login");
         stage.show();
     }
-
-
 }

@@ -3,7 +3,7 @@ package com.example.universitymanagementsystem.StudentManagement;
 import com.example.universitymanagementsystem.DashBoard.DashBoardController;
 import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
 import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
-import com.example.universitymanagementsystem.SubjectManagement.Subject;
+import com.example.universitymanagementsystem.Users.User;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StudentManagementController {
-
 
     // Table and TableColumn for displaying student data
     @FXML
@@ -41,58 +40,85 @@ public class StudentManagementController {
     @FXML
     private ComboBox<String> academicLevelBox;
 
-    //Variable for the button in the FXML
+    // Buttons in the FXML
     @FXML
     private Button addStudentbutton, editStudentbutton, deleteStudentbutton;
 
     @FXML
     private Button viewProfileButton, manageEnrollmentsButton, manageTuitionButton;
 
-    //Variable for the Labels in the FXML
+    // Labels in the FXML
     @FXML
     private Label studentIdLabel, nameIdLabel, emailLabel, addressLabel, phoneLabel, academicLevelLabel;
 
+    private User user; // User object to store user information
 
-    private boolean isAdmin; // Added missing variable
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-        checkAdminStatus(); // Update button visibility based on admin status
+    // Method to set the user object
+    public void setUser(User user) {
+        this.user = user;
+        checkAdminStatus(); // Configure UI based on user type
     }
 
-    // Hides add, edit, and delete buttons when logged in as a regular user
+    // Configures UI based on user type
     private void checkAdminStatus() {
-        if (!isAdmin) {
-            System.out.println("User is not an admin.");
-            studentIdField.setDisable(true);
-            nameField.setDisable(true);
-            emailField.setDisable(true);
-            academicLevelBox.setDisable(true);
-            addressField.setDisable(true);
-            phoneField.setDisable(true);
-            studentIdField.setVisible(false);
-            nameField.setVisible(false);
-            emailField.setVisible(false);
-            academicLevelBox.setVisible(false);
-            addressField.setVisible(false);
-            phoneField.setVisible(false);
-            addStudentbutton.setVisible(false);
-            editStudentbutton.setVisible(false);
-            deleteStudentbutton.setVisible(false);
-            manageTuitionButton.setVisible(false);
-            studentIdLabel.setVisible(false);
-            nameIdLabel.setVisible(false);
-            emailLabel.setVisible(false);
-            addressLabel.setVisible(false);
-            viewProfileButton.setVisible(true);
-            manageEnrollmentsButton.setVisible(true);
-            phoneLabel.setVisible(false);
-            academicLevelLabel.setVisible(false);
+        switch (user.getUserType()) {
+            case "Admin":
+                System.out.println("Admin can manage all students.");
+                enableInputFields(true);
+                addStudentbutton.setVisible(true);
+                editStudentbutton.setVisible(true);
+                deleteStudentbutton.setVisible(true);
+                manageTuitionButton.setVisible(true);
+                viewProfileButton.setVisible(true);
+                manageEnrollmentsButton.setVisible(true);
+                break;
+            case "Faculty":
+                System.out.println("Faculty can view and edit students.");
+                enableInputFields(false);
+                addStudentbutton.setVisible(false);
+                editStudentbutton.setVisible(true);
+                deleteStudentbutton.setVisible(false);
+                manageTuitionButton.setVisible(false);
+                viewProfileButton.setVisible(true);
+                manageEnrollmentsButton.setVisible(true);
+                break;
+            case "Student":
+                System.out.println("Student can view their profile.");
+                enableInputFields(false);
+                addStudentbutton.setVisible(false);
+                editStudentbutton.setVisible(false);
+                deleteStudentbutton.setVisible(false);
+                manageTuitionButton.setVisible(false);
+                viewProfileButton.setVisible(true);
+                manageEnrollmentsButton.setVisible(false);
+                break;
         }
     }
 
+    // Helper method to enable or disable input fields
+    private void enableInputFields(boolean enable) {
+        studentIdField.setDisable(!enable);
+        nameField.setDisable(!enable);
+        emailField.setDisable(!enable);
+        academicLevelBox.setDisable(!enable);
+        addressField.setDisable(!enable);
+        phoneField.setDisable(!enable);
+        studentIdField.setVisible(enable);
+        nameField.setVisible(enable);
+        emailField.setVisible(enable);
+        academicLevelBox.setVisible(enable);
+        addressField.setVisible(enable);
+        phoneField.setVisible(enable);
+        studentIdLabel.setVisible(enable);
+        nameIdLabel.setVisible(enable);
+        emailLabel.setVisible(enable);
+        addressLabel.setVisible(enable);
+        phoneLabel.setVisible(enable);
+        academicLevelLabel.setVisible(enable);
+    }
+
     // List to store students dynamically
-    private ObservableList<Student> studentList = FXCollections.observableArrayList();;
+    private ObservableList<Student> studentList = FXCollections.observableArrayList();
 
     // Initialize the student data and configure table columns
     public void initialize() {
@@ -110,15 +136,12 @@ public class StudentManagementController {
 
         loadStudent();
     }
-    private void loadStudent(){
-        // get the file path for the excel database
+
+    // Load students from the Excel database
+    private void loadStudent() {
         String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
-        // calls excelreader class to get the subjects from the excel file and store them in this subject list
         ExcelReader.readExcelStudent(studentList, filePath);
-
-        // Set the items of the TableView to display the list of subjects
         studentTable.setItems(studentList);
-
     }
 
     // Add a new student to the list
@@ -139,10 +162,7 @@ public class StudentManagementController {
 
         Student student = new Student(studentId, name, email, address, phone, academicLevel, currentSemester);
         studentList.add(student);
-        // updates the excel database with new student
         ExcelWriter.writeToExcelStudent(studentList, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
-
-
 
         clearFields();
         showAlert("Success", "Student added successfully!");
@@ -156,6 +176,7 @@ public class StudentManagementController {
             showAlert("Error", "Please select a student to edit.");
             return;
         }
+
         // Store old values
         String oldStudentId = selectedStudent.getStudentId();
         String oldName = selectedStudent.getName();
@@ -185,11 +206,10 @@ public class StudentManagementController {
         }
 
         // Update the Excel file
-        ExcelWriter.editStudentInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",  selectedStudent, oldStudentId, oldName, oldAddress, oldPhone, oldEmail, oldAcademicLevel);
+        ExcelWriter.editStudentInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", selectedStudent, oldStudentId, oldName, oldAddress, oldPhone, oldEmail, oldAcademicLevel);
 
         studentTable.refresh();
     }
-
 
     // Delete the selected student from the list
     @FXML
@@ -197,14 +217,13 @@ public class StudentManagementController {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if (selectedStudent != null) {
             studentList.remove(selectedStudent);
-            ExcelWriter.deleteStudentFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selectedStudent.getStudentId());
-
+            ExcelWriter.deleteStudentFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", selectedStudent.getStudentId());
             showAlert("Success", "Student removed successfully!");
         } else {
             showAlert("Error", "Please select a student to delete.");
         }
     }
-    // no fixes
+
     // View detailed profile of the selected student
     @FXML
     private void viewStudentProfile() {
@@ -228,12 +247,6 @@ public class StudentManagementController {
     @FXML
     private void manageEnrollments() {
         showAlert("Manage Enrollments", "Here you can manage student enrollments.");
-    }
-
-    // Placeholder for tracking academic progress
-    @FXML
-    private void trackProgress() {
-        showAlert("Academic Progress", "This section tracks grades and academic progress.");
     }
 
     // Manage tuition fees based on academic level
@@ -281,23 +294,21 @@ public class StudentManagementController {
         addressField.clear();
         phoneField.clear();
         academicLevelBox.setValue(null);
+    }
 
-        }
+    // Navigate back to the dashboard
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
         Parent root = loader.load();
 
-        // Pass admin status
+        // Pass the user object back to the dashboard
         DashBoardController dashboardController = loader.getController();
-        dashboardController.setIsAdmin(this.isAdmin); // Pass admin status back
+        dashboardController.setUser(user);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Dashboard");
         stage.show();
     }
-
-
-
 }

@@ -98,7 +98,7 @@ public class SubjectManagementController {
 
     private void loadSubjects(){
         // get the file path for the excel database
-        String filePath = "C:\\Users\\AliMe\\IdeaProjects\\Version244pm\\src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
+        String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
         // calls excelreader class to get the subjects from the excel file and store them in this subject list
         ExcelReader.readExcelSubject(subjects, filePath);
 

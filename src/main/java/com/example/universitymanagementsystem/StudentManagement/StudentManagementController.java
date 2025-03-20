@@ -204,7 +204,7 @@ public class StudentManagementController {
             showAlert("Error", "Please select a student to delete.");
         }
     }
-
+    // no fixes
     // View detailed profile of the selected student
     @FXML
     private void viewStudentProfile() {

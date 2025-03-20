@@ -7,22 +7,45 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
-public class EventManagementController {
+public class EventManagementController implements Initializable {
+
+    private boolean isAdmin;
+
+    @FXML
+    private Button manageEventsButton;
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+        checkAdminStatus();
+    }
+
+    private void checkAdminStatus() {
+        if (!isAdmin) {
+            manageEventsButton.setDisable(true);
+            manageEventsButton.setVisible(false);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Initialize event data or UI elements
+        System.out.println("Event Management Page Initialized Successfully!");
+    }
 
     @FXML
     public void launchSeminar(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/Seminar.fxml"));
         Parent root = loader.load();
 
-        // Get the current stage from the event source
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new scene
         stage.setScene(new Scene(root));
         stage.setTitle("Seminar");
         stage.show();
@@ -33,13 +56,31 @@ public class EventManagementController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/ResearchWorkshopInfo.fxml"));
         Parent root = loader.load();
 
-        // Get the current stage from the event source
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new scene
         stage.setScene(new Scene(root));
         stage.setTitle("Research Workshop Info");
         stage.show();
     }
 
+    @FXML
+    public void backToDashBoard(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Dashboard");
+        stage.show();
+    }
+
+    @FXML
+    public void openManageEvents(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/ManagingEvents.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Manage Events");
+        stage.show();
+    }
 }

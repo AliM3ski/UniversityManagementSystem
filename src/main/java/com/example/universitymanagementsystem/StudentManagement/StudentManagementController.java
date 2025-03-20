@@ -1,6 +1,9 @@
 package com.example.universitymanagementsystem.StudentManagement;
 
 import com.example.universitymanagementsystem.DashBoard.DashBoardController;
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
+import com.example.universitymanagementsystem.SubjectManagement.Subject;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,11 +92,10 @@ public class StudentManagementController {
     }
 
     // List to store students dynamically
-    private ObservableList<Student> studentList;
+    private ObservableList<Student> studentList = FXCollections.observableArrayList();;
 
     // Initialize the student data and configure table columns
     public void initialize() {
-        studentList = FXCollections.observableArrayList();
         studentTable.setItems(studentList);
 
         idColumn.setCellValueFactory(cellData -> cellData.getValue().studentIdProperty());
@@ -105,6 +107,18 @@ public class StudentManagementController {
         semesterColumn.setCellValueFactory(cellData -> cellData.getValue().currentSemesterProperty());
 
         academicLevelBox.getItems().addAll("Undergraduate", "Graduate", "PhD");
+
+        loadStudent();
+    }
+    private void loadStudent(){
+        // get the file path for the excel database
+        String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
+        // calls excelreader class to get the subjects from the excel file and store them in this subject list
+        ExcelReader.readExcelStudent(studentList, filePath);
+
+        // Set the items of the TableView to display the list of subjects
+        studentTable.setItems(studentList);
+
     }
 
     // Add a new student to the list
@@ -125,6 +139,11 @@ public class StudentManagementController {
 
         Student student = new Student(studentId, name, email, address, phone, academicLevel, currentSemester);
         studentList.add(student);
+        // updates the excel database with new student
+        ExcelWriter.writeToExcelStudent(studentList, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
+
+
+
         clearFields();
         showAlert("Success", "Student added successfully!");
     }
@@ -133,15 +152,44 @@ public class StudentManagementController {
     @FXML
     private void editStudent() {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
-        if (selectedStudent != null) {
-            selectedStudent.setAddress(addressField.getText());
-            selectedStudent.setPhone(phoneField.getText());
-            studentTable.refresh();
-            showAlert("Success", "Student details updated!");
-        } else {
+        if (selectedStudent == null) {
             showAlert("Error", "Please select a student to edit.");
+            return;
         }
+        // Store old values
+        String oldStudentId = selectedStudent.getStudentId();
+        String oldName = selectedStudent.getName();
+        String oldAddress = selectedStudent.getAddress();
+        String oldPhone = selectedStudent.getPhone();
+        String oldEmail = selectedStudent.getEmail();
+        String oldAcademicLevel = selectedStudent.getAcademicLevel();
+
+        // Only update fields if they are not empty
+        if (studentIdField.getText() != null && !studentIdField.getText().isEmpty()) {
+            selectedStudent.setStudentId(studentIdField.getText());
+        }
+        if (nameField.getText() != null && !nameField.getText().isEmpty()) {
+            selectedStudent.setName(nameField.getText());
+        }
+        if (addressField.getText() != null && !addressField.getText().isEmpty()) {
+            selectedStudent.setAddress(addressField.getText());
+        }
+        if (phoneField.getText() != null && !phoneField.getText().isEmpty()) {
+            selectedStudent.setPhone(phoneField.getText());
+        }
+        if (emailField.getText() != null && !emailField.getText().isEmpty()) {
+            selectedStudent.setEmail(emailField.getText());
+        }
+        if (academicLevelBox.getValue() != null && !academicLevelBox.getValue().isEmpty()) {
+            selectedStudent.setAcademicLevel(academicLevelBox.getValue());
+        }
+
+        // Update the Excel file
+        ExcelWriter.editStudentInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",  selectedStudent, oldStudentId, oldName, oldAddress, oldPhone, oldEmail, oldAcademicLevel);
+
+        studentTable.refresh();
     }
+
 
     // Delete the selected student from the list
     @FXML
@@ -149,12 +197,14 @@ public class StudentManagementController {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if (selectedStudent != null) {
             studentList.remove(selectedStudent);
+            ExcelWriter.deleteStudentFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selectedStudent.getStudentId());
+
             showAlert("Success", "Student removed successfully!");
         } else {
             showAlert("Error", "Please select a student to delete.");
         }
     }
-
+    // no fixes
     // View detailed profile of the selected student
     @FXML
     private void viewStudentProfile() {

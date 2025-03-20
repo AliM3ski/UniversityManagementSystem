@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,13 +9,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
+<AnchorPane prefHeight="623.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
 
     <!-- Title Section -->
     <Label layoutX="150" layoutY="20" text="Student Management System" />
 
     <!-- Table to Display Student Data -->
-    <TableView fx:id="studentTable" layoutX="50" layoutY="50" prefHeight="200" prefWidth="500">
+    <TableView fx:id="studentTable" layoutX="13.0" layoutY="50" prefHeight="291.0" prefWidth="778.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="100" text="Student ID" />
             <TableColumn fx:id="nameColumn" prefWidth="100" text="Name" />
@@ -27,39 +28,38 @@
     </TableView>
 
     <!-- Input Fields for Student Data -->
-    <Label fx:id="studentIdLabel" layoutX="50" layoutY="270" text="Student ID:" />
-    <TextField fx:id="studentIdField" layoutX="150" layoutY="270" prefWidth="200" />
+    <Label fx:id="studentIdLabel" layoutX="167.0" layoutY="365.0" text="Student ID:" />
+    <TextField fx:id="studentIdField" layoutX="267.0" layoutY="365.0" prefWidth="200" />
 
-    <Label fx:id="nameIdLabel" layoutX="50" layoutY="310" text="Name:" />
-    <TextField fx:id="nameField" layoutX="150" layoutY="310" prefWidth="200" />
+    <Label fx:id="nameIdLabel" layoutX="167.0" layoutY="405.0" text="Name:" />
+    <TextField fx:id="nameField" layoutX="267.0" layoutY="405.0" prefWidth="200" />
 
-    <Label fx:id="emailLabel" layoutX="50" layoutY="350" text="Email:" />
-    <TextField fx:id="emailField" layoutX="150" layoutY="350" prefWidth="200" />
+    <Label fx:id="emailLabel" layoutX="167.0" layoutY="445.0" text="Email:" />
+    <TextField fx:id="emailField" layoutX="267.0" layoutY="445.0" prefWidth="200" />
 
-    <Label fx:id="addressLabel" layoutX="50" layoutY="390" text="Address:" />
-    <TextField fx:id="addressField" layoutX="150" layoutY="390" prefWidth="200" />
+    <Label fx:id="addressLabel" layoutX="167.0" layoutY="485.0" text="Address:" />
+    <TextField fx:id="addressField" layoutX="267.0" layoutY="485.0" prefWidth="200" />
 
-    <Label fx:id="phoneLabel" layoutX="50" layoutY="430" text="Phone:" />
-    <TextField fx:id="phoneField" layoutX="150" layoutY="430" prefWidth="200" />
+    <Label fx:id="phoneLabel" layoutX="167.0" layoutY="525.0" text="Phone:" />
+    <TextField fx:id="phoneField" layoutX="267.0" layoutY="525.0" prefWidth="200" />
 
-    <Label fx:id="academicLevelLabel" layoutX="50" layoutY="470" text="Academic Level:" />
-    <ComboBox fx:id="academicLevelBox" layoutX="150" layoutY="470" prefWidth="200" />
+    <Label fx:id="academicLevelLabel" layoutX="167.0" layoutY="565.0" text="Academic Level:" />
+    <ComboBox fx:id="academicLevelBox" layoutX="267.0" layoutY="565.0" prefWidth="200" />
 
     <!-- Generated Student ID Label -->
-    <Label fx:id="generatedStudentID" layoutX="50" layoutY="510" />
+    <Label fx:id="generatedStudentID" layoutX="167.0" layoutY="605.0" />
 
     <!-- Buttons Section - Using VBox to arrange them vertically -->
-    <VBox layoutX="400" layoutY="270" spacing="10">
-        <Button fx:id="addStudentbutton" onAction="#addStudent" prefWidth="120" text="Add Student"/>
-        <Button fx:id="editStudentbutton" onAction="#editStudent" prefWidth="120" text="Edit Student"/>
-        <Button fx:id="deleteStudentbutton" onAction="#deleteStudent" prefWidth="120" text="Delete Student"/>
-        <Button fx:id="viewProfileButton" onAction="#viewStudentProfile" prefWidth="120" text="View Profile"/>
-        <Button fx:id="manageEnrollmentsButton" onAction="#manageEnrollments" prefWidth="120" text="Manage Enrollments"/>
-        <Button fx:id="manageTuitionButton" onAction="#manageTuition" prefWidth="120" text="Manage Tuition"/>
+    <VBox layoutX="517.0" layoutY="365.0" spacing="10">
+        <Button fx:id="addStudentbutton" onAction="#addStudent" prefWidth="120" text="Add Student" />
+        <Button fx:id="editStudentbutton" onAction="#editStudent" prefWidth="120" text="Edit Student" />
+        <Button fx:id="deleteStudentbutton" onAction="#deleteStudent" prefWidth="120" text="Delete Student" />
+        <Button fx:id="viewProfileButton" onAction="#viewStudentProfile" prefWidth="120" text="View Profile" />
+        <Button fx:id="manageEnrollmentsButton" onAction="#manageEnrollments" prefWidth="120" text="Manage Enrollments" />
+        <Button fx:id="manageTuitionButton" onAction="#manageTuition" prefWidth="120" text="Manage Tuition" />
     </VBox>
 
     <!-- Back Button -->
     <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
 
 </AnchorPane>
-

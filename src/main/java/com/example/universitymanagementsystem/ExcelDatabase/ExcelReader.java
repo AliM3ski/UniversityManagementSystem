@@ -1,5 +1,6 @@
 package com.example.universitymanagementsystem.ExcelDatabase;
 
+import com.example.universitymanagementsystem.StudentManagement.Student;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 
 import javafx.collections.ObservableList;
@@ -65,6 +66,51 @@ public class ExcelReader {
 
                         // Add subject to the list
                         subjects.add(new Subject(code, name));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // Handle exceptions (e.g., file not found or read errors)
+            // prints details about an exception (error) that occurred in a program.
+            e.printStackTrace();
+        }
+    }
+    public static void readExcelStudent(ObservableList<Student> studentList, String filePath) {
+        try (
+                // Open the file as an input stream
+                FileInputStream fis = new FileInputStream(filePath);
+                // Create a workbook object to access the Excel file. Workbook representing an entire Excel ile
+                Workbook workbook = new XSSFWorkbook(fis)
+        ) {
+            // Get the first sheet from the workbook
+            Sheet sheet = workbook.getSheetAt(2);
+
+            int lastRow = findLastNonEmptyRow(sheet); // Get last non-empty row index
+
+            // Loop through each row in the sheet
+            for (int i = 0; i <= lastRow; i++) {
+                Row row = sheet.getRow(i);
+                // Loop through each cell in the row
+                if (row != null) {
+                    Cell studentIdCell = row.getCell(0);
+                    Cell nameCell = row.getCell(1);
+                    Cell addressCell = row.getCell(2);
+                    Cell phoneCell = row.getCell(3);
+                    Cell emailCell = row.getCell(4);
+                    Cell academicLevelCell = row.getCell(5);
+                    Cell currentSemesterCell = row.getCell(6);
+
+                    if (studentIdCell != null && nameCell != null && addressCell != null && phoneCell != null && emailCell != null && academicLevelCell != null && currentSemesterCell != null) {
+                        String studentid = studentIdCell.getStringCellValue().trim();
+                        String name = nameCell.getStringCellValue().trim();
+                        String email = emailCell.getStringCellValue().trim();
+                        String address = addressCell.getStringCellValue().trim();
+                        String phone = phoneCell.getStringCellValue().trim();
+                        String academicLevel = academicLevelCell.getStringCellValue().trim();
+                        String currentSemester = currentSemesterCell.getStringCellValue().trim();
+
+                        // Add subject to the list
+                        studentList.add(new Student(studentid, name, email, address, phone, academicLevel, currentSemester));
                     }
                 }
             }

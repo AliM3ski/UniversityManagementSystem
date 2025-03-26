@@ -4,25 +4,26 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.EventManagement.EventManagementController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.EventManagement.EventManagementController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#942708" height="71.0" stroke="BLACK" strokeType="INSIDE" width="758.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#942708" height="71.0" stroke="BLACK" strokeType="INSIDE" width="1009.0" />
       <Button layoutX="32.0" layoutY="141.0" minWidth="47.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" text="Previous Events" textFill="#9c1d1d" textOverrun="LEADING_WORD_ELLIPSIS" AnchorPane.topAnchor="141.0" />
       <ImageView fitHeight="71.0" fitWidth="138.0" layoutX="32.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="71.0" fitWidth="138.0" layoutX="32.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="71.0" fitWidth="138.0" layoutX="32.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/2.png" />
          </image>
       </ImageView>
-      <Button layoutX="182.0" layoutY="329.0" mnemonicParsing="false" onAction="#launchResearchWorkshopInfo" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
+      <Button layoutX="182.0" layoutY="339.0" mnemonicParsing="false" onAction="#launchResearchWorkshopInfo" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
       <Text fill="#1a1a1a" layoutX="32.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events: March" wrappingWidth="199.3148193359375">
          <font>
             <Font name="Dubai Regular" size="18.0" />
@@ -40,53 +41,25 @@
             <Font size="10.0" />
          </font>
       </Text>
-      <Text layoutX="182.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graduate Workshop! Enhance your thesis skills and refine your graduation research" wrappingWidth="397.6471862792969">
+      <Text layoutX="182.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graduate Workshop! Enhance your thesis skills and refine your graduation research" wrappingWidth="242.64718627929688">
          <font>
             <Font size="10.0" />
          </font>
       </Text>
       <Button layoutX="183.0" layoutY="240.0" mnemonicParsing="false" onAction="#launchSeminar" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
-      <Text layoutX="530.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEWSLETTER " wrappingWidth="102.40007324218732">
-         <font>
-            <Font name="Impact" size="19.0" />
-         </font>
-      </Text>
-      <Button layoutX="680.0" layoutY="97.0" minWidth="46.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="54.0" text="View" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="99.0" fitWidth="199.0" layoutX="535.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Images/3.png" />
-         </image>
-      </ImageView>
-      <Text fill="#1a1a1a" layoutX="534.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Construction Management " textAlignment="CENTER" wrappingWidth="199.3148193359375">
-         <font>
-            <Font name="Dubai Regular" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="558.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder news text" textAlignment="CENTER" wrappingWidth="152.04714965820312">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="38.0" fitWidth="127.0" layoutX="571.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Images/4.png" />
-         </image>
-      </ImageView>
       <Text layoutX="303.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="303.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
+      <Text layoutX="303.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button layoutX="603.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
-      <Button fx:id="manageEventsButton" layoutX="450.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#openManageEvents" text="Manage Events" />
+      <Button layoutX="852.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
+      <Button fx:id="manageEventsButton" layoutX="727.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#openManageEvents" text="Manage Events" />
+      <VBox fx:id="calendarContainer" layoutX="522.0" layoutY="81.0" prefHeight="319.0" prefWidth="457.0" />
+
    </children>
 </AnchorPane>

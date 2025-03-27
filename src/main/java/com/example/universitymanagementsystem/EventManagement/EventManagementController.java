@@ -2,6 +2,7 @@ package com.example.universitymanagementsystem.EventManagement;
 
 import com.example.universitymanagementsystem.DashBoard.DashBoardController;
 import com.example.universitymanagementsystem.Users.User;
+import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +25,9 @@ import java.util.Calendar;
 public class EventManagementController implements Initializable {
 
     private User user;
+
+    @FXML
+    public AnchorPane contentPane;
 
     @FXML
     private Button manageEventsButton;
@@ -75,6 +80,7 @@ public class EventManagementController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Seminar");
+        stage.setFullScreen(true);
         stage.show();
     }
 
@@ -85,28 +91,17 @@ public class EventManagementController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Research Workshop Info");
+        stage.setFullScreen(true);
         stage.show();
     }
 
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
-        Parent root = loader.load();
-        DashBoardController dashboardController = loader.getController();
-        dashboardController.setUser(user);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Dashboard");
-        stage.show();
+        moveBetweenInterfaces.openDashBoard(user, contentPane);
     }
 
     @FXML
     public void openManageEvents(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/ManagingEvents.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Manage Events");
-        stage.show();
+        moveBetweenInterfaces.openManageEvents(user, contentPane);
     }
 }

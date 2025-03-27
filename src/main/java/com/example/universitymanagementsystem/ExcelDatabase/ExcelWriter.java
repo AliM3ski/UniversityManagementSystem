@@ -1,7 +1,7 @@
 package com.example.universitymanagementsystem.ExcelDatabase;
 
-import com.example.universitymanagementsystem.StudentManagement.Student;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
+import com.example.universitymanagementsystem.Users.Student;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javafx.collections.ObservableList;
@@ -169,15 +169,16 @@ public class ExcelWriter {
                 if (cells[2] != null && cells[2].getStringCellValue().equals(oldAddress)) {
                     cells[2].setCellValue(selectedStudent.getAddress());
                 }
-                if (cells[3] != null && cells[3].getStringCellValue().equals(oldEmail)) {
-                    cells[3].setCellValue(selectedStudent.getEmail());
+                if (cells[3] != null && cells[3].getStringCellValue().equals(oldPhone)) {
+                    cells[3].setCellValue(selectedStudent.getPhone());
                 }
-                if (cells[4] != null && cells[4].getStringCellValue().equals(oldPhone)) {
-                    cells[4].setCellValue(selectedStudent.getPhone());
+                if (cells[4] != null && cells[4].getStringCellValue().equals(oldEmail)) {
+                    cells[4].setCellValue(selectedStudent.getEmail());
                 }
                 if (cells[5] != null && cells[5].getStringCellValue().equals(oldAcademicLevel)) {
                     cells[5].setCellValue(selectedStudent.getAcademicLevel());
                 }
+
             }
 
 

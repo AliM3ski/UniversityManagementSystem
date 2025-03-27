@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.Login.LoginController">
+<AnchorPane fx:id= "contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.Login.LoginController">
    <children>
       <Text layoutX="46.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " textAlignment="CENTER" AnchorPane.bottomAnchor="321.8" AnchorPane.leftAnchor="45.60000000000002" AnchorPane.rightAnchor="390.078125" AnchorPane.topAnchor="39.484375">
          <font>

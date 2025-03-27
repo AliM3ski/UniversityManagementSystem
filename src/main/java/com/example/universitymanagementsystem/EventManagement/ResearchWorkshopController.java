@@ -40,6 +40,7 @@ public class ResearchWorkshopController {
 
             // Set the new scene with the loaded "Events.fxml"
             stage.setScene(new Scene(root));
+            stage.setFullScreen(true);
 
             // Update the window title
             stage.setTitle("Events Page");

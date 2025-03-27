@@ -56,6 +56,7 @@ public class ManagingEventsController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Dashboard");
+        stage.setFullScreen(true);
         stage.show();
     }
 

@@ -14,6 +14,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load()); //Creates a new scene
         stage.setTitle("Login"); //Changes the title of the window to login
         stage.setScene(scene); //Associates the Scene with the stage
+        stage.setFullScreen(true);
         stage.show(); //Displays
         
     }

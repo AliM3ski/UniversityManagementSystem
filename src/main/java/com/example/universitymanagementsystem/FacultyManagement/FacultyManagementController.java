@@ -1,17 +1,13 @@
 package com.example.universitymanagementsystem.FacultyManagement;
 
-import com.example.universitymanagementsystem.DashBoard.DashBoardController;
 import com.example.universitymanagementsystem.Users.User;
+import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.time.LocalDate;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +16,8 @@ public class FacultyManagementController {
 
     private User user; // User object to store user information
 
+    @FXML
+    public AnchorPane contentPane;
     @FXML
     private TableView<FacultyManagement> facultyTable;
     @FXML
@@ -162,24 +160,6 @@ public class FacultyManagementController {
     }
 
     @FXML
-    public void backToDashBoard(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
-        Parent root = loader.load();
-
-        // Pass the user object back to the dashboard
-        DashBoardController dashboardController = loader.getController();
-        dashboardController.setUser(user);
-
-        // Get the current stage from the event source
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new scene
-        stage.setScene(new Scene(root));
-        stage.setTitle("Dashboard");
-        stage.show();
-    }
-
-    @FXML
     public void editFaculty(ActionEvent actionEvent) {
         FacultyManagement selectedFaculty = facultyTable.getSelectionModel().getSelectedItem();
         if (selectedFaculty != null) {
@@ -222,5 +202,9 @@ public class FacultyManagementController {
         if (selectedFaculty != null) {
             facultyTable.getItems().remove(selectedFaculty);
         }
+    }
+    @FXML
+    public void backToDashBoard(MouseEvent event) throws IOException {
+        moveBetweenInterfaces.openDashBoard(user, contentPane);
     }
 }

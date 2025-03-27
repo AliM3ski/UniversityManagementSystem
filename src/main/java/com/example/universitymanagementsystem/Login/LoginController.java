@@ -1,23 +1,17 @@
 package com.example.universitymanagementsystem.Login;
 
-import com.example.universitymanagementsystem.DashBoard.DashBoardController;
-import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
+import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import com.example.universitymanagementsystem.Users.Admin;
 import com.example.universitymanagementsystem.Users.Faculty;
 import com.example.universitymanagementsystem.Users.Student;
 import com.example.universitymanagementsystem.Users.User;
-import com.example.universitymanagementsystem.StudentManagement.StudentManagementController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class LoginController {
@@ -30,6 +24,9 @@ public class LoginController {
 
     @FXML
     private Button loginButton;
+
+    @FXML
+    public AnchorPane contentPane;
 
     // This method will be triggered when the login button is clicked
     @FXML
@@ -68,20 +65,10 @@ public class LoginController {
         alert.showAndWait();
     }
 
+
     private void openDashBoard(ActionEvent event, User user) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
-        Parent root = loader.load();
+        moveBetweenInterfaces.openDashBoard(user, contentPane);
 
-        // Get the controller and set the user object
-        DashBoardController dashBoardController = loader.getController();
-        dashBoardController.setUser(user);
-
-        // Get the current stage from the event source
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        // Set the new scene
-        stage.setScene(new Scene(root));
-        stage.setTitle("DashBoard");
-        stage.show();
     }
+
 }

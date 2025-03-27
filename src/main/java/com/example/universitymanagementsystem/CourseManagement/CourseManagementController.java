@@ -1,21 +1,14 @@
 package com.example.universitymanagementsystem.CourseManagement;
 
+import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
 import com.example.universitymanagementsystem.Users.User;
-import com.example.universitymanagementsystem.DashBoard.DashBoardController;
-
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
@@ -23,6 +16,8 @@ public class CourseManagementController {
 
     private User user;
 
+    @FXML
+    public AnchorPane contentPane;
     @FXML
     private Button addCourseButton;
 
@@ -288,17 +283,8 @@ public class CourseManagementController {
     @FXML
     public void backToDashBoard(MouseEvent event) throws IOException {
         try {
-            System.out.println("Navigating back to Dashboard...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
-            Parent root = loader.load();
-
-            DashBoardController dashboardController = loader.getController();
-            dashboardController.setUser(user);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Dashboard");
-            stage.show();
+            moveBetweenInterfaces move = new moveBetweenInterfaces();
+            move.openDashBoard(user, contentPane);
         } catch (Exception e) {
             System.err.println("Error navigating back to Dashboard:");
             e.printStackTrace();

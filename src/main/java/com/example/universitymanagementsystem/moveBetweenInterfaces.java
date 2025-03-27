@@ -7,16 +7,10 @@ import com.example.universitymanagementsystem.FacultyManagement.FacultyManagemen
 import com.example.universitymanagementsystem.StudentManagement.StudentManagementController;
 import com.example.universitymanagementsystem.SubjectManagement.SubjectManagementController;
 import com.example.universitymanagementsystem.Users.User;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -100,6 +94,12 @@ public class moveBetweenInterfaces {
     }
     public static void openManageEvents(User user, AnchorPane contentPane) throws IOException {
         FXMLLoader loader = new FXMLLoader(moveBetweenInterfaces.class.getResource("/com/example/universitymanagementsystem/EventManagement/ManagingEvents.fxml"));
+        Node newContent = loader.load();
+        contentPane.getChildren().setAll(newContent);
+    }
+
+    public static void openListOfEvents(User user, AnchorPane contentPane) throws IOException {
+        FXMLLoader loader = new FXMLLoader(moveBetweenInterfaces.class.getResource("/com/example/universitymanagementsystem/EventManagement/ListOfEvents.fxml"));
         Node newContent = loader.load();
         contentPane.getChildren().setAll(newContent);
     }

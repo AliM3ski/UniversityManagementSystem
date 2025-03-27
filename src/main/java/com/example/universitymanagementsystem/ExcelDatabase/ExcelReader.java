@@ -1,6 +1,7 @@
 package com.example.universitymanagementsystem.ExcelDatabase;
 
 import com.example.universitymanagementsystem.CourseManagement.Course;
+import com.example.universitymanagementsystem.EventManagement.Event;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 
 import com.example.universitymanagementsystem.Users.Student;
@@ -168,6 +169,62 @@ public class ExcelReader {
 
                         // Add subject to the list
                         courses.add(new Course(courseCode, name, subjectCode, section, capacity, time, examTime, location, teacher));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void readExcelEvent(ObservableList<Event> events, String filePath) {
+        try (
+                FileInputStream fis = new FileInputStream(filePath);
+                Workbook workbook = new XSSFWorkbook(fis)
+        ) {
+            Sheet sheet = workbook.getSheet("Events");
+            int lastRow = findLastNonEmptyRow(sheet); // Get last non-empty row index
+
+            // Reading from row index 1 to skip headers
+            for (int i = 1; i <= lastRow; i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    Cell eventCodeCell = row.getCell(0);
+                    Cell eventNameCell = row.getCell(1);
+                    Cell descriptionCell = row.getCell(2);
+                    Cell locationCell = row.getCell(3);
+                    Cell dateTimeCell = row.getCell(4);
+                    Cell capacityCell = row.getCell(5);
+                    Cell costCell = row.getCell(6);
+                    Cell headerImageCell = row.getCell(7);
+                    Cell registeredStudentsCell = row.getCell(8);
+
+                    // Ensure all required cells are present
+                    if (eventCodeCell != null && eventNameCell != null && descriptionCell != null &&
+                            locationCell != null && dateTimeCell != null && capacityCell != null &&
+                            costCell != null && headerImageCell != null && registeredStudentsCell != null) {
+
+                        String eventCode = eventCodeCell.getStringCellValue().trim();
+                        String eventName = eventNameCell.getStringCellValue().trim();
+                        String description = descriptionCell.getStringCellValue().trim();
+                        String location = locationCell.getStringCellValue().trim();
+                        String dateTime;
+
+                        // Handle date format for event date/time
+                        if (dateTimeCell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(dateTimeCell)) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                            dateTime = dateFormat.format(dateTimeCell.getDateCellValue());
+                        } else {
+                            dateTime = dateTimeCell.getStringCellValue().trim();
+                        }
+
+                        int capacity = (int) capacityCell.getNumericCellValue(); // Convert numeric to int
+                        String cost = costCell.getStringCellValue().trim();
+                        String headerImages = headerImageCell.getStringCellValue().trim();
+                        String registeredStudents = registeredStudentsCell.getStringCellValue().trim();
+
+                        // Add event to the list
+                        events.add(new Event(eventCode, eventName, description, location, dateTime,
+                                String.valueOf(capacity), cost, headerImages, registeredStudents));
                     }
                 }
             }

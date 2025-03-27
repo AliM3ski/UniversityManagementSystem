@@ -104,4 +104,8 @@ public class EventManagementController implements Initializable {
     public void openManageEvents(MouseEvent event) throws IOException {
         moveBetweenInterfaces.openManageEvents(user, contentPane);
     }
+    @FXML
+    public void openListOfEvents(ActionEvent event) throws IOException {
+        moveBetweenInterfaces.openListOfEvents(user, contentPane);
+    }
 }

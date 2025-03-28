@@ -101,8 +101,13 @@ public class ExcelReader {
                     Cell emailCell = row.getCell(4);
                     Cell academicLevelCell = row.getCell(5);
                     Cell currentSemesterCell = row.getCell(6);
+                    Cell photoPathCell = row.getCell(7);
+                    Cell subjectRegisteredCell = row.getCell(8);
+                    Cell thesisTitleCell = row.getCell(9);
+                    Cell progressCell = row.getCell(10);
+                    Cell passwordCell = row.getCell(11);
 
-                    if (studentIdCell != null && nameCell != null && addressCell != null && phoneCell != null && emailCell != null && academicLevelCell != null && currentSemesterCell != null) {
+                    if (studentIdCell != null && nameCell != null && addressCell != null && phoneCell != null && emailCell != null && academicLevelCell != null && currentSemesterCell != null && photoPathCell != null && subjectRegisteredCell != null && thesisTitleCell != null && progressCell != null && passwordCell != null) {
                         String studentid = studentIdCell.getStringCellValue().trim();
                         String name = nameCell.getStringCellValue().trim();
                         String email = emailCell.getStringCellValue().trim();
@@ -110,9 +115,17 @@ public class ExcelReader {
                         String phone = phoneCell.getStringCellValue().trim();
                         String academicLevel = academicLevelCell.getStringCellValue().trim();
                         String currentSemester = currentSemesterCell.getStringCellValue().trim();
+                        String photoPath = photoPathCell.getStringCellValue().trim();
+                        String subjectRegistered = subjectRegisteredCell.getStringCellValue().trim();
+                        String thesisTitle = thesisTitleCell.getStringCellValue().trim();
+                        String progress = progressCell.getStringCellValue().trim();
+                        String password= passwordCell.getStringCellValue().trim();
+
+
+
 
                         // Add subject to the list
-                        studentList.add(new Student(studentid, name, email, address, phone, academicLevel, currentSemester));
+                        studentList.add(new Student(studentid, name, email, address, phone, academicLevel, currentSemester, photoPath, subjectRegistered, thesisTitle, progress, password));
                     }
                 }
             }

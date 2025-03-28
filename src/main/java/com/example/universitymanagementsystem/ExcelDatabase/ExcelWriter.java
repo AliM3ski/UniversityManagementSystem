@@ -131,6 +131,11 @@ public class ExcelWriter {
             row.createCell(4).setCellValue(student.getEmail());
             row.createCell(5).setCellValue(student.getAcademicLevel());
             row.createCell(6).setCellValue(student.getCurrentSemester());
+            row.createCell(7).setCellValue(student.getPhotoPath());
+            row.createCell(8).setCellValue(student.getSubjectRegistered());
+            row.createCell(9).setCellValue(student.getThesisTitle());
+            row.createCell(10).setCellValue(student.getProgress());
+            row.createCell(11).setCellValue(student.getPassword());
 
 
             // fixes sizing in the column if need be
@@ -148,15 +153,15 @@ public class ExcelWriter {
     }
 
     // ** Edit Subject in Excel **
-    public static void editStudentInExcel(String filePath,Student selectedStudent,  String oldStudentID,  String oldName, String oldAddress, String oldPhone, String oldEmail, String oldAcademicLevel ) {
+    public static void editStudentInExcel(String filePath,Student selectedStudent,  String oldStudentID,  String oldName, String oldAddress, String oldPhone, String oldEmail, String oldAcademicLevel, String oldPhotoPath, String oldSubjectRegistered, String oldTheisTitle, String oldProgress, String oldpassword ) {
         try (FileInputStream fileIn = new FileInputStream(filePath);
              XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
 
             Sheet sheet = workbook.getSheet("Student");
             // Loop through each row to find the row with the given subject code
             for (Row row : sheet) {
-                Cell[] cells = new Cell[6];
-                for (int i = 0; i < 6; i++) {
+                Cell[] cells = new Cell[12];
+                for (int i = 0; i < 12; i++) {
                     cells[i] = row.getCell(i);
                 }
 
@@ -169,16 +174,30 @@ public class ExcelWriter {
                 if (cells[2] != null && cells[2].getStringCellValue().equals(oldAddress)) {
                     cells[2].setCellValue(selectedStudent.getAddress());
                 }
-                if (cells[3] != null && cells[3].getStringCellValue().equals(oldPhone)) {
-                    cells[3].setCellValue(selectedStudent.getPhone());
+                if (cells[3] != null && cells[3].getStringCellValue().equals(oldEmail)) {
+                    cells[3].setCellValue(selectedStudent.getEmail());
                 }
-                if (cells[4] != null && cells[4].getStringCellValue().equals(oldEmail)) {
-                    cells[4].setCellValue(selectedStudent.getEmail());
+                if (cells[4] != null && cells[4].getStringCellValue().equals(oldPhone)) {
+                    cells[4].setCellValue(selectedStudent.getPhone());
                 }
                 if (cells[5] != null && cells[5].getStringCellValue().equals(oldAcademicLevel)) {
                     cells[5].setCellValue(selectedStudent.getAcademicLevel());
                 }
-
+                if (cells[7] != null && cells[7].getStringCellValue().equals(oldPhotoPath)) {
+                    cells[7].setCellValue(selectedStudent.getPhotoPath());
+                }
+                if (cells[8] != null && cells[8].getStringCellValue().equals(oldSubjectRegistered)) {
+                    cells[8].setCellValue(selectedStudent.getSubjectRegistered());
+                }
+                if (cells[9] != null && cells[9].getStringCellValue().equals(oldTheisTitle)) {
+                    cells[9].setCellValue(selectedStudent.getThesisTitle());
+                }
+                if (cells[10] != null && cells[10].getStringCellValue().equals(oldProgress)) {
+                    cells[10].setCellValue(selectedStudent.getProgress());
+                }
+                if (cells[11] != null && cells[11].getStringCellValue().equals(oldpassword)) {
+                    cells[11].setCellValue(selectedStudent.getPassword());
+                }
             }
 
 
@@ -231,5 +250,33 @@ public class ExcelWriter {
             e.printStackTrace();
         }
     }
+    public static void updateStudentPhoto(String studentId, String photoPath) {
+        String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
+
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            Sheet sheet = workbook.getSheet("Student");
+
+            for (Row row : sheet) {
+                Cell idCell = row.getCell(0);
+                if (idCell != null && idCell.getStringCellValue().equals(studentId)) {
+                    Cell photoCell = row.getCell(7);
+                    if (photoCell == null) {
+                        photoCell = row.createCell(7);
+                    }
+                    photoCell.setCellValue(photoPath);
+                    break;
+                }
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

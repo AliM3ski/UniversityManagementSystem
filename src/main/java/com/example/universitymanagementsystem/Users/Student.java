@@ -21,11 +21,16 @@ public class Student extends User {
     private StringProperty phone = new SimpleStringProperty();
     private StringProperty academicLevel = new SimpleStringProperty();
     private StringProperty currentSemester = new SimpleStringProperty();
+    private StringProperty photoPath = new SimpleStringProperty();
+    private StringProperty subjectRegistered = new SimpleStringProperty();
+    private StringProperty thesisTitle = new SimpleStringProperty();
+    private StringProperty progress = new SimpleStringProperty();
+    private StringProperty password = new SimpleStringProperty();
 
 
     // Constructor with the required fields
     public Student(String studentId, String name, String email, String address, String phone,
-                   String academicLevel, String currentSemester) {
+                   String academicLevel, String currentSemester,String photoPath, String subjectRegistered, String thesisTitle, String progress, String password) {
         this.studentId = new SimpleStringProperty(studentId);
         this.name = new SimpleStringProperty(name);
         this.email = new SimpleStringProperty(email);
@@ -33,6 +38,11 @@ public class Student extends User {
         this.phone = new SimpleStringProperty(phone);
         this.academicLevel = new SimpleStringProperty(academicLevel);
         this.currentSemester = new SimpleStringProperty(currentSemester);
+        this.photoPath = new SimpleStringProperty(photoPath);
+        this.subjectRegistered = new SimpleStringProperty(subjectRegistered);
+        this.thesisTitle = new SimpleStringProperty(thesisTitle);
+        this.progress = new SimpleStringProperty(progress);
+        this.password = new SimpleStringProperty(password);
     }
 
     // Getter and Setter methods
@@ -119,5 +129,60 @@ public class Student extends User {
 
     public StringProperty currentSemesterProperty() {
         return currentSemester;
+    }
+    // Getter and Setter for photoPath
+    public String getPhotoPath() {
+        return photoPath.get();
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath.set(photoPath);
+    }
+
+    public StringProperty photoPathProperty() {
+        return photoPath;
+    }
+
+    public String getSubjectRegistered() {
+        return subjectRegistered.get();
+    }
+    public void setSubjectRegistered(String subjectRegistered){
+        this.subjectRegistered.set(subjectRegistered);
+    }
+    public StringProperty subjectRegisteredProperty(){
+        return subjectRegistered;
+    }
+
+    public String getThesisTitle() {
+        return thesisTitle.get();
+    }
+    public void setThesisTitle(String thesisTitle){
+        this.thesisTitle.set(thesisTitle);
+    }
+
+    public StringProperty thesisTitleProperty() {
+        return thesisTitle;
+    }
+
+    public String getProgress() {
+        return progress.get();
+    }
+    public void setProgress(String progress){
+        this.progress.set(progress);
+    }
+
+    public StringProperty progressProperty() {
+        return progress;
+    }
+
+    public String getPassword() {
+        return password.get();
+    }
+    public void setPassword( String password){
+        this.password.set(password);
+    }
+
+    public StringProperty passwordProperty() {
+        return password;
     }
 }

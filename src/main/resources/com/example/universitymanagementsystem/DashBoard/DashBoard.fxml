@@ -12,18 +12,18 @@
     <children>
 
                        <!-- Header -->
-           <Text fill="#333333" layoutX="198.0" layoutY="327.0" text="Welcome to The Dashboard">
+           <Text fill="#333333" layoutX="198.0" layoutY="327.0" text="Welcome to The Dashboard" AnchorPane.bottomAnchor="652.75" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="197.4281249999999" AnchorPane.topAnchor="240.09375">
                <font>
                    <Font name="Arial Bold" size="96.0" />
                </font>
            </Text>
-            <Button layoutX="415.0" layoutY="373.0" onMouseClicked="#signOut" prefHeight="180.0" prefWidth="370.0" style="-fx-background-color: #d9534f;                                    -fx-text-fill: white;                                    -fx-font-size: 14px;                                    -fx-background-radius: 10;                                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" text="Sign Out">
+            <Button layoutX="415.0" layoutY="373.0" onMouseClicked="#signOut" prefHeight="180.0" prefWidth="370.0" style="-fx-background-color: #d9534f;                                    -fx-text-fill: white;                                    -fx-font-size: 14px;                                    -fx-background-radius: 10;                                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" text="Sign Out" AnchorPane.bottomAnchor="447.25" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="874.571875" AnchorPane.topAnchor="373.0">
          <font>
             <Font name="Outfit Regular" size="72.0" />
          </font>
       </Button>
 
-                                             <MenuButton layoutX="920.0" layoutY="365.0" prefHeight="180.0" prefWidth="370.0" style="-fx-background-color: #0275d8;                                    -fx-text-fill: white;                                    -fx-font-size: 14px;                                    -fx-background-radius: 10;                                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" text="Menu" textAlignment="CENTER">
+                                             <MenuButton layoutX="920.0" layoutY="365.0" popupSide="RIGHT" prefHeight="180.0" prefWidth="370.0" style="-fx-background-color: #0275d8;                                    -fx-text-fill: white;                                    -fx-font-size: 14px;                                    -fx-background-radius: 10;                                    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);" text="Menu" textAlignment="CENTER" AnchorPane.bottomAnchor="455.25" AnchorPane.leftAnchor="920.0" AnchorPane.rightAnchor="369.771875" AnchorPane.topAnchor="365.0">
                 <items>
                     <MenuItem text="Dashboard" />
                     <MenuItem onAction="#launchSubjectManagement" text="Subject Management" />
@@ -34,7 +34,7 @@
 
                                                  </items>
          <font>
-            <Font size="72.0" />
+            <Font size="96.0" />
          </font>
             </MenuButton>
     </children>

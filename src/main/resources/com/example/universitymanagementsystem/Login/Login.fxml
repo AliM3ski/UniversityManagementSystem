@@ -6,48 +6,60 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.Login.LoginController">
+<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1660.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.Login.LoginController">
    <children>
-      <Text layoutX="641.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" textAlignment="CENTER" AnchorPane.leftAnchor="641.0" AnchorPane.topAnchor="118.40625">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="1028.0" layoutX="628.0" layoutY="-24.0" stroke="WHITE" strokeType="INSIDE" width="1038.0" />
+      <Text layoutX="895.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" textAlignment="CENTER" AnchorPane.leftAnchor="895.0" AnchorPane.rightAnchor="268.546875" AnchorPane.topAnchor="57.40625">
          <font>
             <Font name="Yu Gothic UI Semibold" size="96.0" />
          </font>
       </Text>
-      <Button blendMode="SRC_ATOP" layoutX="454.0" layoutY="719.0" maxHeight="262.0" maxWidth="1277.0" minHeight="26.0" minWidth="54.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="133.0" prefWidth="752.0" scaleShape="false" style="-fx-background-color: green;" text="LOGIN" textFill="WHITE" AnchorPane.leftAnchor="454.0" AnchorPane.rightAnchor="455.5999999999999" AnchorPane.topAnchor="719.0">
+      <Button blendMode="SRC_ATOP" layoutX="974.0" layoutY="697.0" maxHeight="262.0" maxWidth="1277.0" minHeight="26.0" minWidth="54.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="96.0" prefWidth="280.0" scaleShape="false" style="-fx-background-color: darkblue;" text="Login" textFill="WHITE" AnchorPane.leftAnchor="974.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="697.0">
          <font>
-            <Font name="Malgun Gothic Bold" size="48.0" />
+            <Font name="Malgun Gothic Bold" size="28.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="184.0" layoutY="307.0">
+      <AnchorPane layoutX="774.0" layoutY="315.0" prefHeight="134.0" prefWidth="678.0" AnchorPane.leftAnchor="774.0" AnchorPane.rightAnchor="148.4000000000001">
          <children>
-            <TextField fx:id="usernameField" layoutX="41.0" prefHeight="133.0" prefWidth="1104.0" promptText="|   Username/Email">
+            <ImageView fitHeight="65.0" fitWidth="56.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/BlackProfileLogIn.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="usernameField" layoutX="75.2" prefHeight="134.0" prefWidth="1070.0" promptText="|   Username/Email" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="1.0">
                <font>
                   <Font size="32.0" />
                </font>
             </TextField>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="184.0" layoutY="511.0">
+      <AnchorPane layoutX="768.0" layoutY="503.0" prefHeight="134.0" prefWidth="737.0" AnchorPane.leftAnchor="768.0" AnchorPane.rightAnchor="155.0">
          <children>
-            <PasswordField fx:id="passwordField" layoutX="44.0" prefHeight="133.0" prefWidth="1104.0" promptText="|   Password">
+            <PasswordField fx:id="passwordField" layoutX="78.4" prefHeight="134.0" prefWidth="1070.0" promptText="|   Password" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="-2.0">
                <font>
                   <Font size="32.0" />
                </font>
             </PasswordField>
+            <ImageView fitHeight="62.0" fitWidth="56.0" layoutX="14.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/LockIconLogIn.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="346.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <ImageView fitHeight="65.0" fitWidth="56.0" layoutX="156.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+      <Text layoutX="968.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Into Your Account">
+         <font>
+            <Font name="Yu Gothic UI Light" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="544.0" fitWidth="544.0" layoutX="34.0" layoutY="231.0" preserveRatio="true">
          <image>
-            <Image url="@../../../../Images/BlackProfileLogIn.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="56.0" layoutX="148.0" layoutY="552.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Images/LockIconLogIn.png" />
+            <Image url="@../../../../Images/LoginImage.png" />
          </image>
       </ImageView>
    </children>

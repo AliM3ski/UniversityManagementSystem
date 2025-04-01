@@ -384,7 +384,6 @@ public class StudentManagementController {
     // Helper method to show alerts with an optional image
     private void showAlert(String title, String message, String imagePath) {
         // Create an alert of type INFORMATION
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         // Set the title of the alert window
         alert.setTitle(title);

@@ -1,16 +1,17 @@
 package com.example.universitymanagementsystem.EventManagement;
 
 import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
-import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
-import com.example.universitymanagementsystem.SubjectManagement.Subject;
 import com.example.universitymanagementsystem.Users.User;
-import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 
 import java.io.IOException;
 
@@ -21,44 +22,27 @@ public class ListOfEventsController {
     @FXML
     private TableView<Event> eventTable;
 
-    @FXML
-    private TableColumn<Event, String> codeColumn;
+    @FXML private TableColumn<Event, String> codeColumn;
+    @FXML private TableColumn<Event, String> nameColumn;
+    @FXML private TableColumn<Event, String> descriptionColumn;
+    @FXML private TableColumn<Event, String> locationColumn;
+    @FXML private TableColumn<Event, String> dateTimeColumn;
+    @FXML private TableColumn<Event, String> capacityColumn;
+    @FXML private TableColumn<Event, String> costColumn;
+    @FXML private TableColumn<Event, String> headerImagesColumn;
+    @FXML private TableColumn<Event, String> registeredStudentsColumn;
 
     @FXML
-    private TableColumn<Event, String> nameColumn;
+    private Button backButton;
 
-    @FXML
-    private TableColumn<Event, String> descriptionColumn;
+    private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-    @FXML
-    private TableColumn<Event, String> locationColumn;
-
-    @FXML
-    private TableColumn<Event, String> dateTimeColumn;
-
-    @FXML
-    private TableColumn<Event, String> capacityColumn;
-
-    @FXML
-    private TableColumn<Event, String> costColumn;
-
-    @FXML
-    private TableColumn<Event, String> headerImagesColumn;
-
-    @FXML
-    private TableColumn<Event, String> registeredStudentsColumn;
-
-    // Method to set user (if needed)
     public void setUser(User user) {
         this.user = user;
     }
 
-    // List to store events dynamically
-    private ObservableList<Event> events = FXCollections.observableArrayList();
-
     @FXML
     public void initialize() {
-        // Bind columns using lambda expressions
         codeColumn.setCellValueFactory(cellData -> cellData.getValue().eventCodeProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().eventNameProperty());
         descriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
@@ -69,7 +53,6 @@ public class ListOfEventsController {
         headerImagesColumn.setCellValueFactory(cellData -> cellData.getValue().headerImagesProperty());
         registeredStudentsColumn.setCellValueFactory(cellData -> cellData.getValue().registeredStudentsProperty());
 
-        // Load event data
         loadEvents();
     }
 
@@ -77,5 +60,23 @@ public class ListOfEventsController {
         String filePath = "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx";
         ExcelReader.readExcelEvent(events, filePath);
         eventTable.setItems(events);
+    }
+
+    /**
+     * Back button action to return to EventManagement.fxml
+     */
+    @FXML
+    private void goBackToEvents(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/EventManagement.fxml"));
+        Parent root = loader.load();
+
+        EventManagementController controller = loader.getController();
+        controller.setUser(user); // Pass the user
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setFullScreen(true);
+        stage.setTitle("Events Page");
+        stage.show();
     }
 }

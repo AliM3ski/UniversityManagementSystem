@@ -6,11 +6,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
 
-<AnchorPane fx:id="contentPane" prefHeight="783.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
+<AnchorPane fx:id="contentPane" prefHeight="623.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
 
     <!-- Title Section -->
     <Label layoutX="150" layoutY="20" text="Student Management System" />
@@ -25,44 +25,44 @@
             <TableColumn fx:id="emailColumn" prefWidth="100" text="Email" />
             <TableColumn fx:id="levelColumn" prefWidth="100" text="Academic Level" />
             <TableColumn fx:id="semesterColumn" prefWidth="100" text="Current Semester" />
-            <TableColumn fx:id="subjectRegisteredColumn" text="Subjects Registered" />
-            <TableColumn fx:id="thesisTitleColumn" text="Thesis Title" />
-            <TableColumn fx:id="progressColumn" text="Progress" />
-            <TableColumn fx:id="passwordColumn" text="Password" />
+            <TableColumn fx:id="subjectRegisteredColumn" text="Subjects Registered"/>
+            <TableColumn fx:id="thesisTitleColumn" text="Thesis Title"/>
+            <TableColumn fx:id="progressColumn" text="Progress"/>
+            <TableColumn fx:id="passwordColumn" text="Password"/>
         </columns>
     </TableView>
 
     <!-- Input Fields for Student Data -->
-    <Label fx:id="studentIdLabel" layoutX="17.0" layoutY="365.0" text="Student ID:" />
-    <TextField fx:id="studentIdField" layoutX="117.0" layoutY="365.0" prefWidth="200" />
+    <Label fx:id="studentIdLabel" layoutX="167.0" layoutY="365.0" text="Student ID:" />
+    <TextField fx:id="studentIdField" layoutX="267.0" layoutY="365.0" prefWidth="200" />
 
-    <Label fx:id="nameIdLabel" layoutX="17.0" layoutY="405.0" text="Name:" />
-    <TextField fx:id="nameField" layoutX="117.0" layoutY="405.0" prefWidth="200" />
+    <Label fx:id="nameIdLabel" layoutX="167.0" layoutY="405.0" text="Name:" />
+    <TextField fx:id="nameField" layoutX="267.0" layoutY="405.0" prefWidth="200" />
 
-    <Label fx:id="emailLabel" layoutX="17.0" layoutY="445.0" text="Email:" />
-    <TextField fx:id="emailField" layoutX="117.0" layoutY="445.0" prefWidth="200" />
+    <Label fx:id="emailLabel" layoutX="167.0" layoutY="445.0" text="Email:" />
+    <TextField fx:id="emailField" layoutX="267.0" layoutY="445.0" prefWidth="200" />
 
-    <Label fx:id="addressLabel" layoutX="17.0" layoutY="485.0" text="Address:" />
-    <TextField fx:id="addressField" layoutX="117.0" layoutY="485.0" prefWidth="200" />
+    <Label fx:id="addressLabel" layoutX="167.0" layoutY="485.0" text="Address:" />
+    <TextField fx:id="addressField" layoutX="267.0" layoutY="485.0" prefWidth="200" />
 
-    <Label fx:id="phoneLabel" layoutX="17.0" layoutY="525.0" text="Phone:" />
-    <TextField fx:id="phoneField" layoutX="117.0" layoutY="525.0" prefWidth="200" />
+    <Label fx:id="phoneLabel" layoutX="167.0" layoutY="525.0" text="Phone:" />
+    <TextField fx:id="phoneField" layoutX="267.0" layoutY="525.0" prefWidth="200" />
 
-    <Label fx:id="academicLevelLabel" layoutX="17.0" layoutY="565.0" text="Academic Level:" />
-    <ComboBox fx:id="academicLevelBox" layoutX="117.0" layoutY="565.0" prefWidth="200" />
+    <Label fx:id="academicLevelLabel" layoutX="167.0" layoutY="565.0" text="Academic Level:" />
+    <ComboBox fx:id="academicLevelBox" layoutX="267.0" layoutY="565.0" prefWidth="200" />
 
-       <!-- Newly Added Fields -->
-    <Label fx:id="subjectRegisteredLabel" layoutX="485.0" layoutY="365.0" text="Subjects Registered:" />
-    <TextField fx:id="subjectRegisteredField" layoutX="615.0" layoutY="365.0" prefWidth="200" />
+    <!-- Newly Added Fields -->
+    <Label fx:id="subjectRegisteredLabel" layoutX="500.0" layoutY="365.0" text="Subjects Registered:" />
+    <TextField fx:id="subjectRegisteredField" layoutX="630.0" layoutY="365.0" prefWidth="200" />
 
-    <Label fx:id="thesisTitleLabel" layoutX="485.0" layoutY="405.0" text="Thesis Title:" />
-    <TextField fx:id="thesisTitleField" layoutX="615.0" layoutY="405.0" prefWidth="200" />
+    <Label fx:id="thesisTitleLabel" layoutX="500.0" layoutY="405.0" text="Thesis Title:" />
+    <TextField fx:id="thesisTitleField" layoutX="630.0" layoutY="405.0" prefWidth="200" />
 
-    <Label fx:id="progressLabel" layoutX="485.0" layoutY="445.0" text="Progress:" />
-    <TextField fx:id="progressField" layoutX="615.0" layoutY="445.0" prefWidth="200" />
+    <Label fx:id="progressLabel" layoutX="500.0" layoutY="445.0" text="Progress:" />
+    <TextField fx:id="progressField" layoutX="630.0" layoutY="445.0" prefWidth="200" />
 
-    <Label fx:id="passwordLabel" layoutX="485.0" layoutY="485.0" text="Password:" />
-    <TextField fx:id="passwordField" layoutX="615.0" layoutY="485.0" prefWidth="200" />
+    <Label fx:id="passwordLabel" layoutX="500.0" layoutY="485.0" text="Password:" />
+    <TextField fx:id="passwordField" layoutX="630.0" layoutY="485.0" prefWidth="200" />
 
 
     <!-- Generated Student ID Label -->
@@ -70,8 +70,8 @@
     <ImageView fx:id="profileImageView" fitHeight="100" fitWidth="100" />
 
     <!-- Buttons Section - Using VBox to arrange them vertically -->
-    <VBox layoutX="342.0" layoutY="364.0" spacing="10">
-        <Button fx:id="addStudentbutton" onAction="#addStudent" prefWidth="120.0" text="Add Student" />
+    <VBox layoutX="517.0" layoutY="365.0" spacing="10">
+        <Button fx:id="addStudentbutton" onAction="#addStudent" prefWidth="120" text="Add Student" />
         <Button fx:id="editStudentbutton" onAction="#editStudent" prefWidth="120" text="Edit Student" />
         <Button fx:id="deleteStudentbutton" onAction="#deleteStudent" prefWidth="120" text="Delete Student" />
         <Button fx:id="uploadPhotoButton" onAction="#handleUploadPhoto" prefWidth="120" text="Upload Photo" />

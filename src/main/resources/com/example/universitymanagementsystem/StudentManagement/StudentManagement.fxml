@@ -13,7 +13,7 @@
 <AnchorPane fx:id="contentPane" prefHeight="623.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
 
     <!-- Title Section -->
-    <Label layoutX="150" layoutY="20" text="Student Management System" />
+    <Label layoutX="151" layoutY="20" text="Student Management System" />
 
     <!-- Table to Display Student Data -->
     <TableView fx:id="studentTable" layoutX="13.0" layoutY="50" prefHeight="291.0" prefWidth="778.0">

@@ -2,6 +2,7 @@ package com.example.universitymanagementsystem.ExcelDatabase;
 
 import com.example.universitymanagementsystem.CourseManagement.Course;
 import com.example.universitymanagementsystem.EventManagement.Event;
+import com.example.universitymanagementsystem.FacultyManagement.FacultyManagement;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 
 import com.example.universitymanagementsystem.Users.Student;
@@ -281,6 +282,90 @@ public class ExcelReader {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public static void readExcelFaculty(ObservableList<FacultyManagement> facultyList, String filePath) {
+        try (
+                FileInputStream fis = new FileInputStream(filePath);
+                Workbook workbook = new XSSFWorkbook(fis)
+        ) {
+            // Get the faculty sheet (page 4 in Excel)
+            Sheet sheet = workbook.getSheetAt(3); // 0-based index (0=first sheet, 3=fourth sheet)
+
+            int lastRow = findLastNonEmptyRow(sheet);
+
+            // Start from row 1 to skip header row (row 0)
+            for (int i = 1; i <= lastRow; i++) {
+                Row row = sheet.getRow(i);
+                if (row != null) {
+                    Cell facultyIdCell = row.getCell(0);  // Column A
+                    Cell nameCell = row.getCell(1);      // Column B
+                    Cell degreeCell = row.getCell(2);     // Column C
+                    Cell researchCell = row.getCell(3);   // Column D
+                    Cell emailCell = row.getCell(4);      // Column E
+                    Cell officeCell = row.getCell(5);     // Column F
+                    Cell coursesCell = row.getCell(6);    // Column G
+                    Cell passwordCell = row.getCell(7);   // Column H
+
+                    // Check required cells (facultyId and name are mandatory)
+                    if (facultyIdCell != null && nameCell != null) {
+                        String facultyId = getCellStringValue(facultyIdCell).trim();
+                        String name = getCellStringValue(nameCell).trim();
+                        String degree = degreeCell != null ? getCellStringValue(degreeCell).trim() : "";
+                        String research = researchCell != null ? getCellStringValue(researchCell).trim() : "";
+                        String email = emailCell != null ? getCellStringValue(emailCell).trim() : "";
+                        String office = officeCell != null ? getCellStringValue(officeCell).trim() : "";
+                        String courses = coursesCell != null ? getCellStringValue(coursesCell).trim() : "";
+                        String password = passwordCell != null ? getCellStringValue(passwordCell).trim() : "default123";
+
+                        // Add faculty to the list
+                        facultyList.add(new FacultyManagement(
+                                facultyId,
+                                name,
+                                degree,
+                                research,
+                                email,
+                                office,
+                                password
+                        ));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to safely get string value from any cell type
+    private static String getCellStringValue(Cell cell) {
+        if (cell == null) return "";
+
+        switch (cell.getCellType()) {
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                return String.valueOf((int)cell.getNumericCellValue()); // For IDs
+            default:
+                return "";
+        }
+    }
+
+    // Method to find the last non-empty row (same as your existing implementation)
+    private static int findLastNonEmptyRow1(Sheet sheet) {
+        int lastRowNum = sheet.getLastRowNum();
+        for (int i = lastRowNum; i >= 0; i--) {
+            Row row = sheet.getRow(i);
+            if (row != null) {
+                for (int j = 0; j < row.getLastCellNum(); j++) {
+                    Cell cell = row.getCell(j);
+                    if (cell != null && cell.getCellType() != CellType.BLANK) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 
 }

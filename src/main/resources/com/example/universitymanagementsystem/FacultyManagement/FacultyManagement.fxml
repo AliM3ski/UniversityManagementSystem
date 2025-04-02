@@ -1,60 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contentPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
-   <children>
-      <BorderPane prefHeight="720" prefWidth="1465">
-      
-          <top>
-              <HBox alignment="CENTER" spacing="10">
-                  <TextField fx:id="nameInput" maxWidth="200" prefWidth="150" promptText="Enter Name" />
-                  <TextField fx:id="emailInput" maxWidth="250" prefWidth="200" promptText="Enter Email" />
-                  <TextField fx:id="degreeInput" maxWidth="200" prefWidth="150" promptText="Enter Degree" />
-                  <TextField fx:id="researchInput" maxWidth="250" prefWidth="200" promptText="Enter Research Interests" />
-                  <TextField fx:id="coursesInput" maxWidth="250" prefWidth="200" promptText="Enter Courses" />
-                  <TextField fx:id="officeInput" maxWidth="200" prefWidth="150" promptText="Enter Office Location" />
-                  <TextField fx:id="phoneNumberInput" maxWidth="200" prefWidth="150" promptText="Enter Phone Number" />
-                  <TextField fx:id="departmentInput" maxWidth="200" prefWidth="150" promptText="Enter Department" />
-                  <DatePicker fx:id="joinDateInput" />
-                  <Button fx:id="add" onAction="#addFaculty" text="Add Faculty" />
-              </HBox>
-          </top>
-      
-          <center>
-              <VBox prefHeight="600" prefWidth="1280">
-                  <TableView fx:id="facultyTable" prefHeight="600" prefWidth="1280" VBox.vgrow="ALWAYS">
-                      <columns>
-                          <TableColumn fx:id="nameColumn" prefWidth="140" text="Name" />
-                          <TableColumn fx:id="emailColumn" prefWidth="180" text="Email" />
-                          <TableColumn fx:id="degreeColumn" prefWidth="140" text="Degree" />
-                          <TableColumn fx:id="researchColumn" prefWidth="180" text="Research Interests" />
-                          <TableColumn fx:id="coursesColumn" prefWidth="180" text="Courses Offered" />
-                          <TableColumn fx:id="officeColumn" prefWidth="140" text="Office Location" />
-                          <TableColumn fx:id="phoneNumberColumn" prefWidth="140" text="Phone Number" />
-                          <TableColumn fx:id="departmentColumn" prefWidth="140" text="Department" />
-                          <TableColumn fx:id="joinDateColumn" prefWidth="140" text="Join Date" />
-                      </columns>
-                  </TableView>
-              </VBox>
-          </center>
-      
-          <!-- Added alignment and placed buttons properly inside a HBox -->
-          <bottom>
-              <HBox alignment="CENTER" spacing="10">
-                  <Button fx:id="editButton" onAction="#editFaculty" text="Edit Faculty" />
-                  <Button fx:id="deleteButton" onAction="#deleteFaculty" text="Delete Faculty" />
-              </HBox>
-          </bottom>
-      
-      </BorderPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1465.0" style="-fx-background-color: #ffcdb2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
+
+    <children>
+        <BorderPane prefHeight="503.0" prefWidth="1252.0" style="-fx-background-color: #ffcdb2;">
+            <center>
+                <TableView fx:id="facultyTable" prefHeight="444.0" prefWidth="1167.0">
+                    <columns>
+                        <TableColumn fx:id="faculty_Column" prefWidth="150.0" text="Faculty ID" />
+                        <TableColumn fx:id="name_Column" prefWidth="153.0" text="Name" />
+                        <TableColumn fx:id="degree_Column" prefWidth="167.0" text="Degree" />
+                        <TableColumn fx:id="research_Column" prefWidth="157.0" text="Research Interests" />
+                        <TableColumn fx:id="email_Column" prefWidth="166.0" text="Email" />
+                        <TableColumn fx:id="office_Column" prefWidth="171.0" text="Office Location" />
+                        <TableColumn fx:id="course_Column" prefWidth="151.0" text="Courses Offered" />
+                        <TableColumn fx:id="password_Column" prefWidth="136.0" text="Password" />
+                    </columns>
+                </TableView>
+            </center>
+
+            <bottom>
+                <HBox alignment="CENTER" prefHeight="34.0" prefWidth="1465.0" spacing="10" style="-fx-background-color: #ffcdb2; -fx-padding: 10;">
+                    <Button fx:id="add" onAction="#addFaculty" style="-fx-background-color: #c1121f;" text="Add Faculty" textFill="WHITE">
+                        <font>
+                            <Font name="Yu Gothic UI Semibold" size="18.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="editButton" onAction="#editFaculty" style="-fx-background-color: #c1121f;" text="Edit Faculty" textFill="WHITE">
+                        <font>
+                            <Font name="Yu Gothic UI Semibold" size="18.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="deleteButton" onAction="#deleteFaculty" style="-fx-background-color: #c1121f;" text="Delete Faculty" textFill="WHITE">
+                        <font>
+                            <Font name="Yu Gothic UI Semibold" size="18.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="uploadbutton" onAction="#upload" style="-fx-background-color: #c1121f;" text="Upload Photo" textFill="WHITE">
+                        <font>
+                            <Font name="Yu Gothic UI Semibold" size="18.0" />
+                        </font>
+                    </Button>
+                </HBox>
+            </bottom>
+        </BorderPane>
+
+        <!-- Left Side Input Fields -->
+        <Label fx:id="nameIdLabel" layoutX="199.0" layoutY="558.0" text="Name:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nameInput" layoutX="347.0" layoutY="555.0" prefHeight="26.0" prefWidth="194.0" />
+        <TextField fx:id="facultyInput" layoutX="347.0" layoutY="514.0" prefHeight="26.0" prefWidth="194.0" />
+
+        <Label fx:id="degreeLabel" layoutX="200.0" layoutY="603.0" text="Degree:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="degreeInput" layoutX="347.0" layoutY="600.0" prefHeight="26.0" prefWidth="194.0" />
+
+        <Label fx:id="interestsLabel" layoutX="199.0" layoutY="648.0" text="Research Interests:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="researchInput" layoutX="348.0" layoutY="645.0" prefHeight="26.0" prefWidth="194.0" />
+
+        <!-- Right Side Input Fields -->
+        <Label fx:id="email_label" layoutX="671.0" layoutY="516.0" text="Email:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="emailInput" layoutX="830.0" layoutY="514.0" prefHeight="26.0" prefWidth="200.0" />
+
+        <Label fx:id="officeHourslabel" layoutX="670.0" layoutY="562.0" text="Office Location:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="officeInput" layoutX="830.0" layoutY="560.0" prefHeight="26.0" prefWidth="200.0" />
+
+        <Label fx:id="Phone" layoutX="672.0" layoutY="607.0" text="Password:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="passwordInput" layoutX="830.0" layoutY="605.0" prefHeight="26.0" prefWidth="200.0" />
+
+                 <Label fx:id="facultyid" layoutX="200.0" layoutY="517.0" text="Faculty ID:">
+            <font>
+                <Font name="Yu Gothic UI Semibold" size="15.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

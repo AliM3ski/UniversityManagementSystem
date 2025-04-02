@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javafx.collections.ObservableList;
 import java.io.*;
+import java.util.Random;
 
 public class ExcelWriter {
 
@@ -110,7 +111,7 @@ public class ExcelWriter {
     }
 
 
-    public static void writeToExcelStudent(ObservableList<Student> studentlist, String filePath) {
+    public static void writeToExcelStudent(ObservableList<Student> studentlist, String filePath, String studentIdNumber) {
         try (FileInputStream fileIn = new FileInputStream(filePath);
              XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
 
@@ -125,7 +126,7 @@ public class ExcelWriter {
             // creates a new row
             Row row = sheet.createRow(rowNum++);
             // adds the new subject to the new row
-            row.createCell(0).setCellValue(student.getStudentId());
+            row.createCell(0).setCellValue(studentIdNumber);
             row.createCell(1).setCellValue(student.getName());
             row.createCell(2).setCellValue(student.getAddress());
             row.createCell(3).setCellValue(student.getPhone());

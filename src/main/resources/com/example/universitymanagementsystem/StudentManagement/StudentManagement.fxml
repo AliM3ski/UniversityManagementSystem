@@ -13,7 +13,7 @@
 <AnchorPane fx:id="contentPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: ffcdb2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
 
     <!-- Table to Display Student Data -->
-    <TableView fx:id="studentTable" layoutX="13.0" layoutY="130.0" prefHeight="445.0" prefWidth="1164.0">
+    <TableView fx:id="studentTable" layoutX="22.0" layoutY="78.0" prefHeight="327.0" prefWidth="1164.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="100" text="Student ID" />
             <TableColumn fx:id="nameColumn" prefWidth="100" text="Name" />
@@ -30,102 +30,95 @@
     </TableView>
     <ImageView fx:id="profileImageView" fitHeight="100" fitWidth="100" layoutX="14.0" layoutY="14.0" />
 
-    <!-- Input Fields for Student Data -->
-    <Label fx:id="studentIdLabel" layoutX="30.0" layoutY="821.0" text="Student ID:">
+    <Label fx:id="nameIdLabel" layoutX="238.0" layoutY="505.0" text="Name:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="studentIdField" layoutX="226.0" layoutY="821.0" prefHeight="36.0" prefWidth="270.0" />
+    <TextField fx:id="nameField" layoutX="337.0" layoutY="502.0" prefHeight="18.0" prefWidth="194.0" />
 
-    <Label fx:id="nameIdLabel" layoutX="32.0" layoutY="868.0" text="Name:">
+    <Label fx:id="emailLabel" layoutX="238.0" layoutY="546.0" text="Email:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="nameField" layoutX="226.0" layoutY="868.0" prefHeight="36.0" prefWidth="270.0" />
+    <TextField fx:id="emailField" layoutX="338.0" layoutY="544.0" prefHeight="26.0" prefWidth="194.0" />
 
-    <Label fx:id="emailLabel" layoutX="30.0" layoutY="914.0" text="Email:">
+    <Label fx:id="addressLabel" layoutX="238.0" layoutY="593.0" text="Address:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="emailField" layoutX="226.0" layoutY="916.0" prefHeight="36.0" prefWidth="270.0" />
+    <TextField fx:id="addressField" layoutX="337.0" layoutY="590.0" prefHeight="26.0" prefWidth="194.0" />
 
-    <Label fx:id="addressLabel" layoutX="30.0" layoutY="963.0" text="Address:">
+    <Label fx:id="phoneLabel" layoutX="238.0" layoutY="637.0" text="Phone:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="addressField" layoutX="226.0" layoutY="965.0" prefHeight="44.0" prefWidth="270.0" />
+    <TextField fx:id="phoneField" layoutX="338.0" layoutY="635.0" prefHeight="26.0" prefWidth="194.0" />
 
-    <Label fx:id="phoneLabel" layoutX="30.0" layoutY="1022.0" text="Phone:">
+    <Label fx:id="academicLevelLabel" layoutX="236.0" layoutY="689.0" text="Academic Level:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="phoneField" layoutX="226.0" layoutY="1022.0" prefHeight="44.0" prefWidth="270.0" />
-
-    <Label fx:id="academicLevelLabel" layoutX="30.0" layoutY="1097.0" text="Academic Level:">
-      <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
-      </font></Label>
-    <ComboBox fx:id="academicLevelBox" layoutX="248.0" layoutY="1093.0" prefHeight="44.0" prefWidth="248.0" />
+    <ComboBox fx:id="academicLevelBox" layoutX="364.0" layoutY="684.0" prefHeight="30.0" prefWidth="167.0" />
 
        <!-- Newly Added Fields -->
-    <Label fx:id="subjectRegisteredLabel" layoutX="636.0" layoutY="833.0" text="Subjects Registered:">
+    <Label fx:id="subjectRegisteredLabel" layoutX="661.0" layoutY="506.0" text="Subjects Registered:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="subjectRegisteredField" layoutX="877.0" layoutY="829.0" prefHeight="44.0" prefWidth="215.0" />
+    <TextField fx:id="subjectRegisteredField" layoutX="822.0" layoutY="503.0" prefHeight="26.0" prefWidth="200.0" />
 
-    <Label fx:id="thesisTitleLabel" layoutX="636.0" layoutY="888.0" text="Thesis Title:">
+    <Label fx:id="thesisTitleLabel" layoutX="660.0" layoutY="552.0" text="Thesis Title:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="thesisTitleField" layoutX="876.0" layoutY="884.0" prefHeight="44.0" prefWidth="215.0" />
+    <TextField fx:id="thesisTitleField" layoutX="822.0" layoutY="550.0" prefHeight="18.0" prefWidth="200.0" />
 
-    <Label fx:id="progressLabel" layoutX="650.0" layoutY="947.0" text="Progress:">
+    <Label fx:id="progressLabel" layoutX="662.0" layoutY="597.0" text="Progress:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="progressField" layoutX="876.0" layoutY="940.0" prefHeight="44.0" prefWidth="215.0" />
+    <TextField fx:id="progressField" layoutX="820.0" layoutY="595.0" prefHeight="26.0" prefWidth="200.0" />
 
-    <Label fx:id="passwordLabel" layoutX="645.0" layoutY="1007.0" text="Password:">
+    <Label fx:id="passwordLabel" layoutX="660.0" layoutY="651.0" text="Password:">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="25.0" />
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
       </font></Label>
-    <TextField fx:id="passwordField" layoutX="876.0" layoutY="1003.0" prefHeight="44.0" prefWidth="215.0" />
+    <TextField fx:id="passwordField" layoutX="817.0" layoutY="648.0" prefHeight="26.0" prefWidth="208.0" />
 
 
     <!-- Generated Student ID Label -->
     <Label fx:id="generatedStudentID" layoutX="180.0" layoutY="1221.0" />
-     <Button fx:id="editStudentbutton" layoutX="330.0" layoutY="681.0" onAction="#editStudent" prefHeight="79.0" prefWidth="258.0" style="-fx-background-color: c1121f;" text="Edit Student" textFill="WHITE">
+     <Button fx:id="editStudentbutton" layoutX="384.0" layoutY="423.0" onAction="#editStudent" prefHeight="44.0" prefWidth="208.0" style="-fx-background-color: c1121f;" text="Edit Student" textFill="WHITE">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="32.0" />
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
       </font>
    </Button>
-     <Button fx:id="addStudentbutton" layoutX="22.0" layoutY="681.0" onAction="#addStudent" prefHeight="79.0" prefWidth="277.0" style="-fx-background-color: c1121f;" text="Add Student" textFill="WHITE">
+     <Button fx:id="addStudentbutton" layoutX="126.0" layoutY="424.0" onAction="#addStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: c1121f;" text="Add Student" textFill="WHITE">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="33.0" />
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
       </font>
    </Button>
-     <Button fx:id="deleteStudentbutton" layoutX="621.0" layoutY="681.0" onAction="#deleteStudent" prefHeight="79.0" prefWidth="258.0" style="-fx-background-color: c1121f;" text="Delete Student" textFill="WHITE">
+     <Button fx:id="deleteStudentbutton" layoutX="660.0" layoutY="423.0" onAction="#deleteStudent" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: c1121f;" text="Delete Student" textFill="WHITE">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="30.0" />
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
       </font>
    </Button>
-     <Button fx:id="uploadPhotoButton" layoutX="919.0" layoutY="681.0" onAction="#handleUploadPhoto" prefHeight="79.0" prefWidth="258.0" style="-fx-background-color: c1121f;" text="Upload Photo" textFill="WHITE">
+     <Button fx:id="uploadPhotoButton" layoutX="938.0" layoutY="423.0" onAction="#handleUploadPhoto" prefHeight="44.0" prefWidth="208.0" style="-fx-background-color: c1121f;" text="Upload Photo" textFill="WHITE">
       <font>
-         <Font name="Yu Gothic UI Semibold" size="32.0" />
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
       </font>
    </Button>
-     <Button fx:id="viewProfileButton" layoutX="300.0" layoutY="14.0" onAction="#viewStudentProfile" prefHeight="71.0" prefWidth="158.0" style="-fx-background-color: c1121f;" text="View Profile" textFill="WHITE">
+     <Button fx:id="viewProfileButton" layoutX="293.0" layoutY="14.0" onAction="#viewStudentProfile" prefHeight="41.0" prefWidth="182.0" style="-fx-background-color: c1121f;" text="View Profile" textFill="WHITE">
       <font>
          <Font name="Yu Gothic UI Semibold" size="17.0" />
       </font>
    </Button>
-     <Button fx:id="manageEnrollmentsButton" layoutX="671.0" layoutY="14.0" onAction="#manageEnrollments" prefHeight="71.0" prefWidth="158.0" style="-fx-background-color: c1121f;" text="Manage Enrollments" textFill="WHITE">
+     <Button fx:id="manageEnrollmentsButton" layoutX="797.0" layoutY="14.0" onAction="#manageEnrollments" prefHeight="41.0" prefWidth="215.0" style="-fx-background-color: c1121f;" text="Manage Enrollments" textFill="WHITE">
       <font>
          <Font name="Yu Gothic UI Semibold" size="13.0" />
       </font>
    </Button>
-     <Button fx:id="manageTuitionButton" layoutX="479.0" layoutY="14.0" onAction="#manageTuition" prefHeight="71.0" prefWidth="165.0" style="-fx-background-color: c1121f;" text="Manage Tuition" textFill="WHITE">
+     <Button fx:id="manageTuitionButton" layoutX="512.0" layoutY="14.0" onAction="#manageTuition" prefHeight="36.0" prefWidth="248.0" style="-fx-background-color: c1121f;" text="Manage Tuition" textFill="WHITE">
       <font>
          <Font name="Yu Gothic UI Semibold" size="19.0" />
       </font>

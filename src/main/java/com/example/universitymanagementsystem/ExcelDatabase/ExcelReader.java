@@ -245,6 +245,44 @@ public class ExcelReader {
             e.printStackTrace();
         }
     }
+    public static boolean readExcelStudentIDs(String filePath, String username, String password) {
+        try (
+                // Open the file as an input stream
+                FileInputStream fis = new FileInputStream(filePath);
+                // Create a workbook object to access the Excel file. Workbook representing an entire Excel ile
+                Workbook workbook = new XSSFWorkbook(fis)
+        ) {
+            // Get the first sheet from the workbook
+            Sheet sheet = workbook.getSheetAt(2);
+
+            int lastRow = findLastNonEmptyRow(sheet); // Get last non-empty row index
+
+            // Loop through each row in the sheet
+            for (int i = 0; i <= lastRow; i++) {
+                Row row = sheet.getRow(i);
+                // Loop through each cell in the row
+                if (row != null) {
+                    Cell studentIdCell = row.getCell(0);
+                    Cell passwordCell = row.getCell(11);
+
+                    if (studentIdCell != null) {
+                        String studentid = studentIdCell.getStringCellValue().trim();
+                        String passwordid = passwordCell.getStringCellValue().trim();
+
+                        if(studentid.equals(username) && passwordid.equals(password)){
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            // Handle exceptions (e.g., file not found or read errors)
+            // prints details about an exception (error) that occurred in a program.
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
 
 

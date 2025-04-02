@@ -430,8 +430,4 @@ public class StudentManagementController {
 
     }
 
-    @FXML
-    public void backToDashBoard(MouseEvent event) throws IOException {
-        moveBetweenInterfaces.openDashBoard(user, contentPane);
-    }
 }

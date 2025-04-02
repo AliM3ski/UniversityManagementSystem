@@ -5,61 +5,67 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="1010.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.EventManagement.EventManagementController">
+<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: ffcdb2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.EventManagement.EventManagementController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#942708" height="71.0" stroke="BLACK" strokeType="INSIDE" width="1009.0" />
-      <Button layoutX="32.0" layoutY="141.0" minWidth="47.0" mnemonicParsing="false" onAction="#openListOfEvents" prefHeight="32.0" prefWidth="116.0" text="List Of Events" textFill="#9c1d1d" textOverrun="LEADING_WORD_ELLIPSIS" AnchorPane.topAnchor="141.0" />
-      <ImageView fitHeight="71.0" fitWidth="138.0" layoutX="32.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Images/1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="71.0" fitWidth="138.0" layoutX="32.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Images/2.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="182.0" layoutY="339.0" mnemonicParsing="false" onAction="#launchResearchWorkshopInfo" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
-      <Text fill="#1a1a1a" layoutX="32.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events: March" wrappingWidth="199.3148193359375">
+      <Button layoutX="32.0" layoutY="81.0" minWidth="47.0" mnemonicParsing="false" onAction="#openListOfEvents" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: c1121f;" text="List Of Events" textFill="WHITE" textOverrun="LEADING_WORD_ELLIPSIS" AnchorPane.topAnchor="81.0">
          <font>
-            <Font name="Dubai Regular" size="18.0" />
+            <Font name="Yu Gothic UI Semibold" size="27.0" />
+         </font></Button>
+      <Text fill="#1a1a1a" layoutX="32.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events: March" wrappingWidth="396.1148223876953">
+         <font>
+            <Font name="Dubai Regular" size="37.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="32.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENTS" wrappingWidth="199.3148193359375">
+      <AnchorPane layoutX="32.0" layoutY="198.0" prefHeight="161.0" prefWidth="705.0">
+         <children>
+            <ImageView fitHeight="151.0" fitWidth="303.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/1.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="331.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Seminar Info" />
+            <Text layoutX="331.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orientation Week! Explore, connect and kickstart your university career" wrappingWidth="374.4471740722656">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <Button layoutX="331.0" layoutY="53.0" mnemonicParsing="false" onAction="#launchSeminar" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
+            <Text layoutX="327.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="59.0" layoutY="406.0" prefHeight="205.0" prefWidth="530.0">
+         <children>
+            <ImageView fitHeight="162.0" fitWidth="303.0" layoutX="-26.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/2.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="294.0" layoutY="89.0" mnemonicParsing="false" onAction="#launchResearchWorkshopInfo" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
+            <Text layoutX="294.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Research Workshop Info" />
+            <Text layoutX="287.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graduate Workshop! Enhance your thesis skills and refine your graduation research" wrappingWidth="242.64718627929688">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="295.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Button fx:id="manageEventsButton" layoutX="700.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#openManageEvents" prefHeight="62.0" prefWidth="452.0" style="-fx-background-color: c1121f;" text="Manage Events" textFill="WHITE">
          <font>
-            <Font name="Impact" size="23.0" />
-         </font>
-      </Text>
-      <Text layoutX="182.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Seminar Info" />
-      <Text layoutX="182.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Research Workshop Info" />
-      <Text layoutX="182.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orientation Week! Explore, connect and kickstart your university career" wrappingWidth="397.6471862792969">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <Text layoutX="182.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graduate Workshop! Enhance your thesis skills and refine your graduation research" wrappingWidth="242.64718627929688">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <Button layoutX="183.0" layoutY="240.0" mnemonicParsing="false" onAction="#launchSeminar" prefHeight="27.0" prefWidth="95.0" text="READ MORE" textFill="#a51b1b" textOverrun="LEADING_WORD_ELLIPSIS" />
-      <Text layoutX="303.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="303.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🕑 5th March 2025" wrappingWidth="126.99999999999989">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Button layoutX="852.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
-      <Button fx:id="manageEventsButton" layoutX="727.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#openManageEvents" text="Manage Events" />
-      <VBox fx:id="calendarContainer" layoutX="522.0" layoutY="81.0" prefHeight="319.0" prefWidth="457.0" />
+            <Font name="Yu Gothic UI Semibold" size="28.0" />
+         </font></Button>
+      <VBox fx:id="calendarContainer" layoutX="700.0" layoutY="163.0" prefHeight="460.0" prefWidth="452.0" />
 
    </children>
 </AnchorPane>

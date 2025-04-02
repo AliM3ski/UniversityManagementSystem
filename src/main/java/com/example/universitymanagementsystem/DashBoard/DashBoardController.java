@@ -17,6 +17,9 @@ public class DashBoardController {
     @FXML
     public AnchorPane contentPane;
 
+    @FXML
+    public AnchorPane MainPane;
+
     private User user;
 
     // Method to set the user object
@@ -67,6 +70,6 @@ public class DashBoardController {
 
     @FXML
     public void signOut(MouseEvent event) throws IOException {
-        moveBetweenInterfaces.signOut(user, contentPane);
+        moveBetweenInterfaces.signOut(user, MainPane);
     }
 }

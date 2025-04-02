@@ -16,7 +16,6 @@
       
           <top>
               <HBox alignment="CENTER" spacing="10">
-                  <Button onMouseClicked="#backToDashBoard" text="Back" />
                   <TextField fx:id="nameInput" maxWidth="200" prefWidth="150" promptText="Enter Name" />
                   <TextField fx:id="emailInput" maxWidth="250" prefWidth="200" promptText="Enter Email" />
                   <TextField fx:id="degreeInput" maxWidth="200" prefWidth="150" promptText="Enter Degree" />

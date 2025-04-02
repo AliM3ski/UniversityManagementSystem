@@ -49,14 +49,14 @@ public class ManagingEventsController {
      * @throws IOException If the FXML file fails to load
      */
     @FXML
-    public void backToDashboard(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/DashBoard/DashBoard.fxml"));
+    public void backToEvents(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/EventManagement.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Dashboard");
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.show();
     }
 

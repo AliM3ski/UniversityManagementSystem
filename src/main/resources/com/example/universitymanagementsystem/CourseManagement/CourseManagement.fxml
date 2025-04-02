@@ -8,14 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane fx:id="contentPane" prefWidth="1120.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.CourseManagement.CourseManagementController">
    <children>
       <VBox alignment="CENTER" prefHeight="521.0" prefWidth="1037.0" spacing="10">
       
                    <AnchorPane>
-              <children>
-                  <Button layoutX="337.0" layoutY="14.0" onMouseClicked="#backToDashBoard" text="Back To DashBoard" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0" /> <!-- New input field -->
+              <children> <!-- New input field -->
                  <Button fx:id="addCourseButton" layoutX="8.0" layoutY="7.0" onAction="#addCourse" text="Add" />
                  <Button fx:id="editCourseButton" layoutX="57.0" layoutY="7.0" onAction="#editCourse" text="Edit" />
                  <Button fx:id="deleteCourseButton" layoutX="105.0" layoutY="7.0" onAction="#deleteCourse" text="Delete" />

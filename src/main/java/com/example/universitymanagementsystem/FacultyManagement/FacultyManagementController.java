@@ -203,8 +203,4 @@ public class FacultyManagementController {
             facultyTable.getItems().remove(selectedFaculty);
         }
     }
-    @FXML
-    public void backToDashBoard(MouseEvent event) throws IOException {
-        moveBetweenInterfaces.openDashBoard(user, contentPane);
-    }
 }

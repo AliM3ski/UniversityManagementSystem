@@ -1,5 +1,6 @@
 package com.example.universitymanagementsystem.ExcelDatabase;
 
+import com.example.universitymanagementsystem.CourseManagement.Course;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 import com.example.universitymanagementsystem.Users.Student;
 import org.apache.poi.ss.usermodel.*;
@@ -270,6 +271,44 @@ public class ExcelWriter {
                 }
             }
 
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void writeToExcelCourse(ObservableList<Course> courses, String filePath) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            // Get the sheet where subjects are stored
+            Sheet sheet = workbook.getSheet("Courses");
+            // variable to store number of filled rows
+            int rowNum = sheet.getPhysicalNumberOfRows();
+            // variable to store position of the last element of the sheet
+            int lastElement = courses.size() - 1;
+            // gets the last element of the sheet
+            Course course = courses.get(lastElement);
+            // creates a new row
+            Row row = sheet.createRow(rowNum++);
+            // adds the new subject to the new row
+            row.createCell(0).setCellValue(course.getCourseCode());
+            row.createCell(1).setCellValue(course.getName());
+            row.createCell(2).setCellValue(course.getSubject());
+            row.createCell(3).setCellValue(course.getSectionNumber());
+            row.createCell(4).setCellValue(course.getCapacity());
+           // row.createCell(5).setCellValue(course.get());
+            row.createCell(6).setCellValue(course.getFinalExamDateTime());
+            row.createCell(7).setCellValue(course.getLocation());
+           // row.createCell(8).setCellValue(course.get());
+
+            // fixes sizing in the column if need be
+            for (int i = 0; i < 2; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // sends updates to the excel file
             try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
                 workbook.write(fileOut);
             }

@@ -1,5 +1,7 @@
 package com.example.universitymanagementsystem.EventManagement;
 
+import com.example.universitymanagementsystem.Users.User;
+import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -43,26 +46,21 @@ public class ManagingEventsController {
     @FXML
     private TextArea newDescription;
 
+    @FXML
+    public AnchorPane contentPane;
+
+
+    private User user;
     // List to hold Event objects
     private List<Event> eventList = new ArrayList<>();
 
-    /**
-     * Navigates back to the dashboard page.
-     * Ensures the system maintains the correct scene flow.
-     *
-     * @param event ActionEvent triggered by the back button
-     * @throws IOException If the FXML file fails to load
-     */
-    @FXML
-    public void backToEvents(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/universitymanagementsystem/EventManagement/EventManagement.fxml"));
-        Parent root = loader.load();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Dashboard");
-        stage.setMaximized(true);
-        stage.show();
+    public void setUser(User user) {
+        this.user = user;
+    }
+    @FXML
+    public void launchEventManagement(ActionEvent event) throws IOException {
+        moveBetweenInterfaces.launchEventManagement(user, contentPane);
     }
 
     /**

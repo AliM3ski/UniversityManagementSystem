@@ -1,56 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="contentPane" prefWidth="1120.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.CourseManagement.CourseManagementController">
-   <children>
-      <VBox alignment="CENTER" prefHeight="521.0" prefWidth="1037.0" spacing="10">
-      
-                   <AnchorPane>
-              <children> <!-- New input field -->
-                 <Button fx:id="addCourseButton" layoutX="8.0" layoutY="7.0" onAction="#addCourse" text="Add" />
-                 <Button fx:id="editCourseButton" layoutX="57.0" layoutY="7.0" onAction="#editCourse" text="Edit" />
-                 <Button fx:id="deleteCourseButton" layoutX="105.0" layoutY="7.0" onAction="#deleteCourse" text="Delete" />
-              </children>
-          </AnchorPane>
-      
-                   <!-- SEARCH BAR -->
-          <HBox prefHeight="25.0" prefWidth="1556.0" spacing="10">
-              <TextField fx:id="searchInput" promptText="Search Course" />
-              <Button onAction="#searchCourse" text="Search" />
-          </HBox>
-      
-                   <TableView fx:id="courseTable">
-              <columns>
-                  <TableColumn fx:id="nameColumn" prefWidth="109.14285492897034" text="Course Name" />
-                  <TableColumn fx:id="subjectColumn" prefWidth="94.85711669921875" text="Subject" />
-                  <TableColumn fx:id="scheduleColumn" prefWidth="88.57142639160156" text="Schedule" />
-                  <TableColumn fx:id="capacityColumn" prefWidth="94.85711669921875" text="Capacity" />
-                  <TableColumn fx:id="facultyColumn" prefWidth="90.28570556640625" text="Faculty" />
-                  <TableColumn fx:id="courseCodeColumn" prefWidth="85.14288330078125" text="Course Code" /> <!-- New column -->
-                  <TableColumn fx:id="sectionNumberColumn" prefWidth="113.14288330078125" text="Section Number" /> <!-- New column -->
-                  <TableColumn fx:id="finalExamDateTimeColumn" prefWidth="89.71429443359375" text="Final Exam" /> <!-- New column -->
-                  <TableColumn fx:id="locationColumn" prefWidth="96.5714111328125" text="Location" /> <!-- New column -->
-              </columns>
-          </TableView>
-      
-                   <HBox spacing="10">
-              <TextField fx:id="nameInput" prefHeight="25.0" prefWidth="122.0" promptText="Course Name" />
-              <TextField fx:id="subjectInput" prefHeight="25.0" prefWidth="97.0" promptText="Subject" />
-              <TextField fx:id="scheduleInput" prefHeight="25.0" prefWidth="111.0" promptText="Schedule" />
-              <TextField fx:id="capacityInput" prefHeight="25.0" prefWidth="101.0" promptText="Capacity" />
-              <TextField fx:id="facultyInput" prefHeight="25.0" prefWidth="90.0" promptText="Faculty" />
-              <TextField fx:id="courseCodeInput" prefHeight="25.0" prefWidth="118.0" promptText="Course Code" /> <!-- New input field -->
-              <TextField fx:id="sectionNumberInput" prefHeight="25.0" prefWidth="137.0" promptText="Section Number" /> <!-- New input field -->
-              <TextField fx:id="finalExamDateTimeInput" prefHeight="25.0" prefWidth="121.0" promptText="Final Exam" /> <!-- New input field -->
-              <TextField fx:id="locationInput" prefHeight="25.0" prefWidth="87.0" promptText="Location" />
-          </HBox>
-      </VBox>
-   </children>
+<AnchorPane fx:id="contentPane"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.universitymanagementsystem.CourseManagement.CourseManagementController"
+            prefWidth="1120.0"
+            style="-fx-background-color: #fdd1b2; -fx-padding: 20;">
+
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="15.0" prefWidth="1080.0" layoutX="20" layoutY="20">
+
+            <!-- Action Buttons -->
+            <HBox spacing="10">
+                <Button fx:id="addCourseButton" text="Add" onAction="#addCourse"
+                        style="-fx-background-color: #c21807; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10;" />
+                <Button fx:id="editCourseButton" text="Edit" onAction="#editCourse"
+                        style="-fx-background-color: #c21807; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10;" />
+                <Button fx:id="deleteCourseButton" text="Delete" onAction="#deleteCourse"
+                        style="-fx-background-color: #e53935; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10;" />
+            </HBox>
+
+            <!-- Search Bar -->
+            <HBox spacing="10">
+                <TextField fx:id="searchInput" promptText="Search Course"
+                           style="-fx-background-radius: 10; -fx-padding: 8;" />
+                <Button text="Search" onAction="#searchCourse"
+                        style="-fx-background-color: #d3d3d3; -fx-font-weight: bold; -fx-background-radius: 10;" />
+            </HBox>
+
+            <!-- Table View -->
+            <TableView fx:id="courseTable" prefHeight="300" prefWidth="1000"
+                       style="-fx-font-size: 13px; -fx-border-radius: 10; -fx-background-radius: 10;">
+                <columns>
+                    <TableColumn fx:id="nameColumn" text="Course Name" prefWidth="120"/>
+                    <TableColumn fx:id="subjectColumn" text="Subject" prefWidth="90"/>
+                    <TableColumn fx:id="scheduleColumn" text="Schedule" prefWidth="120"/>
+                    <TableColumn fx:id="capacityColumn" text="Capacity" prefWidth="80"/>
+                    <TableColumn fx:id="facultyColumn" text="Faculty" prefWidth="150"/>
+                    <TableColumn fx:id="courseCodeColumn" text="Course Code" prefWidth="100"/>
+                    <TableColumn fx:id="sectionNumberColumn" text="Section Number" prefWidth="110"/>
+                    <TableColumn fx:id="finalExamDateTimeColumn" text="Final Exam" prefWidth="100"/>
+                    <TableColumn fx:id="locationColumn" text="Location" prefWidth="80"/>
+                </columns>
+            </TableView>
+
+            <!-- Input Fields -->
+            <HBox spacing="10">
+                <TextField fx:id="nameInput" promptText="Course Name"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="subjectInput" promptText="Subject"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="scheduleInput" promptText="Schedule"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="capacityInput" promptText="Capacity"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="facultyInput" promptText="Faculty"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="courseCodeInput" promptText="Course Code"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="sectionNumberInput" promptText="Section Number"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="finalExamDateTimeInput" promptText="Final Exam"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+                <TextField fx:id="locationInput" promptText="Location"
+                           style="-fx-background-radius: 10; -fx-padding: 6;" />
+            </HBox>
+
+        </VBox>
+    </children>
 </AnchorPane>

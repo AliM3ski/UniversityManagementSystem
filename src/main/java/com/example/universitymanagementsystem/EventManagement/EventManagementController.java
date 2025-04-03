@@ -96,11 +96,6 @@ public class EventManagementController implements Initializable {
     }
 
     @FXML
-    public void backToDashBoard(MouseEvent event) throws IOException {
-        moveBetweenInterfaces.openDashBoard(user, contentPane);
-    }
-
-    @FXML
     public void openManageEvents(MouseEvent event) throws IOException {
         moveBetweenInterfaces.openManageEvents(user, contentPane);
     }

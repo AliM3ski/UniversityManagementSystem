@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Random;
 
 public class StudentManagementController {
 
@@ -50,7 +51,7 @@ public class StudentManagementController {
 
     // Input fields for adding or editing student info
     @FXML
-    private TextField studentIdField, nameField, emailField, addressField, phoneField, subjectRegisteredField, thesisTitleField, progressField, passwordField;
+    private TextField nameField, emailField, addressField, phoneField, subjectRegisteredField, thesisTitleField, progressField, passwordField;
 
     @FXML
     private ComboBox<String> academicLevelBox;
@@ -64,7 +65,7 @@ public class StudentManagementController {
 
     // Labels in the FXML
     @FXML
-    private Label studentIdLabel, nameIdLabel, emailLabel, addressLabel, phoneLabel, academicLevelLabel, subjectRegisteredLabel, thesisTitleLabel, progressLabel, passwordLabel;
+    private Label  nameIdLabel, emailLabel, addressLabel, phoneLabel, academicLevelLabel, subjectRegisteredLabel, thesisTitleLabel, progressLabel, passwordLabel;
 
     private User user; // User object to store user information
     private ImageView studentImageView;
@@ -115,19 +116,16 @@ public class StudentManagementController {
 
     // Helper method to enable or disable input fields
     private void enableInputFields(boolean enable) {
-        studentIdField.setDisable(!enable);
         nameField.setDisable(!enable);
         emailField.setDisable(!enable);
         academicLevelBox.setDisable(!enable);
         addressField.setDisable(!enable);
         phoneField.setDisable(!enable);
-        studentIdField.setVisible(enable);
         nameField.setVisible(enable);
         emailField.setVisible(enable);
         academicLevelBox.setVisible(enable);
         addressField.setVisible(enable);
         phoneField.setVisible(enable);
-        studentIdLabel.setVisible(enable);
         nameIdLabel.setVisible(enable);
         emailLabel.setVisible(enable);
         addressLabel.setVisible(enable);
@@ -169,7 +167,12 @@ public class StudentManagementController {
     // Add a new student to the list
     @FXML
     private void addStudent() {
-        String studentId = studentIdField.getText();
+
+        Random random = new Random();
+        // gets a random nunmber of 10 digits
+        long studentIdNumber = 1_000_000_000L + random.nextLong(9_000_000_000L);
+
+        String studentId = Long.toString(studentIdNumber);
         String name = nameField.getText();
         String email = emailField.getText();
         String address = addressField.getText();
@@ -190,7 +193,7 @@ public class StudentManagementController {
         Student student = new Student(studentId, name, email, address, phone, academicLevel, currentSemester, photoPath, subjectRegistered, thesisTitle, progress, password);
         studentList.add(student);
         // updates the excel database with new student
-        ExcelWriter.writeToExcelStudent(studentList, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
+        ExcelWriter.writeToExcelStudent(studentList, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", Long.toString(studentIdNumber));
 
 
 
@@ -219,10 +222,7 @@ public class StudentManagementController {
         String oldProgress = selectedStudent.getProgress();
         String oldPassword = selectedStudent.getPassword();
 
-        // Only update fields if they are not empty
-        if (studentIdField.getText() != null && !studentIdField.getText().isEmpty()) {
-            selectedStudent.setStudentId(studentIdField.getText());
-        }
+
         if (nameField.getText() != null && !nameField.getText().isEmpty()) {
             selectedStudent.setName(nameField.getText());
         }
@@ -384,7 +384,6 @@ public class StudentManagementController {
     // Helper method to show alerts with an optional image
     private void showAlert(String title, String message, String imagePath) {
         // Create an alert of type INFORMATION
-        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         // Set the title of the alert window
         alert.setTitle(title);
@@ -418,7 +417,6 @@ public class StudentManagementController {
 
     // Helper method to clear input fields
     private void clearFields() {
-        studentIdField.clear();
         nameField.clear();
         emailField.clear();
         addressField.clear();
@@ -431,8 +429,4 @@ public class StudentManagementController {
 
     }
 
-    @FXML
-    public void backToDashBoard(MouseEvent event) throws IOException {
-        moveBetweenInterfaces.openDashBoard(user, contentPane);
-    }
 }

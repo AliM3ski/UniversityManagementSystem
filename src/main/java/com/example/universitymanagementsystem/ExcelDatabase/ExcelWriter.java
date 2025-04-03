@@ -1,11 +1,14 @@
 package com.example.universitymanagementsystem.ExcelDatabase;
 
+import com.example.universitymanagementsystem.CourseManagement.Course;
+import com.example.universitymanagementsystem.FacultyManagement.FacultyManagement;
 import com.example.universitymanagementsystem.SubjectManagement.Subject;
 import com.example.universitymanagementsystem.Users.Student;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javafx.collections.ObservableList;
 import java.io.*;
+import java.util.Random;
 
 public class ExcelWriter {
 
@@ -109,7 +112,7 @@ public class ExcelWriter {
     }
 
 
-    public static void writeToExcelStudent(ObservableList<Student> studentlist, String filePath) {
+    public static void writeToExcelStudent(ObservableList<Student> studentlist, String filePath, String studentIdNumber) {
         try (FileInputStream fileIn = new FileInputStream(filePath);
              XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
 
@@ -124,7 +127,7 @@ public class ExcelWriter {
             // creates a new row
             Row row = sheet.createRow(rowNum++);
             // adds the new subject to the new row
-            row.createCell(0).setCellValue(student.getStudentId());
+            row.createCell(0).setCellValue(studentIdNumber);
             row.createCell(1).setCellValue(student.getName());
             row.createCell(2).setCellValue(student.getAddress());
             row.createCell(3).setCellValue(student.getPhone());
@@ -270,6 +273,157 @@ public class ExcelWriter {
                 }
             }
 
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void writeToExcelCourse(ObservableList<Course> courses, String filePath) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            // Get the sheet where subjects are stored
+            Sheet sheet = workbook.getSheet("Courses");
+            // variable to store number of filled rows
+            int rowNum = sheet.getPhysicalNumberOfRows();
+            // variable to store position of the last element of the sheet
+            int lastElement = courses.size() - 1;
+            // gets the last element of the sheet
+            Course course = courses.get(lastElement);
+            // creates a new row
+            Row row = sheet.createRow(rowNum++);
+            // adds the new subject to the new row
+            row.createCell(0).setCellValue(course.getCourseCode());
+            row.createCell(1).setCellValue(course.getName());
+            row.createCell(2).setCellValue(course.getSubject());
+            row.createCell(3).setCellValue(course.getSectionNumber());
+            row.createCell(4).setCellValue(course.getCapacity());
+           // row.createCell(5).setCellValue(course.get());
+            row.createCell(6).setCellValue(course.getFinalExamDateTime());
+            row.createCell(7).setCellValue(course.getLocation());
+           // row.createCell(8).setCellValue(course.get());
+
+            // fixes sizing in the column if need be
+            for (int i = 0; i < 2; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            // sends updates to the excel file
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeToExcelFaculty(ObservableList<FacultyManagement> facultyList, String filePath, String facultyIdNumber) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            // Get the faculty sheet (assuming it's named "Faculty" or at index 3)
+            Sheet sheet = workbook.getSheetAt(3); // Or workbook.getSheet("Faculty")
+
+            // Get the last row number (adds after existing data)
+            int rowNum = sheet.getLastRowNum() + 1;
+
+            // Get the last faculty member from the list
+            FacultyManagement faculty = facultyList.get(facultyList.size() - 1);
+
+            // Create new row and populate cells
+            Row row = sheet.createRow(rowNum);
+            row.createCell(0).setCellValue(facultyIdNumber); // Column A: Faculty ID
+            row.createCell(1).setCellValue(faculty.getName()); // Column B: Name
+            row.createCell(2).setCellValue(faculty.getDegree()); // Column C: Degree
+            row.createCell(3).setCellValue(faculty.getResearchInterests()); // Column D: Research
+            row.createCell(4).setCellValue(faculty.getEmail()); // Column E: Email
+            row.createCell(5).setCellValue(faculty.getOfficeLocation()); // Column F: Office
+            row.createCell(6).setCellValue(faculty.getCoursesOffered()); // Column G: Courses
+            row.createCell(7).setCellValue(faculty.getPassword()); // Column H: Password
+
+            // Auto-size columns for better visibility
+            for (int i = 0; i < 8; i++) { // Adjust for all 8 columns
+                sheet.autoSizeColumn(i);
+            }
+
+            // Save changes to the file
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editFacultyInExcel(String filePath, FacultyManagement selectedFaculty,
+                                          String oldFacultyID, String oldName, String oldDegree, String oldResearch,
+                                          String oldEmail, String oldOffice, String oldPassword) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            Sheet sheet = workbook.getSheet("Faculty");
+
+            // Loop through each row to find the matching faculty
+            for (Row row : sheet) {
+                Cell[] cells = new Cell[8]; // Faculty has 8 columns
+                for (int i = 0; i < 8; i++) {
+                    cells[i] = row.getCell(i);
+                }
+
+                // Check if this is the row we want to edit
+                if (cells[0] != null && cells[0].getStringCellValue().equals(oldFacultyID)) {
+                    // Update all fields that might have changed
+                    cells[0].setCellValue(selectedFaculty.getFacultyId());
+                    cells[1].setCellValue(selectedFaculty.getName());
+                    cells[2].setCellValue(selectedFaculty.getDegree());
+                    cells[3].setCellValue(selectedFaculty.getResearchInterests());
+                    cells[4].setCellValue(selectedFaculty.getEmail());
+                    cells[5].setCellValue(selectedFaculty.getOfficeLocation());
+                    cells[6].setCellValue(selectedFaculty.getCoursesOffered());
+                    cells[7].setCellValue(selectedFaculty.getPassword());
+                    break; // Found and updated our faculty, exit loop
+                }
+            }
+
+            // Save changes
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteFacultyFromExcel(String filePath, String facultyID) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            Sheet sheet = workbook.getSheet("Faculty");
+            int rowIndex = -1;
+
+            // Find the row to delete
+            for (Row row : sheet) {
+                Cell idCell = row.getCell(0);
+                if (idCell != null && idCell.getStringCellValue().equals(facultyID)) {
+                    rowIndex = row.getRowNum();
+                    break;
+                }
+            }
+
+            // Delete the row if found
+            if (rowIndex != -1) {
+                int lastRowNum = sheet.getLastRowNum();
+                sheet.removeRow(sheet.getRow(rowIndex));
+
+                // Shift rows up if needed
+                if (rowIndex < lastRowNum) {
+                    sheet.shiftRows(rowIndex + 1, lastRowNum, -1);
+                }
+            }
+
+            // Save changes
             try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
                 workbook.write(fileOut);
             }

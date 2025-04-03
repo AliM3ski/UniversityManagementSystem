@@ -6,80 +6,121 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contentPane" prefHeight="623.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
-
-    <!-- Title Section -->
-    <Label layoutX="150" layoutY="20" text="Student Management System" />
+<AnchorPane fx:id="contentPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: ffcdb2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.StudentManagement.StudentManagementController">
 
     <!-- Table to Display Student Data -->
-    <TableView fx:id="studentTable" layoutX="13.0" layoutY="50" prefHeight="291.0" prefWidth="778.0">
+    <TableView fx:id="studentTable" layoutX="22.0" layoutY="78.0" prefHeight="327.0" prefWidth="1164.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="100" text="Student ID" />
             <TableColumn fx:id="nameColumn" prefWidth="100" text="Name" />
             <TableColumn fx:id="addressColumn" prefWidth="100" text="Address" />
             <TableColumn fx:id="phoneColumn" prefWidth="100" text="Phone" />
             <TableColumn fx:id="emailColumn" prefWidth="100" text="Email" />
-            <TableColumn fx:id="levelColumn" prefWidth="100" text="Academic Level" />
-            <TableColumn fx:id="semesterColumn" prefWidth="100" text="Current Semester" />
-            <TableColumn fx:id="subjectRegisteredColumn" text="Subjects Registered"/>
-            <TableColumn fx:id="thesisTitleColumn" text="Thesis Title"/>
-            <TableColumn fx:id="progressColumn" text="Progress"/>
-            <TableColumn fx:id="passwordColumn" text="Password"/>
+            <TableColumn fx:id="levelColumn" prefWidth="124.0" text="Academic Level" />
+            <TableColumn fx:id="semesterColumn" prefWidth="144.79998779296875" text="Current Semester" />
+            <TableColumn fx:id="subjectRegisteredColumn" prefWidth="140.0" text="Subjects Registered" />
+            <TableColumn fx:id="thesisTitleColumn" minWidth="0.0" prefWidth="93.5999755859375" text="Thesis Title" />
+            <TableColumn fx:id="progressColumn" prefWidth="76.0" text="Progress" />
+            <TableColumn fx:id="passwordColumn" prefWidth="88.0" text="Password" />
         </columns>
     </TableView>
+    <ImageView fx:id="profileImageView" fitHeight="100" fitWidth="100" layoutX="14.0" layoutY="14.0" />
 
-    <!-- Input Fields for Student Data -->
-    <Label fx:id="studentIdLabel" layoutX="167.0" layoutY="365.0" text="Student ID:" />
-    <TextField fx:id="studentIdField" layoutX="267.0" layoutY="365.0" prefWidth="200" />
+    <Label fx:id="nameIdLabel" layoutX="238.0" layoutY="505.0" text="Name:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="nameField" layoutX="337.0" layoutY="502.0" prefHeight="18.0" prefWidth="194.0" />
 
-    <Label fx:id="nameIdLabel" layoutX="167.0" layoutY="405.0" text="Name:" />
-    <TextField fx:id="nameField" layoutX="267.0" layoutY="405.0" prefWidth="200" />
+    <Label fx:id="emailLabel" layoutX="238.0" layoutY="546.0" text="Email:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="emailField" layoutX="338.0" layoutY="544.0" prefHeight="26.0" prefWidth="194.0" />
 
-    <Label fx:id="emailLabel" layoutX="167.0" layoutY="445.0" text="Email:" />
-    <TextField fx:id="emailField" layoutX="267.0" layoutY="445.0" prefWidth="200" />
+    <Label fx:id="addressLabel" layoutX="238.0" layoutY="593.0" text="Address:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="addressField" layoutX="337.0" layoutY="590.0" prefHeight="26.0" prefWidth="194.0" />
 
-    <Label fx:id="addressLabel" layoutX="167.0" layoutY="485.0" text="Address:" />
-    <TextField fx:id="addressField" layoutX="267.0" layoutY="485.0" prefWidth="200" />
+    <Label fx:id="phoneLabel" layoutX="238.0" layoutY="637.0" text="Phone:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="phoneField" layoutX="338.0" layoutY="635.0" prefHeight="26.0" prefWidth="194.0" />
 
-    <Label fx:id="phoneLabel" layoutX="167.0" layoutY="525.0" text="Phone:" />
-    <TextField fx:id="phoneField" layoutX="267.0" layoutY="525.0" prefWidth="200" />
+    <Label fx:id="academicLevelLabel" layoutX="236.0" layoutY="689.0" text="Academic Level:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <ComboBox fx:id="academicLevelBox" layoutX="364.0" layoutY="684.0" prefHeight="30.0" prefWidth="167.0" />
 
-    <Label fx:id="academicLevelLabel" layoutX="167.0" layoutY="565.0" text="Academic Level:" />
-    <ComboBox fx:id="academicLevelBox" layoutX="267.0" layoutY="565.0" prefWidth="200" />
+       <!-- Newly Added Fields -->
+    <Label fx:id="subjectRegisteredLabel" layoutX="661.0" layoutY="506.0" text="Subjects Registered:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="subjectRegisteredField" layoutX="822.0" layoutY="503.0" prefHeight="26.0" prefWidth="200.0" />
 
-    <!-- Newly Added Fields -->
-    <Label fx:id="subjectRegisteredLabel" layoutX="500.0" layoutY="365.0" text="Subjects Registered:" />
-    <TextField fx:id="subjectRegisteredField" layoutX="630.0" layoutY="365.0" prefWidth="200" />
+    <Label fx:id="thesisTitleLabel" layoutX="660.0" layoutY="552.0" text="Thesis Title:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="thesisTitleField" layoutX="822.0" layoutY="550.0" prefHeight="18.0" prefWidth="200.0" />
 
-    <Label fx:id="thesisTitleLabel" layoutX="500.0" layoutY="405.0" text="Thesis Title:" />
-    <TextField fx:id="thesisTitleField" layoutX="630.0" layoutY="405.0" prefWidth="200" />
+    <Label fx:id="progressLabel" layoutX="662.0" layoutY="597.0" text="Progress:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="progressField" layoutX="820.0" layoutY="595.0" prefHeight="26.0" prefWidth="200.0" />
 
-    <Label fx:id="progressLabel" layoutX="500.0" layoutY="445.0" text="Progress:" />
-    <TextField fx:id="progressField" layoutX="630.0" layoutY="445.0" prefWidth="200" />
-
-    <Label fx:id="passwordLabel" layoutX="500.0" layoutY="485.0" text="Password:" />
-    <TextField fx:id="passwordField" layoutX="630.0" layoutY="485.0" prefWidth="200" />
+    <Label fx:id="passwordLabel" layoutX="660.0" layoutY="651.0" text="Password:">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="15.0" />
+      </font></Label>
+    <TextField fx:id="passwordField" layoutX="817.0" layoutY="648.0" prefHeight="26.0" prefWidth="208.0" />
 
 
     <!-- Generated Student ID Label -->
-    <Label fx:id="generatedStudentID" layoutX="167.0" layoutY="765.0" />
-    <ImageView fx:id="profileImageView" fitHeight="100" fitWidth="100" />
-
-    <!-- Buttons Section - Using VBox to arrange them vertically -->
-    <VBox layoutX="517.0" layoutY="365.0" spacing="10">
-        <Button fx:id="addStudentbutton" onAction="#addStudent" prefWidth="120" text="Add Student" />
-        <Button fx:id="editStudentbutton" onAction="#editStudent" prefWidth="120" text="Edit Student" />
-        <Button fx:id="deleteStudentbutton" onAction="#deleteStudent" prefWidth="120" text="Delete Student" />
-        <Button fx:id="uploadPhotoButton" onAction="#handleUploadPhoto" prefWidth="120" text="Upload Photo" />
-        <Button fx:id="viewProfileButton" onAction="#viewStudentProfile" prefWidth="120" text="View Profile" />
-        <Button fx:id="manageEnrollmentsButton" onAction="#manageEnrollments" prefWidth="120" text="Manage Enrollments" />
-        <Button fx:id="manageTuitionButton" onAction="#manageTuition" prefWidth="120" text="Manage Tuition" />
-    </VBox>
-
-    <!-- Back Button -->
-    <Button layoutX="14.0" layoutY="8.0" onMouseClicked="#backToDashBoard" text="Back to Dashboard" />
+    <Label fx:id="generatedStudentID" layoutX="180.0" layoutY="1221.0" />
+     <Button fx:id="editStudentbutton" layoutX="384.0" layoutY="423.0" onAction="#editStudent" prefHeight="44.0" prefWidth="208.0" style="-fx-background-color: c1121f;" text="Edit Student" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
+      </font>
+   </Button>
+     <Button fx:id="addStudentbutton" layoutX="126.0" layoutY="424.0" onAction="#addStudent" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: c1121f;" text="Add Student" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
+      </font>
+   </Button>
+     <Button fx:id="deleteStudentbutton" layoutX="660.0" layoutY="423.0" onAction="#deleteStudent" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: c1121f;" text="Delete Student" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
+      </font>
+   </Button>
+     <Button fx:id="uploadPhotoButton" layoutX="938.0" layoutY="423.0" onAction="#handleUploadPhoto" prefHeight="44.0" prefWidth="208.0" style="-fx-background-color: c1121f;" text="Upload Photo" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="18.0" />
+      </font>
+   </Button>
+     <Button fx:id="viewProfileButton" layoutX="293.0" layoutY="14.0" onAction="#viewStudentProfile" prefHeight="41.0" prefWidth="182.0" style="-fx-background-color: c1121f;" text="View Profile" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="17.0" />
+      </font>
+   </Button>
+     <Button fx:id="manageEnrollmentsButton" layoutX="797.0" layoutY="14.0" onAction="#manageEnrollments" prefHeight="41.0" prefWidth="215.0" style="-fx-background-color: c1121f;" text="Manage Enrollments" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="13.0" />
+      </font>
+   </Button>
+     <Button fx:id="manageTuitionButton" layoutX="512.0" layoutY="14.0" onAction="#manageTuition" prefHeight="36.0" prefWidth="248.0" style="-fx-background-color: c1121f;" text="Manage Tuition" textFill="WHITE">
+      <font>
+         <Font name="Yu Gothic UI Semibold" size="19.0" />
+      </font>
+   </Button>
 </AnchorPane>

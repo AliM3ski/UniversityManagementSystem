@@ -12,9 +12,9 @@ public class HelloApplication extends Application {
         //Opens the fxml file
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/universitymanagementsystem/Login/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load()); //Creates a new scene
-        stage.setTitle("Login"); //Changes the title of the window to login
+        stage.setTitle("UniversityManagementSystem"); //Changes the title of the window to login
         stage.setScene(scene); //Associates the Scene with the stage
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.show(); //Displays
         
     }

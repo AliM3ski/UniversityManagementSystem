@@ -1,5 +1,6 @@
 package com.example.universitymanagementsystem.CourseManagement;
 
+import com.example.universitymanagementsystem.ExcelDatabase.ExcelWriter;
 import com.example.universitymanagementsystem.moveBetweenInterfaces;
 import com.example.universitymanagementsystem.ExcelDatabase.ExcelReader;
 import com.example.universitymanagementsystem.Users.User;
@@ -205,6 +206,9 @@ public class CourseManagementController {
         }
 
         courses.add(new Course(courseCode, name, subject, sectionNumber, capacity, schedule, finalExamDateTime, location, faculty));
+        // Update the Excel file
+        ExcelWriter.writeToExcelCourse(courses, "src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx");
+
         clearInputs();
     }
 
@@ -278,16 +282,4 @@ public class CourseManagementController {
         alert.showAndWait();
     }
 
-
-
-    @FXML
-    public void backToDashBoard(MouseEvent event) throws IOException {
-        try {
-            moveBetweenInterfaces move = new moveBetweenInterfaces();
-            move.openDashBoard(user, contentPane);
-        } catch (Exception e) {
-            System.err.println("Error navigating back to Dashboard:");
-            e.printStackTrace();
-        }
-    }
 }

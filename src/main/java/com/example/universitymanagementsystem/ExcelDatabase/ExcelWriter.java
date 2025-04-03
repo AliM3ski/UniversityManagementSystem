@@ -525,5 +525,34 @@ public class ExcelWriter {
         }
     }
 
+    public static void updateFacultyPhoto(String facultyId, String photoPath) {
+        String filePath = "src/main/java/com/example/universitymanagementsystem/ExcelDatabase/UMS_Data.xlsx";
+
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            Sheet sheet = workbook.getSheet("Faculty");
+
+            for (Row row : sheet) {
+                Cell idCell = row.getCell(0);
+                if (idCell != null && idCell.getStringCellValue().equals(facultyId)) {
+                    // Assuming photo path is stored in column 8 (adjust if needed)
+                    Cell photoCell = row.getCell(8);
+                    if (photoCell == null) {
+                        photoCell = row.createCell(8);
+                    }
+                    photoCell.setCellValue(photoPath);
+                    break;
+                }
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

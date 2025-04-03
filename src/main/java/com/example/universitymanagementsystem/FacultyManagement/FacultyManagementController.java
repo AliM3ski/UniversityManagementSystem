@@ -9,11 +9,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
+import java.nio.file.Paths;
+
 
 public class FacultyManagementController {
 
     private User user;
     @FXML public AnchorPane contentPane;
+
+    @FXML
+    private ImageView facultyImageView;
+    private String facultyPhotoPath;
 
     // Table and columns
     @FXML private TableView<FacultyManagement> facultyTable;
@@ -160,16 +176,21 @@ public class FacultyManagementController {
         clearFields();
     }
 
+    @FXML
     public void deleteFaculty(ActionEvent actionEvent) {
         FacultyManagement selectedFaculty = facultyTable.getSelectionModel().getSelectedItem();
+
         if (selectedFaculty != null) {
-            facultyList.remove(selectedFaculty);
-            ExcelWriter.deleteFacultyFromExcel(EXCEL_PATH, selectedFaculty.getFacultyId());
+            facultyList.remove(selectedFaculty);  // Remove from list
+            facultyTable.getItems().remove(selectedFaculty);  // Ensure table updates
+            ExcelWriter.deleteFacultyFromExcel(EXCEL_PATH, selectedFaculty.getFacultyId()); // Remove from database
+            facultyTable.refresh();  // Refresh the table UI
             showAlert("Success", "Faculty removed successfully!");
         } else {
             showAlert("Error", "Please select a faculty to delete.");
         }
     }
+
 
     public void upload(ActionEvent actionEvent) {
         // Implement similar to StudentManagementController if needed
@@ -192,4 +213,116 @@ public class FacultyManagementController {
         officeInput.clear();
         passwordInput.clear();
     }
+
+    @FXML
+    private void handleUploadPhoto() {
+        // Create file chooser
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Faculty Photo");
+
+        // Set extension filters
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Get the current stage from any control (using the upload button in this case)
+        Stage stage = (Stage) uploadbutton.getScene().getWindow();
+
+        // Show open file dialog
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            try {
+                // Create target directory path
+                Path targetDir = Paths.get(
+                        "src", "main", "java", "com", "example",
+                        "universitymanagementsystem", "ExcelDatabase", "faculty_photos"
+                );
+
+                // Create directory if it doesn't exist
+                if (!Files.exists(targetDir)) {
+                    Files.createDirectories(targetDir);
+                }
+
+                // Create target file path
+                Path targetPath = targetDir.resolve(selectedFile.getName());
+
+                // Copy the file
+                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Update the image view
+                facultyImageView.setImage(new Image(targetPath.toUri().toString()));
+
+                // Update the selected faculty member
+                FacultyManagement selectedFaculty = facultyTable.getSelectionModel().getSelectedItem();
+                if (selectedFaculty != null) {
+                    selectedFaculty.setPhotoPath(targetPath.toString());
+                    showAlert("Success", "Photo uploaded successfully!");
+                } else {
+                    showAlert("Error", "Please select a faculty member first.");
+                }
+            } catch (IOException e) {
+                showAlert("Error", "Failed to upload photo: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    private void viewFacultyProfile() {
+        FacultyManagement selectedFaculty = facultyTable.getSelectionModel().getSelectedItem();
+
+        if (selectedFaculty == null) {
+            showAlert("Error", "Please select a faculty member first.");
+            return;
+        }
+
+        // Build profile information string
+        String facultyInfo = String.format(
+                "Faculty ID: %s\nName: %s\nDegree: %s\nResearch: %s\nEmail: %s\nOffice: %s",
+                selectedFaculty.getFacultyId(),
+                selectedFaculty.getName(),
+                selectedFaculty.getDegree(),
+                selectedFaculty.getResearchInterests(),
+                selectedFaculty.getEmail(),
+                selectedFaculty.getOfficeLocation()
+        );
+
+        // Handle photo display
+        String imagePath = null;
+        if (selectedFaculty.getPhotoPath() != null && !selectedFaculty.getPhotoPath().isEmpty()) {
+            try {
+                imagePath = Paths.get(selectedFaculty.getPhotoPath()).toUri().toString();
+            } catch (Exception e) {
+                System.out.println("Error loading photo: " + e.getMessage());
+            }
+        }
+
+        // Show alert with profile info and photo
+        showAlertWithImage("Faculty Profile", facultyInfo, imagePath);
+    }
+
+    // Corrected method to show an alert with an image
+    private void showAlertWithImage(String title, String message, String imagePath) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        if (imagePath != null) {
+            try {
+                Image image = new Image(imagePath);
+                ImageView imageView = new ImageView(image);
+                imageView.setFitWidth(150);
+                imageView.setFitHeight(150);
+                alert.setGraphic(imageView);
+            } catch (Exception e) {
+                System.out.println("Error loading image: " + e.getMessage());
+            }
+        }
+
+        alert.showAndWait();
+    }
+
+
 }

@@ -13,6 +13,7 @@ public class FacultyManagement {
     private final StringProperty officeLocation;
     private final StringProperty coursesOffered;
     private final StringProperty password;
+    private final StringProperty photoPath;
 
     // Constructor matching the simplified structure
     public FacultyManagement(String facultyId, String name, String degree, String researchInterests,
@@ -25,6 +26,7 @@ public class FacultyManagement {
         this.officeLocation = new SimpleStringProperty(officeLocation);
         this.coursesOffered = new SimpleStringProperty(""); // Initialize empty
         this.password = new SimpleStringProperty(password);
+        this.photoPath = new SimpleStringProperty(""); // Initialize empty photo path
     }
 
     // Getters, Setters, and Property methods
@@ -59,6 +61,10 @@ public class FacultyManagement {
     public String getPassword() { return password.get(); }
     public void setPassword(String password) { this.password.set(password); }
     public StringProperty passwordProperty() { return password; }
+
+    public String getPhotoPath() { return photoPath.get(); }
+    public void setPhotoPath(String path) { this.photoPath.set(path); }
+    public StringProperty photoPathProperty() { return photoPath; }
 
     @Override
     public String toString() {

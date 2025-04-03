@@ -46,7 +46,12 @@
                             <Font name="Yu Gothic UI Semibold" size="18.0" />
                         </font>
                     </Button>
-                    <Button fx:id="uploadbutton" onAction="#upload" style="-fx-background-color: #c1121f;" text="Upload Photo" textFill="WHITE">
+                    <Button fx:id="uploadbutton" onAction="#handleUploadPhoto" style="-fx-background-color: #c1121f;" text="Upload Photo" textFill="WHITE">
+                        <font>
+                            <Font name="Yu Gothic UI Semibold" size="18.0" />
+                        </font>
+                    </Button>
+                    <Button fx:id="viewProfileButton" onAction="#viewFacultyProfile" style="-fx-background-color: #c1121f;" text="View Profile" textFill="WHITE">
                         <font>
                             <Font name="Yu Gothic UI Semibold" size="18.0" />
                         </font>
@@ -100,7 +105,7 @@
         </Label>
         <TextField fx:id="passwordInput" layoutX="830.0" layoutY="605.0" prefHeight="26.0" prefWidth="200.0" />
 
-                 <Label fx:id="facultyid" layoutX="200.0" layoutY="517.0" text="Faculty ID:">
+        <Label fx:id="facultyid" layoutX="200.0" layoutY="517.0" text="Faculty ID:">
             <font>
                 <Font name="Yu Gothic UI Semibold" size="15.0" />
             </font>

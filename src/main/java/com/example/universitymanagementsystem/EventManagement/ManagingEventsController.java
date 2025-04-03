@@ -21,53 +21,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The ManagingEventsController handles the creation, updating, deletion,
- * and viewing of university events. It provides role-based management options
- * for administrators to maintain event records efficiently.
+ * Controller class for the Event Management admin panel.
+ * This class provides functionality for administrators to:
+ * - Add new events
+ * - Edit existing events
+ * - Delete events
+ * - Upload a poster/image for an event
  */
 public class ManagingEventsController {
 
-    // UI Components for Event Management
-    @FXML
-    private ComboBox<String> eventComboBox;      // Dropdown for selecting existing events (used for updates)
-    @FXML
-    private ComboBox<String> deleteEventComboBox; // Dropdown for selecting events to delete
+    // ===== UI Components (linked from FXML) =====
 
     @FXML
-    private TextField eventCode, eventTitle, eventLocation, eventDateTime, eventCapacity, eventCost;
+    private ComboBox<String> eventComboBox;           // Used to select an event to edit
     @FXML
-    private TextArea eventDescription;
-    @FXML
-    private ImageView imagePreview;
+    private ComboBox<String> deleteEventComboBox;     // Used to select an event to delete
 
-    // Fields for updating an event
+    @FXML
+    private TextField eventCode, eventTitle, eventLocation, eventDateTime, eventCapacity, eventCost; // Fields for adding a new event
+    @FXML
+    private TextArea eventDescription;                // Description field for new event
+    @FXML
+    private ImageView imagePreview;                   // Shows uploaded image
+
+    // Fields for editing an existing event
     @FXML
     private TextField newTitle, newLocation, newDateTime, newCapacity, newCost;
     @FXML
     private TextArea newDescription;
 
     @FXML
-    public AnchorPane contentPane;
+    public AnchorPane contentPane;                    // AnchorPane container to support UI switching/navigation
+
+    private User user;                                // Stores the logged-in user
+    private List<Event> eventList = new ArrayList<>(); // In-memory list of created events (can later be connected to a database)
 
 
-    private User user;
-    // List to hold Event objects
-    private List<Event> eventList = new ArrayList<>();
-
-
+    /**
+     * Assigns the currently logged-in user to this controller.
+     * This method can be used by other controllers to pass context.
+     */
     public void setUser(User user) {
         this.user = user;
     }
+
+    /**
+     * Navigates back to the main Event Management page.
+     * Triggered by "Back to Events" button.
+     */
     @FXML
     public void launchEventManagement(ActionEvent event) throws IOException {
         moveBetweenInterfaces.launchEventManagement(user, contentPane);
     }
 
     /**
-     * Adds a new event to the system.
-     * Ensures required fields are filled before adding the event.
-     *
-     * @param event ActionEvent triggered by the "Add Event" button
+     * Adds a new event based on form inputs.
+     * - Checks if required fields are filled
+     * - Creates a new Event object
+     * - Adds it to the internal list
+     * - Updates the edit/delete ComboBoxes with the new event
+     * - Displays success or error alert
      */
     @FXML
     public void addEvent(ActionEvent event) {
@@ -80,11 +93,11 @@ public class ManagingEventsController {
         String cost = eventCost.getText();
 
         if (!code.isEmpty() && !title.isEmpty() && !dateTime.isEmpty()) {
-            // Create new Event object and add it to the list
+            // Create a new event and store it
             Event newEvent = new Event(code, title, description, location, dateTime, capacity, cost, "", "");
             eventList.add(newEvent);
 
-            // Populate ComboBoxes with the new event
+            // Update ComboBoxes for editing and deleting
             eventComboBox.getItems().add(title);
             deleteEventComboBox.getItems().add(title);
 
@@ -95,9 +108,10 @@ public class ManagingEventsController {
     }
 
     /**
-     * Updates an existing event's details.
-     *
-     * @param event ActionEvent triggered by the "Update Event" button
+     * Updates the information of an existing event.
+     * - Finds the selected event from the ComboBox
+     * - Replaces only fields that were filled in
+     * - Updates the ComboBox labels with the new name if changed
      */
     @FXML
     public void updateEvent(ActionEvent event) {
@@ -106,7 +120,7 @@ public class ManagingEventsController {
         if (selectedEvent != null) {
             for (Event e : eventList) {
                 if (e.getEventName().equals(selectedEvent)) {
-                    // Update event properties if new values are provided
+                    // Update fields only if new values are provided
                     if (!newTitle.getText().isEmpty()) e.setEventName(newTitle.getText());
                     if (!newDescription.getText().isEmpty()) e.setDescription(newDescription.getText());
                     if (!newLocation.getText().isEmpty()) e.setLocation(newLocation.getText());
@@ -114,9 +128,10 @@ public class ManagingEventsController {
                     if (!newCapacity.getText().isEmpty()) e.setCapacity(newCapacity.getText());
                     if (!newCost.getText().isEmpty()) e.setCost(newCost.getText());
 
-                    // Update ComboBox entries
+                    // Update ComboBox displays
                     eventComboBox.getItems().remove(selectedEvent);
                     eventComboBox.getItems().add(e.getEventName());
+
                     deleteEventComboBox.getItems().remove(selectedEvent);
                     deleteEventComboBox.getItems().add(e.getEventName());
 
@@ -130,14 +145,15 @@ public class ManagingEventsController {
     }
 
     /**
-     * Uploads an image to serve as an event poster.
-     *
-     * @param event ActionEvent triggered by the "Upload Image" button
+     * Opens a file chooser to upload an image for the selected event.
+     * The selected image is displayed in an ImageView as a preview.
      */
     @FXML
     public void uploadImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
 
         File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
 
@@ -151,9 +167,9 @@ public class ManagingEventsController {
     }
 
     /**
-     * Deletes a selected event from the system.
-     *
-     * @param event ActionEvent triggered by the "Delete Event" button
+     * Deletes an event from the system.
+     * - Removes from internal list
+     * - Removes from both ComboBoxes
      */
     @FXML
     public void deleteEvent(ActionEvent event) {
@@ -172,15 +188,16 @@ public class ManagingEventsController {
     }
 
     /**
-     * Utility method to show alert messages.
+     * Utility method to show an information alert to the user.
+     * Useful for displaying success and error messages.
      *
-     * @param title   Title of the alert dialog
-     * @param message Message to display in the alert dialog
+     * @param title   The title of the alert window
+     * @param message The message body to display
      */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setHeaderText(null);
+        alert.setHeaderText(null);  // No header, just the title and content
         alert.setContentText(message);
         alert.showAndWait();
     }

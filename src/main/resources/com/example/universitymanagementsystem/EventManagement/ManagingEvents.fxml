@@ -1,55 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentPane" prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #fdd1b2; -fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.EventManagement.ManagingEventsController">
+<AnchorPane fx:id="contentPane"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.universitymanagementsystem.EventManagement.ManagingEventsController"
+            prefWidth="1200.0" prefHeight="720.0"
+            style="-fx-background-color: #fdd1b2; -fx-padding: 30;">
 
     <children>
 
-        <!-- Header Title -->
-        <Text layoutX="30.0" layoutY="40.0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #2b2b2b;" text="Event Management" />
+        <VBox spacing="50" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
 
-        <!-- Back Button -->
-        <Button layoutX="690.0" layoutY="20.0" onAction="#launchEventManagement" style="-fx-background-color: #d3d3d3; -fx-font-weight: bold; -fx-background-radius: 10;" text="Back to Events" />
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" spacing="30">
+                <Text text="Event Management"
+                      style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-fill: #2b2b2b;" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button text="Back to Events" onAction="#launchEventManagement"
+                        style="-fx-font-size: 18px; -fx-background-color: #d3d3d3; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;" />
+            </HBox>
 
-        <!-- Add New Event Section -->
-        <Text layoutX="30.0" layoutY="80.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Add New Event" />
+            <!-- Main Content Area -->
+            <HBox spacing="100" VBox.vgrow="ALWAYS" alignment="CENTER">
 
-        <TextField fx:id="eventTitle" layoutX="30.0" layoutY="100.0" promptText="Event Title" style="-fx-background-radius: 10; -fx-padding: 8;" />
+                <!-- Left Side: Add & Delete -->
+                <VBox spacing="50" VBox.vgrow="ALWAYS">
 
-        <TextArea fx:id="eventDescription" layoutX="30.0" layoutY="140.0" prefHeight="80.0" prefWidth="300.0" promptText="Event Description" style="-fx-background-radius: 10; -fx-padding: 8;" />
+                    <!-- Add Section -->
+                    <VBox spacing="15">
+                        <Text text="Add New Event" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                        <TextField fx:id="eventTitle" promptText="Event Title"
+                                   style="-fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 12;" prefWidth="400" />
+                        <TextArea fx:id="eventDescription" promptText="Event Description" prefRowCount="5"
+                                  style="-fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 12;" prefWidth="400" />
+                        <TextField fx:id="eventDateTime" promptText="Date (e.g., 5th March 2025)"
+                                   style="-fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 12;" prefWidth="400" />
+                        <Button text="Add Event" onAction="#addEvent"
+                                style="-fx-font-size: 18px; -fx-background-color: #c21807; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 30;" />
+                    </VBox>
 
-        <TextField fx:id="eventDateTime" layoutX="30.0" layoutY="230.0" promptText="Date (e.g., 5th March 2025)" style="-fx-background-radius: 10; -fx-padding: 8;" />
+                    <Separator prefWidth="400" />
 
-        <Button layoutX="30.0" layoutY="270.0" onAction="#addEvent" style="-fx-background-color: #c21807; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 5 15;" text="Add Event" />
+                    <!-- Delete Section -->
+                    <VBox spacing="15">
+                        <Text text="Delete Event" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                        <ComboBox fx:id="deleteEventComboBox" promptText="Select Event"
+                                  style="-fx-font-size: 16px; -fx-background-radius: 10;" prefWidth="400" />
+                        <Button text="Delete Event" onAction="#deleteEvent"
+                                style="-fx-font-size: 18px; -fx-background-color: #e53935; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 30;" />
+                    </VBox>
 
-        <!-- Delete Event Section -->
-        <Text layoutX="27.0" layoutY="329.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Delete Event" />
+                </VBox>
 
-        <ComboBox fx:id="deleteEventComboBox" layoutX="29.0" layoutY="340.0" promptText="Select Event" style="-fx-background-radius: 10; -fx-padding: 5;" />
+                <!-- Right Side: Edit & Upload -->
+                <VBox spacing="50" VBox.vgrow="ALWAYS">
 
-        <Button layoutX="30.0" layoutY="380.0" onAction="#deleteEvent" style="-fx-background-color: #e53935; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 5 15;" text="Delete Event" />
+                    <!-- Edit Section -->
+                    <VBox spacing="15">
+                        <Text text="Edit Event" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                        <ComboBox fx:id="eventComboBox" promptText="Select Event"
+                                  style="-fx-font-size: 16px; -fx-background-radius: 10;" prefWidth="400" />
+                        <TextField fx:id="newTitle" promptText="New Title"
+                                   style="-fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 12;" prefWidth="400" />
+                        <TextArea fx:id="newDescription" promptText="New Description" prefRowCount="5"
+                                  style="-fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 12;" prefWidth="400" />
+                        <Button text="Update Event" onAction="#updateEvent"
+                                style="-fx-font-size: 18px; -fx-background-color: #c21807; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 30;" />
+                    </VBox>
 
-        <!-- Edit Event Section -->
-        <Text layoutX="400.0" layoutY="80.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Edit Event" />
+                    <Separator prefWidth="400" />
 
-        <ComboBox fx:id="eventComboBox" layoutX="400.0" layoutY="100.0" promptText="Select Event" style="-fx-background-radius: 10; -fx-padding: 5;" />
+                    <!-- Upload Section -->
+                    <VBox spacing="15" alignment="CENTER">
+                        <Text text="Upload New Header Image" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                        <Button text="Upload Image" onAction="#uploadImage"
+                                style="-fx-font-size: 18px; -fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 30;" />
+                        <ImageView fx:id="imagePreview" fitHeight="150.0" fitWidth="220.0"
+                                   style="-fx-border-color: #555; -fx-border-width: 1; -fx-border-radius: 5;" />
+                    </VBox>
 
-        <TextField fx:id="newTitle" layoutX="400.0" layoutY="140.0" promptText="New Title" style="-fx-background-radius: 10; -fx-padding: 8;" />
-
-        <TextArea fx:id="newDescription" layoutX="400.0" layoutY="180.0" prefHeight="80.0" prefWidth="300.0" promptText="New Description" style="-fx-background-radius: 10; -fx-padding: 8;" />
-
-        <Button layoutX="400.0" layoutY="270.0" onAction="#updateEvent" style="-fx-background-color: #c21807; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 5 15;" text="Update Event" />
-
-        <!-- Image Upload Section -->
-        <Text layoutX="398.0" layoutY="346.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Upload New Header Image" />
-
-        <Button layoutX="398.0" layoutY="362.0" onAction="#uploadImage" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 5 15;" text="Upload Image" />
-
-        <ImageView fx:id="imagePreview" fitHeight="80.0" fitWidth="100.0" layoutX="520.0" layoutY="320.0" style="-fx-border-color: #555; -fx-border-width: 1; -fx-border-radius: 5;" />
-
+                </VBox>
+            </HBox>
+        </VBox>
     </children>
 </AnchorPane>

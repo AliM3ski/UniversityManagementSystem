@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
+import static com.example.universitymanagementsystem.ExcelDatabase.ExcelReader.readExcelFaculty;
 import static com.example.universitymanagementsystem.ExcelDatabase.ExcelReader.readExcelStudentIDs;
 
 public class LoginController {
@@ -53,7 +54,7 @@ public class LoginController {
         // Example validation logic
         if (username.equals("admin") && password.equals("password")) {
             return new Admin(username, password); // Admin user
-        } else if (username.equals("faculty") && password.equals("password")) {
+        } else if (readExcelFaculty(filePath, username, password)) {
             return new Faculty(username, password); // Faculty user
         } else if (readExcelStudentIDs(filePath, username, password)) {
             return new Student(username, password); // Student user

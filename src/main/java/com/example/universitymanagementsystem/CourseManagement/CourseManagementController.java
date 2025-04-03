@@ -219,6 +219,16 @@ public class CourseManagementController {
             showAlert("Error", "No course selected.");
             return;
         }
+        // Store old values
+        int oldCourseCode= selected.getCourseCode();
+        String oldCourseName = selected.getName();
+        String oldSubjectCode = selected.getSubject();
+        String oldSectionNumber = selected.getSectionNumber();
+        int oldCapacity = selected.getCapacity();
+        String oldSchedule= selected.getSchedule();
+        String oldLocation = selected.getLocation();
+        String oldTeacherName = selected.getFaculty();
+
 
         selected.setName(nameInput.getText().trim());
         selected.setSubject(subjectInput.getText().trim());
@@ -237,7 +247,9 @@ public class CourseManagementController {
         selected.setFinalExamDateTime(finalExamDateTimeInput.getText().trim()); // Update final exam date/time
         selected.setLocation(locationInput.getText().trim()); // Update location
 
-        courseTable.refresh();
+        ExcelWriter.editCourseInExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx",selected, oldCourseCode,oldCourseName,oldSubjectCode,oldSectionNumber, oldCapacity, oldSchedule, oldLocation, oldTeacherName);
+
+            courseTable.refresh();
     }
 
     @FXML
@@ -245,6 +257,8 @@ public class CourseManagementController {
         Course selected = courseTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             courses.remove(selected);
+            ExcelWriter.deleteCourseFromExcel("src\\main\\java\\com\\example\\universitymanagementsystem\\ExcelDatabase\\UMS_Data.xlsx", selected.getCourseCode());
+
         } else {
             showAlert("Error", "No course selected.");
         }

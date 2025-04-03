@@ -155,13 +155,13 @@ public class ExcelWriter {
         }
     }
 
-    // ** Edit Subject in Excel **
+    // ** Edit student in Excel **
     public static void editStudentInExcel(String filePath,Student selectedStudent,  String oldStudentID,  String oldName, String oldAddress, String oldPhone, String oldEmail, String oldAcademicLevel, String oldPhotoPath, String oldSubjectRegistered, String oldTheisTitle, String oldProgress, String oldpassword ) {
         try (FileInputStream fileIn = new FileInputStream(filePath);
              XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
 
             Sheet sheet = workbook.getSheet("Student");
-            // Loop through each row to find the row with the given subject code
+            // Loop through each row to find the row with the given student code
             for (Row row : sheet) {
                 Cell[] cells = new Cell[12];
                 for (int i = 0; i < 12; i++) {
@@ -212,7 +212,6 @@ public class ExcelWriter {
         }
     }
 
-    //  Delete Subject from Excel
     public static void deleteStudentFromExcel(String filePath, String studentCode) {
         try (FileInputStream fileIn = new FileInputStream(filePath);
              XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
@@ -300,10 +299,10 @@ public class ExcelWriter {
             row.createCell(2).setCellValue(course.getSubject());
             row.createCell(3).setCellValue(course.getSectionNumber());
             row.createCell(4).setCellValue(course.getCapacity());
-           // row.createCell(5).setCellValue(course.get());
+            row.createCell(5).setCellValue(course.getSchedule());
             row.createCell(6).setCellValue(course.getFinalExamDateTime());
             row.createCell(7).setCellValue(course.getLocation());
-           // row.createCell(8).setCellValue(course.get());
+            row.createCell(8).setCellValue(course.getFaculty());
 
             // fixes sizing in the column if need be
             for (int i = 0; i < 2; i++) {
@@ -314,6 +313,100 @@ public class ExcelWriter {
             try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
                 workbook.write(fileOut);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void editCourseInExcel(String filePath, Course selectedCourse, int oldCourseCode, String oldCourseName, String oldSubjectCode, String oldSectionNumber, int oldCapacity, String oldSchedule, String oldLocation, String oldTeacherName) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            Sheet sheet = workbook.getSheet("Courses");
+
+            for (Row row : sheet) {
+                Cell[] cells = new Cell[9]; // Only 9 columns expected
+                for (int i = 0; i < 9; i++) {
+                    cells[i] = row.getCell(i);
+                }
+
+                // Check each cell and update if it matches the old values
+                if (cells[0] != null && cells[0].getCellType() == CellType.NUMERIC &&
+                        cells[0].getNumericCellValue() == oldCourseCode) {
+                    cells[0].setCellValue(selectedCourse.getCourseCode());
+                }
+                if (cells[1] != null && cells[1].getCellType() == CellType.STRING &&
+                        cells[1].getStringCellValue().equals(oldCourseName)) {
+                    cells[1].setCellValue(selectedCourse.getName());
+                }
+                if (cells[2] != null && cells[2].getCellType() == CellType.STRING &&
+                        cells[2].getStringCellValue().equals(oldSubjectCode)) {
+                    cells[2].setCellValue(selectedCourse.getSubject());
+                }
+                if (cells[3] != null && cells[3].getCellType() == CellType.STRING &&
+                        cells[3].getStringCellValue().equals(oldSectionNumber)) {
+                    cells[3].setCellValue(selectedCourse.getSectionNumber());
+                }
+                if (cells[4] != null && cells[4].getCellType() == CellType.NUMERIC &&
+                        (int) cells[4].getNumericCellValue() == oldCapacity) {
+                    cells[4].setCellValue(selectedCourse.getCapacity());
+                }
+                if (cells[5] != null && cells[5].getCellType() == CellType.STRING &&
+                        cells[5].getStringCellValue().equals(oldSchedule)) {
+                    cells[5].setCellValue(selectedCourse.getSchedule());
+                }
+                if (cells[6] != null && cells[6].getCellType() == CellType.STRING &&
+                        cells[6].getStringCellValue().equals(oldLocation)) {
+                    cells[6].setCellValue(selectedCourse.getLocation());
+                }
+                if (cells[7] != null && cells[7].getCellType() == CellType.STRING &&
+                        cells[7].getStringCellValue().equals(oldTeacherName)) {
+                    cells[7].setCellValue(selectedCourse.getFaculty());
+                }
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteCourseFromExcel(String filePath, double courseCode) {
+        try (FileInputStream fileIn = new FileInputStream(filePath);
+             XSSFWorkbook workbook = new XSSFWorkbook(fileIn)) {
+
+            Sheet sheet = workbook.getSheet("Courses");
+            // Variable to store the index of the row to delete
+            int rowIndex = -1;
+
+            for (Row row : sheet) {
+                if(row.getRowNum() == 0){
+                    continue;
+                }
+                Cell IDCell = row.getCell(0);
+                if (IDCell != null && IDCell.getNumericCellValue() == courseCode) {
+                    rowIndex = row.getRowNum();
+                    break;
+                }
+            }
+            if (rowIndex != -1) {
+                // Get the last row number
+                int lastRowNum = sheet.getLastRowNum();
+
+                // Remove the row from the sheet
+                sheet.removeRow(sheet.getRow(rowIndex));
+
+                // If the deleted row is not the last row, shift remaining rows up
+                if (rowIndex < lastRowNum) {
+                    sheet.shiftRows(rowIndex + 1, lastRowNum, -1);
+                }
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+                workbook.write(fileOut);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

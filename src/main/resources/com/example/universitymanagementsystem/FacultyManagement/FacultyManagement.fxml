@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1465.0" style="-fx-background-color: #ffcdb2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1200.0" style="-fx-background-color: #ffcdb2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementsystem.FacultyManagement.FacultyManagementController">
 
     <children>
-        <BorderPane prefHeight="503.0" prefWidth="1252.0" style="-fx-background-color: #ffcdb2;">
+        <BorderPane prefHeight="476.0" prefWidth="1192.0" style="-fx-background-color: #ffcdb2;">
             <center>
-                <TableView fx:id="facultyTable" prefHeight="444.0" prefWidth="1167.0">
+                <TableView fx:id="facultyTable" prefHeight="415.0" prefWidth="1048.0">
                     <columns>
                         <TableColumn fx:id="faculty_Column" prefWidth="150.0" text="Faculty ID" />
                         <TableColumn fx:id="name_Column" prefWidth="153.0" text="Name" />
